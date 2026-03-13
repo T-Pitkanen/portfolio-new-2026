@@ -1,0 +1,99 @@
+.toc {
+  width: 220px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 0;
+  background: transparent;
+  align-self: flex-start;
+  z-index: 60;
+}
+
+.tocHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.tocHeader span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.toggle {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.35rem;
+  transition: color 0.2s;
+}
+
+.toggle:hover {
+  color: var(--text);
+}
+
+.toc .tocList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc.open .tocList {
+  display: block;
+}
+
+.toc.closed .tocList {
+  display: none;
+}
+
+.tocList li {
+  margin: 0.8rem 0;
+}
+
+.level2 a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.level2 a:hover {
+  color: var(--text);
+}
+
+.level3 {
+  margin-left: 0.8rem;
+}
+
+.level3 a {
+  font-size: 0.78rem;
+  color: #444;
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.level3 a:hover {
+  color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+  .toc {
+    display: none;
+  }
+}
+
+@media (min-width: 1025px) {
+  .toc {
+    position: sticky;
+    top: 90px;
+  }
+}

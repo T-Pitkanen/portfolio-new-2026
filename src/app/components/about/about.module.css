@@ -1,0 +1,132 @@
+.section {
+  padding: 8rem 6%;
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3.5rem;
+  display: block;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.heading {
+  font-size: clamp(26px, 3vw, 46px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+.bio p {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: #aaa;
+  margin-bottom: 1.2rem;
+}
+
+.bio strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.infoPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.infoLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.15rem;
+}
+
+.infoValue {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.infoLink {
+  font-size: 0.88rem;
+  color: var(--text);
+  transition: color 0.2s;
+}
+
+.infoLink:hover {
+  color: var(--accent);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Secondary skills — more muted, smaller */
+.tagSecondary {
+  opacity: 0.45;
+  border-style: dashed;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 6rem 6%;
+  }
+}

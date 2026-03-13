@@ -1,0 +1,97 @@
+.container {
+  padding: 8rem 6%;
+  max-width: 100%;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3.5rem;
+  transition: color 0.2s;
+}
+
+.back:hover {
+  color: var(--text);
+}
+
+.container h1 {
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  margin-bottom: 4rem;
+  max-width: 1400px;
+}
+
+.intro {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  margin-top: -3rem;
+  letter-spacing: 0.5px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  border-top: 1px solid var(--border);
+}
+
+.card:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.link h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.2s;
+  flex: 1;
+}
+
+.link p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  flex: 2;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.link:hover h2 {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 6rem 6%;
+  }
+
+  .link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.5rem 0;
+  }
+}

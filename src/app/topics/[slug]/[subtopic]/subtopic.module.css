@@ -1,0 +1,107 @@
+.topicContainer {
+  padding: 8rem 6%;
+  max-width: 100%;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--text);
+}
+
+.topicContainer h1 {
+  font-size: clamp(28px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  margin-bottom: 3rem;
+  color: var(--text);
+}
+
+.topicInner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+}
+
+.content {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.blockHeader {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.2px;
+}
+
+.blockSubheader {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.5rem 0 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.topicContainer p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #888;
+  margin: 0.75rem 0;
+  max-width: 680px;
+}
+
+.listBlock {
+  margin-left: 1.5rem;
+  margin-right: auto;
+}
+
+.listItem {
+  margin: 0.4rem 0;
+  color: #888;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.caption {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 1025px) {
+  .topicInner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .topicContainer p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .topicContainer {
+    padding: 6rem 6%;
+  }
+}
