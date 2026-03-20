@@ -47,7 +47,28 @@ const Projects = () => {
                     </a>
                   )}
                 </div>
+                
+                <div className={styles.metaInfo}>
+                  {project.role && <span className={styles.role}>{project.role}</span>}
+                  {project.year && <span className={styles.year}>{project.year}</span>}
+                </div>
+
+                {project.impact && (
+                  <p className={styles.impactStatement}>{project.impact}</p>
+                )}
+
                 <p className={styles.stack}>{project.code}</p>
+                
+                {project.highlights && project.highlights.length > 0 && (
+                  <div className={styles.highlights}>
+                    {project.highlights.map((highlight, hIdx) => (
+                      <span key={hIdx} className={styles.highlight}>
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
                 <p className={styles.projectGoal}>{project.goal}</p>
               </div>
             </div>

@@ -87,7 +87,7 @@ const Intro = () => {
                 <span className={styles.gridTexture}></span>
             </div>
             <div className={styles.inner} data-fade>
-                <p className={styles.tag}>Business Information Technology Student</p>
+                <p className={styles.tag}>Student Developer | Databases & Web</p>
                 <div className={styles.nameWrap}>
                     <h1 className={styles.name}>
                         <span className={styles.nameThin}>TIIA</span>
@@ -97,15 +97,30 @@ const Intro = () => {
                         </span>
                     </h1>
                 </div>
+                <div className={styles.tagline} data-delay="1">
+                    <p>Learning to build full-stack solutions. Passionate about databases, clean code, and good design.</p>
+                </div>
+                <div className={styles.skillBadges} data-delay="2">
+                    <span className={styles.badge}>PostgreSQL</span>
+                    <span className={styles.badge}>React</span>
+                    <span className={styles.badge}>Next.js</span>
+                    <span className={styles.badge}>UI/UX</span>
+                </div>
                 <div className={styles.bottomRow}>
                     <span className={styles.status}>
                         <span className={styles.dot}></span>
-                        Seeking internships and junior roles
+                        Open to internships & junior roles
                     </span>
-                    <a href="#data" className={styles.cta}>
-                        See my work ↓
-                    </a>
+                    <div className={styles.ctaGroup}>
+                        <a href="#about" className={`${styles.cta} ${styles.ctaPrimary}`}>
+                            Explore My Work ↓
+                        </a>
+                    </div>
                 </div>
+            </div>
+            <div className={styles.scrollIndicator}>
+                <span>Scroll to explore</span>
+                <span className={styles.scrollDot}></span>
             </div>
         </section>
     );
