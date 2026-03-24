@@ -25,29 +25,29 @@ const About = () => {
               Business IT student, into data and web dev.
             </h2>
             <p>
-              I&apos;m a second-year student at Vaasa University of Applied
-              Sciences in Finland. Before that I did a web development degree at
-              Media College Denmark in 2024, so I&apos;ve got a solid foundation
-              on the frontend and web side.
+              I ended up in Denmark a few years ago, and while I was there I
+              started a web development course, liked it, and applied for a
+              degree at Media College Denmark. Finished in 2024, moved back to
+              Finland, and started Business IT at VAMK in Vaasa.
             </p>
             <p>
-              My studies at VAMK mix business and tech. I study things like
-              marketing, sales, entrepreneurship and accounting alongside more
-              technical courses. Right now I&apos;m studying databases and APIs,
-              cloud services, UI & UX, and web design, which is where a lot of
-              my focus is at the moment.
+              At VAMK I&apos;ve taken courses in databases, cloud, UI/UX and web
+              design. The database course stuck with me more than most. We used
+              PostgreSQL, went through schema design and normalization, and I
+              liked how it all fit together. I also did a small exercise
+              involving RAG, which got me curious about that space.
             </p>
             <p>
-              I&apos;ve been getting into PostgreSQL and MongoDB, working
-              through database schemas, SQL queries, vector databases and ER
-              diagrams. But I&apos;m comfortable with fullstack work too and not
-              really trying to specialize too hard yet.
+              I like building things. Fullstack work, planning out how a project
+              should be structured, designing how data moves through a system. I
+              just enjoy the process of making something work from start to
+              finish.
             </p>
             <p>
-              I&apos;m looking for internship where I can actually get hands-on
-              experience. Data and databases are interesting to me right now,
-              but so is fullstack and low-code. I care more about finding
-              somewhere I can learn from people than about a specific stack.
+              I don&apos;t know exactly where I&apos;ll end up yet. Ideally
+              something fullstack, but I&apos;m keeping an open mind. What
+              matters more to me is working on something real and being around
+              people who have been doing this for a long time.
             </p>
           </div>
 

@@ -98,7 +98,7 @@ const Intro = () => {
                     </h1>
                 </div>
                 <div className={styles.tagline} data-delay="1">
-                    <p>Studied web dev in Denmark, now deep in databases and backend at VAMK in Finland. I learn by building things — this portfolio is what that looks like.</p>
+                    <p>Started with web dev in Denmark, picked up databases in Finland. I like building things end to end and figuring out how the data fits in.</p>
                 </div>
                 <div className={styles.skillBadges} data-delay="2">
                     <span className={styles.badge}>PostgreSQL</span>

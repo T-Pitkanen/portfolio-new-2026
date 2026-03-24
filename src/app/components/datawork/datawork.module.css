@@ -49,22 +49,25 @@
 
 .filterBtn {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #ccc;
   background: transparent;
-  border: 1px solid var(--border);
-  padding: 0.45rem 1rem;
+  border: 1px solid #3a3a3a;
+  padding: 0.5rem 1.1rem;
   border-radius: 2px;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .filterBtn:hover {
   color: var(--text);
-  border-color: #444;
+  border-color: #666;
 }
 
 .filterActive {
@@ -73,7 +76,17 @@
   background: color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
-/* Artifact grid */
+.filterBadge {
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+/* Card grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -84,7 +97,7 @@
 
 .card {
   background-color: var(--bg);
-  padding: 2.2rem 2rem;
+  padding: 2.4rem 2.2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -93,6 +106,27 @@
 
 .card:hover {
   background-color: var(--bg-card);
+}
+
+.cardClickable {
+  cursor: pointer;
+}
+
+.cardClickable:hover {
+  background-color: var(--bg-card);
+}
+
+.cardClickable:hover .cardHint {
+  opacity: 1;
+}
+
+/* In progress & coming soon variants */
+.cardInProgress {
+  border-left: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.cardComingSoon {
+  opacity: 0.5;
 }
 
 /* Top row: course tag + type badge */
@@ -124,8 +158,32 @@
   border-radius: 2px;
 }
 
+.inProgressBadge {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+}
+
+.comingSoonBadge {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+}
+
 .cardTitle {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.3px;
@@ -133,7 +191,7 @@
 }
 
 .cardDesc {
-  font-size: 0.87rem;
+  font-size: 0.95rem;
   line-height: 1.8;
   color: #aaa;
   flex: 1;
@@ -158,54 +216,43 @@
   margin-right: 0.4rem;
 }
 
-/* Image thumbnail */
-.imageThumb {
-  position: relative;
-  display: block;
-  width: 100%;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 2px;
-  margin-top: 0.5rem;
-}
-
-.imageThumb img {
-  transition: transform 0.4s cubic-bezier(0.33, 0.66, 0.66, 1);
-}
-
-.imageThumb:hover img {
-  transform: scale(1.03);
-}
-
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+/* Card hint row — shows what's inside */
+.cardHint {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #fff;
-  opacity: 0;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0.4;
   transition: opacity 0.2s ease;
 }
 
-.imageThumb:hover .imageOverlay {
-  opacity: 1;
+.hintItem {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
 }
 
-/* Lightbox */
-.lightbox {
+.hintExpand {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-left: auto;
+}
+
+/* Detail modal */
+.modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.82);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,26 +267,29 @@
   to { opacity: 1; }
 }
 
-.lightboxContent {
+.modalContent {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  max-width: 960px;
   width: 100%;
-  max-height: 90vh;
+  max-width: 780px;
+  max-height: 88vh;
   overflow-y: auto;
   position: relative;
+  padding: 3rem;
   animation: slideUp 0.25s cubic-bezier(0.33, 0.66, 0.66, 1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 
 @keyframes slideUp {
-  from { transform: translateY(24px); opacity: 0; }
+  from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
-.lightboxClose {
+.modalClose {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.2rem;
+  right: 1.2rem;
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-muted);
@@ -252,26 +302,156 @@
   font-size: 1rem;
   border-radius: 2px;
   transition: all 0.2s;
-  z-index: 1;
+  flex-shrink: 0;
 }
 
-.lightboxClose:hover {
+.modalClose:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
 
-.lightboxTitle {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 1.2rem 1.5rem 0.8rem;
+.modalMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
 }
 
+.modalTitle {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+
+.modalDesc {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+.modalTakeaway {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  border-left: 2px solid var(--accent);
+  padding: 0.8rem 1.2rem;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  margin-bottom: 2rem;
+}
+
+.modalImage {
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #000;
+}
+
+/* Code block */
+.codeBlock {
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.codeHeader {
+  background: color-mix(in srgb, var(--border) 60%, transparent);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.codeLang {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.codePre {
+  margin: 0;
+  padding: 1.5rem;
+  overflow-x: auto;
+  background: #050505;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.codePre code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #c8c8c8;
+  white-space: pre;
+  display: block;
+}
+
+/* Image zoom overlay */
+.imageZoomOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  cursor: pointer;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.zoomClose {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: 1px solid #555;
+  color: #999;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 2px;
+  transition: all 0.2s;
+  z-index: 1101;
+}
+
+.zoomClose:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.zoomedImage {
+  object-fit: contain;
+  animation: zoomIn 0.3s cubic-bezier(0.33, 0.66, 0.66, 1);
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive */
 @media (max-width: 1100px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 6rem 6%;
+  }
+
+  .modalContent {
+    padding: 2rem;
+    max-height: 90vh;
   }
 }
 
@@ -293,12 +473,18 @@
     padding: 0.4rem 0.8rem;
   }
 
-  .lightbox {
-    padding: 1rem;
+  .modalOverlay {
+    padding: 0;
     align-items: flex-end;
   }
 
-  .lightboxContent {
-    max-height: 85vh;
+  .modalContent {
+    max-height: 92vh;
+    border-bottom: none;
+    padding: 1.5rem;
+  }
+
+  .codePre code {
+    font-size: 0.75rem;
   }
 }
