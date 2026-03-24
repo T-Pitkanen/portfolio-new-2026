@@ -52,26 +52,3 @@ a {
 [data-fade][data-delay="3"] { transition-delay: 0.24s; }
 [data-fade][data-delay="4"] { transition-delay: 0.32s; }
 
-/* Figure utilities (used in topic articles) */
-.figure--small  { max-width: 320px; }
-.figure--medium { max-width: 640px; }
-.figure--large  { max-width: 700px; }
-.figure--full   { max-width: 1200px; width: 100%; }
-
-.figure--scale-down img {
-  max-width: 600px;
-  height: auto;
-  object-fit: scale-down;
-}
-
-.figure--small,
-.figure--medium,
-.figure--large {
-  margin: 5vh 0;
-}
-
-.figure--small img,
-.figure--medium img,
-.figure--large img {
-  object-fit: cover;
-}

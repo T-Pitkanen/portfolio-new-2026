@@ -4,216 +4,127 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./datawork.module.css";
 
-const categories = [
+const artifacts = [
   {
-    id: "cat-01",
-    title: "Databases",
-    description: "Core database concepts and design",
-    subcategories: [
-      {
-        id: "sub-01",
-        title: "Normalization",
-        description:
-          "Working through 1NF, 2NF, and 3NF — understanding why redundancy causes problems and how to eliminate it properly. Currently studying BCNF and functional dependencies.",
-      },
-      {
-        id: "sub-02",
-        title: "ER Diagrams",
-        description:
-          "Designing entity-relationship diagrams to model real-world systems before touching any database. Practiced identifying entities, attributes, and relationships — including cardinality and participation constraints.",
-        image: "/eläintarha/eläintarha_drawio.png",
-        details:
-          "Designed a relational database schema for a zoo management system. Includes normalized tables, junction tables for many-to-many relationships like animal diets and caretakers, and proper foreign key constraints. Built the ER diagram in draw.io and implemented it in SQL.",
-      },
-      {
-        id: "sub-03",
-        title: "Joins & Group By",
-        description:
-          "Writing queries with multi-table JOINs, aggregations, subqueries, and views. Focused on writing clean, readable SQL and understanding how the query optimizer works.",
-      },
-      {
-        id: "sub-04",
-        title: "Vector Databases",
-        description:
-          "Got introduced to vector databases and how they differ from relational and document databases. Interesting especially in the context of AI and search.",
-      },
-      {
-        id: "sub-05",
-        title: "Transactions & Indexing",
-        description:
-          "Understanding ACID properties, transaction isolation levels, and how indexing affects query performance. Practicing index design and query optimization.",
-      },
-      {
-        id: "sub-06",
-        title: "Database Design",
-        description:
-          "End-to-end database design process from requirements to implementation. Includes schema design, normalization, and proper constraint management.",
-      },
-    ],
+    id: "a01",
+    course: "Databases",
+    type: "Schema Design",
+    title: "Zoo Management ER Diagram",
+    description:
+      "Designed a full relational schema for a zoo management system — normalized tables, junction tables for M:N relationships (animal diets, caretakers), and proper FK constraints. Built in draw.io and implemented in SQL.",
+    takeaway:
+      "Identifying non-obvious M:N relationships before touching the database saves a lot of refactoring later.",
+    image: "/eläintarha/eläintarha_drawio.png",
   },
   {
-    id: "cat-02",
-    title: "SQL & Queries",
-    description: "SQL fundamentals and query writing",
-    subcategories: [
-      {
-        id: "sub-sql-01",
-        title: "SELECT Statements",
-        description: "Basic to advanced SELECT queries with WHERE, ORDER BY, and LIMIT clauses.",
-      },
-      {
-        id: "sub-sql-02",
-        title: "Aggregations",
-        description:
-          "Using aggregate functions like COUNT, SUM, AVG, MIN, MAX with GROUP BY and HAVING clauses.",
-      },
-    ],
+    id: "a02",
+    course: "Databases",
+    type: "Exercise",
+    title: "Normalization to 3NF",
+    description:
+      "Converted a flat table with redundancy through 1NF, 2NF, and 3NF step by step — removing partial dependencies first, then transitive ones.",
+    takeaway:
+      "Transitive dependencies hide in tables that look clean at first glance.",
   },
   {
-    id: "cat-03",
-    title: "PostgreSQL",
-    description: "PostgreSQL-specific features and administration",
-    subcategories: [
-      {
-        id: "sub-pg-01",
-        title: "Schema Design",
-        description:
-          "Using PostgreSQL as my primary relational database. Practicing schema design, constraints, indexing basics.",
-      },
-      {
-        id: "sub-pg-02",
-        title: "Advanced Features",
-        description: "Working with psql, pgAdmin, and PostgreSQL-specific features.",
-      },
-    ],
+    id: "a03",
+    course: "Databases",
+    type: "Exercise",
+    title: "Transactions & ACID Properties",
+    description:
+      "Studied transaction isolation levels and how ACID properties prevent anomalies. Practiced index design and analyzed query execution plans.",
+    takeaway:
+      "Isolation levels are a tradeoff — more isolation means more locking, not always the right call.",
   },
   {
-    id: "cat-04",
-    title: "MongoDB",
-    description: "Document-oriented databases",
-    subcategories: [
-      {
-        id: "sub-mongo-01",
-        title: "Document Modeling",
-        description:
-          "Learning document-oriented data modeling — how it differs from relational, when it makes sense.",
-      },
-      {
-        id: "sub-mongo-02",
-        title: "Queries & Aggregation",
-        description:
-          "Writing queries in MongoDB shell and using the aggregation framework.",
-      },
-    ],
+    id: "a04",
+    course: "Databases",
+    type: "Exercise",
+    title: "Vector Databases",
+    description:
+      "Got introduced to vector databases — how they store embeddings, how similarity search differs from SQL, and where they fit alongside relational and document stores.",
+    takeaway:
+      "Vector DBs don't replace relational DBs — they solve a completely different problem.",
   },
   {
-    id: "cat-05",
-    title: "Azure & Cloud",
-    description: "Cloud fundamentals and services",
-    subcategories: [
-      {
-        id: "sub-azure-01",
-        title: "Cloud Fundamentals",
-        description:
-          "Getting familiar with cloud fundamentals through Azure. Working through concepts like storage, compute, and managed databases.",
-      },
-    ],
+    id: "a05",
+    course: "SQL & Queries",
+    type: "Exercise",
+    title: "Multi-table JOINs & Aggregations",
+    description:
+      "Wrote queries with INNER, LEFT, and FULL JOINs across 3–4 tables. Used GROUP BY with HAVING for filtered aggregations. Focused on readable SQL, not just correct SQL.",
+    takeaway:
+      "Writing a JOIN is easy. Writing one that makes the intent obvious is harder.",
+  },
+  {
+    id: "a06",
+    course: "SQL & Queries",
+    type: "Exercise",
+    title: "Subqueries & Views",
+    description:
+      "Practiced writing correlated and uncorrelated subqueries, and wrapped reusable logic into views. Compared view performance to inline subqueries.",
+    takeaway:
+      "Views are great for readability but can mask performance issues if you're not careful.",
+  },
+  {
+    id: "a07",
+    course: "PostgreSQL",
+    type: "Schema",
+    title: "PostgreSQL Schema & Constraints",
+    description:
+      "Used PostgreSQL as my primary RDBMS. Practiced schema design with CHECK constraints, UNIQUE, NOT NULL, and foreign keys. Used pgAdmin for schema visualization.",
+    takeaway:
+      "PostgreSQL's constraint system catches data integrity issues before they ever reach the application layer.",
+  },
+  {
+    id: "a08",
+    course: "PostgreSQL",
+    type: "Exercise",
+    title: "Indexing & Query Optimization",
+    description:
+      "Explored B-tree and hash indexes. Used EXPLAIN ANALYZE to understand query plans and see where full table scans were happening.",
+    takeaway:
+      "An index on the wrong column can be worse than no index at all.",
+  },
+  {
+    id: "a09",
+    course: "MongoDB",
+    type: "Exercise",
+    title: "Document Modeling vs Relational",
+    description:
+      "Modeled the same domain in both MongoDB and PostgreSQL and compared the tradeoffs. Wrote queries in the MongoDB shell and used the aggregation framework.",
+    takeaway:
+      "MongoDB's flexibility is powerful but dangerous — schema-on-write discipline matters.",
+  },
+  {
+    id: "a10",
+    course: "Azure & Cloud",
+    type: "Study",
+    title: "Azure Fundamentals",
+    description:
+      "Worked through cloud fundamentals via Azure — storage, compute, managed databases, and the difference between IaaS vs PaaS. Got comfortable with the Azure portal.",
+    takeaway:
+      "Managed databases remove operational pain, but you lose visibility into what's actually happening underneath.",
   },
 ];
 
-const SubcategoryList = ({ category, onBack, onSelectSubcategory }) => {
-  return (
-    <div className={styles.subcategoryView}>
-      <button className={styles.backBtn} onClick={onBack}>
-        ← Back
-      </button>
-
-      <div className={styles.categoryHeader}>
-        <h2 className={styles.categoryTitle}>{category.title}</h2>
-        <p className={styles.categoryDescription}>{category.description}</p>
-      </div>
-
-      <div className={styles.subcategoryList}>
-        {category.subcategories.map((sub, i) => (
-          <div
-            key={sub.id}
-            className={styles.subcategoryCard}
-            onClick={() => onSelectSubcategory(sub)}
-            data-fade
-            data-delay={String(i % 4)}
-          >
-            <h3 className={styles.subcategoryTitle}>{sub.title}</h3>
-            <p className={styles.subcategoryDesc}>{sub.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const DetailModal = ({ subcategory, onClose, onBack }) => {
-  return (
-    <div className={styles.modal} onClick={onClose}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.modalHeader}>
-          <button className={styles.backBtnModal} onClick={onBack}>
-            ← Back
-          </button>
-          <button className={styles.closeBtn} onClick={onClose}>
-            ✕
-          </button>
-        </div>
-
-        <div className={styles.detailHeader}>
-          <h3 className={styles.detailTitle}>{subcategory.title}</h3>
-        </div>
-
-        <p className={styles.detailDesc}>{subcategory.description}</p>
-
-        {subcategory.details && (
-          <p className={styles.detailExt}>{subcategory.details}</p>
-        )}
-
-        {subcategory.image && (
-          <div className={styles.detailImage}>
-            <Image
-              src={subcategory.image}
-              alt={subcategory.title}
-              width={800}
-              height={600}
-              style={{ width: "100%", height: "auto" }}
-              priority
-            />
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
+const courses = [
+  "All",
+  "Databases",
+  "SQL & Queries",
+  "PostgreSQL",
+  "MongoDB",
+  "Azure & Cloud",
+];
 
 const DataWork = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [expandedImage, setExpandedImage] = useState(null);
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const handleSubcategoryClick = (subcategory) => {
-    setSelectedSubcategory(subcategory);
-  };
-
-  const handleBackFromSubcategories = () => {
-    setSelectedCategory(null);
-  };
-
-  const handleBackFromDetail = () => {
-    setSelectedSubcategory(null);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedSubcategory(null);
-  };
+  const filtered =
+    activeFilter === "All"
+      ? artifacts
+      : artifacts.filter((a) => a.course === activeFilter);
 
   return (
     <>
@@ -225,44 +136,88 @@ const DataWork = () => {
           <div className={styles.header} data-fade data-delay="1">
             <h2 className={styles.heading}>What I&apos;m studying</h2>
             <p className={styles.subheading}>
-              Coursework and exercises from what I&apos;m currently studying.
+              Exercises, schemas, and things I&apos;ve built to understand them.
+              Each card is one artifact — what I made and what I took from it.
             </p>
           </div>
 
-          {!selectedCategory ? (
-            <div className={styles.grid}>
-              {categories.map((cat, i) => (
-                <div
-                  key={cat.id}
-                  className={`${styles.card} ${styles.clickable}`}
-                  data-fade
-                  data-delay={String(i % 4)}
-                  onClick={() => handleCategoryClick(cat)}
-                >
-                  <h3 className={styles.cardTitle}>{cat.title}</h3>
-                  <p className={styles.cardDesc}>{cat.description}</p>
-                  <div className={styles.cardFooter}>
-                    {cat.subcategories.length} topics
-                  </div>
+          <div className={styles.filters} data-fade data-delay="2">
+            {courses.map((course) => (
+              <button
+                key={course}
+                className={`${styles.filterBtn} ${
+                  activeFilter === course ? styles.filterActive : ""
+                }`}
+                onClick={() => setActiveFilter(course)}
+              >
+                {course}
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.grid}>
+            {filtered.map((artifact) => (
+              <div
+                key={artifact.id}
+                className={styles.card}
+              >
+                <div className={styles.cardTop}>
+                  <span className={styles.courseTag}>{artifact.course}</span>
+                  <span className={styles.typeTag}>{artifact.type}</span>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <SubcategoryList
-              category={selectedCategory}
-              onBack={handleBackFromSubcategories}
-              onSelectSubcategory={handleSubcategoryClick}
-            />
-          )}
+                <h3 className={styles.cardTitle}>{artifact.title}</h3>
+                <p className={styles.cardDesc}>{artifact.description}</p>
+                <p className={styles.takeaway}>
+                  <span className={styles.takeawayLabel}>Takeaway — </span>
+                  {artifact.takeaway}
+                </p>
+                {artifact.image && (
+                  <button
+                    className={styles.imageThumb}
+                    onClick={() => setExpandedImage(artifact)}
+                    aria-label={`View ${artifact.title} image`}
+                  >
+                    <Image
+                      src={artifact.image}
+                      alt={artifact.title}
+                      width={600}
+                      height={400}
+                      style={{ width: "100%", height: "auto", display: "block" }}
+                    />
+                    <span className={styles.imageOverlay}>View ↗</span>
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {selectedSubcategory && (
-        <DetailModal
-          subcategory={selectedSubcategory}
-          onClose={handleCloseModal}
-          onBack={handleBackFromDetail}
-        />
+      {expandedImage && (
+        <div
+          className={styles.lightbox}
+          onClick={() => setExpandedImage(null)}
+        >
+          <div
+            className={styles.lightboxContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={styles.lightboxClose}
+              onClick={() => setExpandedImage(null)}
+            >
+              ✕
+            </button>
+            <p className={styles.lightboxTitle}>{expandedImage.title}</p>
+            <Image
+              src={expandedImage.image}
+              alt={expandedImage.title}
+              width={1200}
+              height={900}
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
+        </div>
       )}
     </>
   );

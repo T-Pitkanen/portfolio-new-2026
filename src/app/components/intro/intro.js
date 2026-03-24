@@ -87,7 +87,7 @@ const Intro = () => {
                 <span className={styles.gridTexture}></span>
             </div>
             <div className={styles.inner} data-fade>
-                <p className={styles.tag}>Student Developer | Databases & Web</p>
+                <p className={styles.tag}>Business IT @ VAMK &middot; Web Dev @ Media College Denmark</p>
                 <div className={styles.nameWrap}>
                     <h1 className={styles.name}>
                         <span className={styles.nameThin}>TIIA</span>
@@ -98,7 +98,7 @@ const Intro = () => {
                     </h1>
                 </div>
                 <div className={styles.tagline} data-delay="1">
-                    <p>Learning to build full-stack solutions. Passionate about databases, clean code, and good design.</p>
+                    <p>Studied web dev in Denmark, now deep in databases and backend at VAMK in Finland. I learn by building things — this portfolio is what that looks like.</p>
                 </div>
                 <div className={styles.skillBadges} data-delay="2">
                     <span className={styles.badge}>PostgreSQL</span>

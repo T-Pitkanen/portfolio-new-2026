@@ -25,7 +25,7 @@ const Projects = () => {
   return (
     <section className={styles.section} id="web-projects">
       <div className={styles.inner}>
-        <p className={styles.sectionLabel} data-fade>03 — Older Web Projects</p>
+        <p className={styles.sectionLabel} data-fade>03 — Projects</p>
 
         {projectData.map((project, index) => (
           <div key={index} className={styles.projectRow} data-fade>

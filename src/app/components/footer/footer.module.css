@@ -1,7 +1,7 @@
 .footer {
   padding: 6rem 6% 4rem;
   border-top: 1px solid var(--border);
-  background: linear-gradient(180deg, 
+  background: linear-gradient(180deg,
     var(--bg) 0%,
     color-mix(in srgb, var(--bg-card) 50%, var(--bg) 50%) 100%
   );
@@ -9,6 +9,7 @@
 
 .inner {
   max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -111,8 +112,8 @@
 /* Bottom bar */
 .bottom {
   max-width: 1400px;
+  margin: 2rem auto 0;
   border-top: 1px solid var(--border);
-  margin-top: 2rem;
   padding-top: 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -149,5 +150,27 @@
     flex-wrap: wrap;
     gap: 1.5rem;
     padding-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 4rem 5% 2.5rem;
+  }
+
+  .emailHero {
+    font-size: clamp(18px, 6vw, 26px);
+    word-break: break-word;
+    margin-bottom: 2rem;
+  }
+
+  .links {
+    gap: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .iconLink {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.75rem;
   }
 }

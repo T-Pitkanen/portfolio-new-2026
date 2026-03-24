@@ -68,7 +68,7 @@
   display: block;
   overflow: hidden;
   white-space: nowrap;
-  animation: typewriter 4.5s steps(45, end) forwards;
+  animation: typewriter 5s steps(55, end) forwards;
 }
 
 .name {
@@ -326,6 +326,17 @@
   animation: scroll 2s ease-in-out infinite;
 }
 
+@media (max-width: 900px) {
+  .name {
+    font-size: clamp(60px, 12vw, 120px);
+  }
+
+  .tagline {
+    font-size: clamp(15px, 2.2vw, 18px);
+    max-width: 540px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: 7rem 6% 4rem;
@@ -342,7 +353,7 @@
   }
 
   .tagline {
-    font-size: clamp(14px, 2vw, 16px);
+    font-size: clamp(14px, 3vw, 17px);
     margin-bottom: 2rem;
   }
 
@@ -373,6 +384,46 @@
 
   .gridTexture {
     opacity: 0.14;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 6rem 5% 4rem;
+  }
+
+  .tag {
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+    white-space: normal;
+    overflow: visible;
+    animation: none;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .name {
+    font-size: clamp(44px, 16vw, 80px);
+    letter-spacing: -1.5px;
+    margin-bottom: 2rem;
+  }
+
+  .tagline {
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+
+  .skillBadges {
+    gap: 0.5rem;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .scrollIndicator {
+    display: none;
   }
 }
 
