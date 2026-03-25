@@ -1,183 +1,134 @@
-"use client";
+import { ArrowUpRight } from 'lucide-react';
 
-import Image from "next/image";
-import styles from "./projects.module.css";
-import projectData from "@/data/projectData";
-import { useEffect, useState } from "react";
-import { register } from "swiper/element/bundle";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import Modal from "react-modal";
-import { FaAngleLeft } from "react-icons/fa6";
-import { FaAngleRight } from "react-icons/fa6";
-import { RiCloseLine } from "react-icons/ri";
+const projects = [
+  {
+    title: 'Portfolio Site',
+    stack: ['Next.js', 'Tailwind CSS'],
+    description: 'Personal portfolio with CSS scroll reveal animations, floating pill navigation, and gradient mesh hero.',
+    href: '#portfolio',
+    number: '01',
+    previewUrl: 'portfolio',
+    // Replace with: image: '/previews/portfolio.png'
+  },
+  {
+    title: 'Database Schema Project',
+    stack: ['PostgreSQL', 'SQL'],
+    description: 'Complex relational database design focusing on normalization, efficient querying, and real-world data scenarios.',
+    href: '#database',
+    number: '02',
+    previewUrl: 'database',
+    // Replace with: image: '/previews/database.png'
+  },
+  {
+    title: 'RAG Pipeline',
+    stack: ['Python', 'Vector DBs', 'LLMs'],
+    description: 'Retrieval-Augmented Generation system with semantic search, embeddings, and LLM integration.',
+    href: '#rag',
+    number: '03',
+    previewUrl: 'rag',
+    // Replace with: image: '/previews/rag.png'
+  },
+  {
+    title: 'UI/UX Design',
+    stack: ['Figma', 'User Research'],
+    description: 'End-to-end product design including user research, wireframes, prototyping, and usability testing.',
+    href: '#uiux',
+    number: '04',
+    previewUrl: 'uiux',
+    // Replace with: image: '/previews/uiux.png'
+  },
+];
 
-const Projects = () => {
-  useEffect(() => {
-    register();
-  }, []);
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [modalProject, setModalProject] = useState(null);
-
+function BrowserFrame({ url }) {
   return (
-    <section className={styles.section} id="web-projects">
-      <div className={styles.inner}>
-        <p className={styles.sectionLabel} data-fade>03 — Projects</p>
-
-        {projectData.map((project, index) => (
-          <div key={index} className={styles.projectRow} data-fade>
-            <div className={styles.projectMeta}>
-              <span className={styles.projectNum}>
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className={styles.projectDetails}>
-                <div className={styles.titleRow}>
-                  <h3 className={styles.projectTitle}>{project.title}</h3>
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.liveLink}
-                    >
-                      View live ↗
-                    </a>
-                  )}
-                </div>
-                
-                <div className={styles.metaInfo}>
-                  {project.role && <span className={styles.role}>{project.role}</span>}
-                  {project.year && <span className={styles.year}>{project.year}</span>}
-                </div>
-
-                {project.impact && (
-                  <p className={styles.impactStatement}>{project.impact}</p>
-                )}
-
-                <p className={styles.stack}>{project.code}</p>
-                
-                {project.highlights && project.highlights.length > 0 && (
-                  <div className={styles.highlights}>
-                    {project.highlights.map((highlight, hIdx) => (
-                      <span key={hIdx} className={styles.highlight}>
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                <p className={styles.projectGoal}>{project.goal}</p>
-              </div>
-            </div>
-
-            <div className={styles.slider}>
-              <swiper-container slides-per-view={1} loop autoplay>
-                {project.image.map((image, imgIndex) => (
-                  <swiper-slide key={imgIndex}>
-                    <div
-                      className={styles.slideImg}
-                      onClick={() => {
-                        setModalIsOpen(true);
-                        setModalProject(project);
-                        setCurrentImageIndex(imgIndex);
-                      }}
-                    >
-                      <Image
-                        src={image}
-                        alt={`${project.title} screenshot ${imgIndex + 1}`}
-                        width={800}
-                        height={600}
-                        className={styles.projectImg}
-                      />
-                      <div className={styles.imageOverlay}>
-                        <span className={styles.viewLabel}>VIEW ↗</span>
-                      </div>
-                    </div>
-                  </swiper-slide>
-                ))}
-              </swiper-container>
-            </div>
-
-            {index !== projectData.length - 1 && (
-              <div className={styles.divider} />
-            )}
-          </div>
-        ))}
+    <div className="relative h-40 bg-white/[0.03] border-b border-white/8 overflow-hidden flex flex-col">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-1.5 px-3.5 py-2 border-b border-white/6 bg-white/[0.02] flex-shrink-0">
+        <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+        <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+        <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+        <span className="flex-1 mx-2 h-4 rounded-sm bg-white/5 text-[9px] text-white/15 flex items-center px-2 font-mono">
+          localhost/{url}
+        </span>
+        <span className="w-3 h-3 rounded-sm bg-white/5" />
       </div>
-
-      <Modal
-        className={styles.modal}
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        style={{
-          overlay: {
-            backgroundColor: "rgba(0,0,0,0.88)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          },
-          content: {
-            position: "relative",
-            inset: "auto",
-            background: "#0e0e0e",
-            border: "1px solid #1E1E1E",
-            width: "90vw",
-            maxWidth: "1100px",
-            maxHeight: "90vh",
-            padding: "1.5rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "1rem",
-            borderRadius: 0,
-          },
-        }}
-      >
-        <button onClick={() => setModalIsOpen(false)} className={styles.closeButton}>
-          <RiCloseLine />
-        </button>
-
-        <Image
-          src={modalProject?.image[currentImageIndex] ?? "/test.png"}
-          alt="Project screenshot"
-          width={1600}
-          height={900}
-          style={{ objectFit: "contain", maxWidth: "100%", maxHeight: "70vh" }}
-        />
-
-        <div className={styles.modalNav}>
-          <button
-            className={styles.modalBtn}
-            onClick={() =>
-              setCurrentImageIndex(
-                (currentImageIndex - 1 + modalProject?.image.length) %
-                  modalProject?.image.length
-              )
-            }
-          >
-            <FaAngleLeft />
-          </button>
-          <span className={styles.modalCounter}>
-            {currentImageIndex + 1} / {modalProject?.image.length}
-          </span>
-          <button
-            className={styles.modalBtn}
-            onClick={() =>
-              setCurrentImageIndex(
-                (currentImageIndex + 1) % modalProject?.image.length
-              )
-            }
-          >
-            <FaAngleRight />
-          </button>
+      {/* Placeholder wireframe content */}
+      <div className="flex-1 p-4 flex gap-3">
+        <div className="flex flex-col gap-2 flex-1">
+          <div className="h-2.5 w-24 rounded bg-white/10" />
+          <div className="h-1.5 w-36 rounded bg-white/6" />
+          <div className="h-1.5 w-28 rounded bg-white/6" />
+          <div className="mt-2 h-10 w-full rounded bg-white/5" />
+          <div className="flex gap-1.5 mt-1">
+            <div className="h-1.5 w-10 rounded-full bg-accent/20" />
+            <div className="h-1.5 w-10 rounded-full bg-white/6" />
+          </div>
         </div>
-      </Modal>
+        <div className="w-20 h-full rounded bg-white/5 flex-shrink-0" />
+      </div>
+      {/* Gradient overlay hinting at "real content below" */}
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[hsl(0_0%_8%)] to-transparent" />
+    </div>
+  );
+}
+
+export default function Projects() {
+  return (
+    <section className="py-16 md:py-24 px-6 md:px-12 relative z-10" id="projects">
+      <div className="max-w-5xl mx-auto">
+
+        <p className="text-xs tracking-[3px] uppercase text-white/35 mb-3 font-medium reveal">Projects</p>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-12 reveal" data-delay="1">
+          Work I&apos;ve done
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {projects.map((project, index) => (
+            <a
+              key={index}
+              href={project.href}
+              className="card group overflow-hidden flex flex-col reveal"
+              data-delay={String((index % 2) + 1)}
+            >
+              <BrowserFrame url={project.previewUrl} />
+
+              <div className="p-6 flex flex-col gap-4">
+                <div className="flex items-start justify-between">
+                  <span className="text-[10px] text-white/20 font-mono">{project.number}</span>
+                  <ArrowUpRight
+                    size={16}
+                    className="text-white/20 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                  />
+                </div>
+
+                <div>
+                  <h3 className="text-base md:text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-white/50 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 mt-auto">
+                  {project.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-white/40 border border-white/8"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <p className="text-xs text-white/20 text-center mt-8 reveal" data-delay="3">
+          Screenshots coming soon — placeholder wireframes shown above
+        </p>
+      </div>
     </section>
   );
-};
-
-export default Projects;
+}

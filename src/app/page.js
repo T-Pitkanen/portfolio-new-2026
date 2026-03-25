@@ -1,18 +1,19 @@
-import styles from './page.module.css';
-import Intro from './components/intro/intro';
+import Hero from './components/intro/intro';
+import Skills from './components/skills/skills';
 import About from './components/about/about';
-import DataWork from './components/datawork/datawork';
 import Projects from './components/projects/projects';
+import Coursework from './components/datawork/datawork';
+import Contact from './components/contact/contact';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.pageContainer}>
-        <Intro />
-        <About />
-        <DataWork />
-        <Projects />
-      </div>
+    <main className="relative z-10 min-h-screen text-foreground">
+      <Hero />
+      <About />
+      <Projects />
+      <Skills />
+      <Coursework />
+      <Contact />
     </main>
   );
 }

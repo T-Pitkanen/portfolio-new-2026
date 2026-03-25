@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm src/utils/motion.js src/utils/fonts.js src/data/projectData.js src/app/components/scroll-animator/scroll-animator.js)",
+      "Bash(rmdir src/app/components/scroll-animator)",
+      "Bash(rmdir src/data)",
+      "Bash(rmdir src/utils)",
+      "Bash(node -e \"const { execSync } = require\\(''child_process''\\); try { const out = execSync\\(''npx next build'', {timeout: 90000, cwd: process.cwd\\(\\), stdio: ''pipe''}\\); console.log\\(''BUILD OK''\\); console.log\\(out.toString\\(\\).slice\\(-500\\)\\); } catch\\(e\\) { console.log\\(''FAILED''\\); console.log\\(e.stdout?.toString\\(\\).slice\\(-1000\\)\\); console.log\\(e.stderr?.toString\\(\\).slice\\(-500\\)\\); }\")",
+      "Bash(npx next:*)",
+      "Bash(cmd /c \"npx next build > build_out.txt 2>&1\")"
+    ]
+  }
+}

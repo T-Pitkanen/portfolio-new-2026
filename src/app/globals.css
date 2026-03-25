@@ -1,3 +1,14 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *, *::before, *::after {
   box-sizing: border-box;
   padding: 0;
@@ -5,28 +16,66 @@
 }
 
 :root {
-  --bg: #080808;
-  --bg-card: #0e0e0e;
-  --accent: #B366FF;
-  --text: #F0F0F0;
-  --text-muted: #999999;
-  --border: #1E1E1E;
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 96%;
+  --primary: 0 0% 96%;
+  --primary-foreground: 0 0% 4%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 75%;
+  --muted: 0 0% 16%;
+  --muted-foreground: 0 0% 60%;
+  --accent: 270 35% 62%;
+  --accent-foreground: 0 0% 100%;
+  --border: 0 0% 18%;
+  --input: 0 0% 12%;
+  --ring: 270 35% 62%;
 }
 
 html {
-  scroll-padding-top: 80px;
+  scroll-padding-top: 20px;
+  scroll-padding-bottom: 80px;
+  color-scheme: dark;
 }
 
 html, body {
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   max-width: 100vw;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dot grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 ::selection {
-  background-color: var(--accent);
-  color: #000;
+  background-color: hsl(var(--foreground));
+  color: hsl(var(--background));
 }
 
 a {
@@ -34,21 +83,86 @@ a {
   text-decoration: none;
 }
 
-/* Scroll fade animations */
-[data-fade] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+.serif {
+  font-family: 'Instrument Serif', serif;
 }
 
-[data-fade].is-visible {
+/* VSCode-style cursor blink */
+@keyframes cursor-blink {
+  0%, 45%  { transform: scaleY(1);    opacity: 1;    }
+  78%      { transform: scaleY(0.04); opacity: 0.12; }
+  88%      { transform: scaleY(0.04); opacity: 0.12; }
+  100%     { transform: scaleY(1);    opacity: 1;    }
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 3px;
+  height: 0.82em;
+  border-radius: 1px;
+  vertical-align: middle;
+  margin-left: 5px;
+  transform-origin: center;
+  animation: cursor-blink 1.4s ease-in-out infinite;
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-[data-fade][data-delay="1"] { transition-delay: 0.08s; }
-[data-fade][data-delay="2"] { transition-delay: 0.16s; }
-[data-fade][data-delay="3"] { transition-delay: 0.24s; }
-[data-fade][data-delay="4"] { transition-delay: 0.32s; }
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
+.reveal[data-delay="4"] { transition-delay: 0.32s; }
+.reveal[data-delay="5"] { transition-delay: 0.40s; }
+.reveal[data-delay="6"] { transition-delay: 0.48s; }
 
+/* Card style */
+.card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 16px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+/* Pill badge */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  font-size: 0.8125rem;
+}
+
+/* Scroll indicator */
+@keyframes bounce-y {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+.bounce-y { animation: bounce-y 2s ease-in-out infinite; }
+
+/* Pulse dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }

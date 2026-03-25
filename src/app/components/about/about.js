@@ -1,113 +1,87 @@
-import styles from "./about.module.css";
-
-const primarySkills = [
-  "PostgreSQL",
-  "Database Design",
-  "SQL",
-  "Vector Databases",
-  "UI Design",
-  "UX/Usability",
-  "React",
+const stats = [
+  { value: '5+', label: 'Years learning' },
+  { value: '2', label: 'Schools' },
+  { value: 'Vaasa', label: 'Based in, FI' },
+  { value: 'Open', label: 'To work' },
 ];
 
-const secondarySkills = ["MongoDB", "Azure", "Next.js"];
+const timeline = [
+  {
+    year: '2020',
+    title: 'Web Development',
+    institution: 'Media College Denmark',
+    description: 'Studied modern frontend technologies, web standards, and responsive design fundamentals.',
+  },
+  {
+    year: '2022',
+    title: 'Database Engineering',
+    institution: 'Self-directed',
+    description: 'Deep dive into PostgreSQL, schema design, normalization, and relational data modeling.',
+  },
+  {
+    year: '2024',
+    title: 'Business IT',
+    institution: 'VAMK, Finland',
+    description: 'Building full-stack solutions with a focus on backend architecture and data-driven systems.',
+  },
+];
 
-const About = () => {
+export default function About() {
   return (
-    <section className={styles.section} id="about">
-      <div className={styles.inner}>
-        <p className={styles.sectionLabel} data-fade>
-          01 — About
-        </p>
-        <div className={styles.grid} data-fade data-delay="1">
-          <div className={styles.bio}>
-            <h2 className={styles.heading}>
-              Business IT student, into data and web dev.
-            </h2>
-            <p>
-              I ended up in Denmark a few years ago, and while I was there I
-              started a web development course, liked it, and applied for a
-              degree at Media College Denmark. Finished in 2024, moved back to
-              Finland, and started Business IT at VAMK in Vaasa.
+    <section className="py-16 md:py-24 px-6 md:px-12 relative z-10" id="about">
+      <div className="max-w-5xl mx-auto">
+
+        <p className="text-xs tracking-[3px] uppercase text-white/35 mb-3 font-medium reveal">About</p>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-12 reveal" data-delay="1">
+          Building with purpose
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-10 md:gap-14 mb-16">
+          {/* Bio */}
+          <div className="reveal" data-delay="1">
+            <p className="text-base md:text-lg leading-relaxed text-white/65 mb-5">
+              I&apos;m a developer fascinated by how systems connect. Whether it&apos;s database architecture or user interfaces, I approach every problem with intention.
             </p>
-            <p>
-              At VAMK I&apos;ve taken courses in databases, cloud, UI/UX and web
-              design. The database course stuck with me more than most. We used
-              PostgreSQL, went through schema design and normalization, and I
-              liked how it all fit together. I also did a small exercise
-              involving RAG, which got me curious about that space.
-            </p>
-            <p>
-              I like building things. Fullstack work, planning out how a project
-              should be structured, designing how data moves through a system. I
-              just enjoy the process of making something work from start to
-              finish.
-            </p>
-            <p>
-              I don&apos;t know exactly where I&apos;ll end up yet. Ideally
-              something fullstack, but I&apos;m keeping an open mind. What
-              matters more to me is working on something real and being around
-              people who have been doing this for a long time.
+            <p className="text-base md:text-lg leading-relaxed text-white/65">
+              I studied at <span className="text-white font-medium">Media College Denmark</span> and I&apos;m currently completing my degree at <span className="text-white font-medium">VAMK</span> in Finland — exploring full-stack development with a strong emphasis on backend engineering.
             </p>
           </div>
 
-          <div className={styles.infoPanel}>
-            <div className={styles.infoBlock}>
-              <span className={styles.infoLabel}>Education</span>
-              <span className={styles.infoValue}>
-                VAMK — Business Information Technology
-              </span>
-              <span className={styles.infoValue}>
-                Media College Denmark — Web Development
-              </span>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.infoLabel}>Based in</span>
-              <span className={styles.infoValue}>Vaasa, Finland</span>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.infoLabel}>Looking for</span>
-              <span className={styles.infoValue}>
-                Internships — data, databases, fullstack, open to more
-              </span>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.infoLabel}>Email</span>
-              <a
-                href="mailto:tiia1.pitkanen@gmail.com"
-                className={styles.infoLink}
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 gap-3 reveal" data-delay="2">
+            {stats.map(({ value, label }) => (
+              <div
+                key={label}
+                className="card p-5 hover:scale-[1.03] hover:border-white/18 transition-all duration-200 cursor-default"
               >
-                tiia1.pitkanen@gmail.com
-              </a>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.infoLabel}>Focus</span>
-              <div className={styles.tags}>
-                {primarySkills.map((s) => (
-                  <span key={s} className={styles.tag}>
-                    {s}
-                  </span>
-                ))}
+                <p className="text-2xl md:text-3xl font-bold text-white mb-1">{value}</p>
+                <p className="text-xs text-white/35">{label}</p>
               </div>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.infoLabel}>Also know</span>
-              <div className={styles.tags}>
-                {secondarySkills.map((s) => (
-                  <span
-                    key={s}
-                    className={`${styles.tag} ${styles.tagSecondary}`}
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+
+        {/* Timeline */}
+        <div>
+          {timeline.map((item, index) => (
+            <div
+              key={index}
+              className="flex gap-8 md:gap-10 py-6 border-t border-white/8 reveal"
+              data-delay={String(index + 1)}
+            >
+              <div className="flex-shrink-0 w-14">
+                <p className="text-sm font-semibold text-accent">{item.year}</p>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-sm md:text-base font-semibold text-white mb-1">{item.title}</h3>
+                <p className="text-xs text-white/35 mb-2">{item.institution}</p>
+                <p className="text-sm text-white/55 leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
-};
-
-export default About;
+}
