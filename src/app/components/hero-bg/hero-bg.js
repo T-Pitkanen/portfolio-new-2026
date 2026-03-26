@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import styles from './hero-bg.module.css';
 
 const ORBS = [
   { cx: 0.22, cy: 0.40, rx: 0.22, ry: 0.16, phase: 0.00, speed: 0.00030, color: [110, 55, 195], alpha: 0.22 },
@@ -64,7 +65,7 @@ export default function HeroBg() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      className={styles.canvas}
     />
   );
 }

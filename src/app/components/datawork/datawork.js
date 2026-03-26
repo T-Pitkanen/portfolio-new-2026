@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import styles from './datawork.module.css';
 
 const courses = [
   {
@@ -45,36 +46,30 @@ function CourseItem({ course, index }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="border-b border-white/8 last:border-0 reveal" data-delay={String((index % 3) + 1)}>
+    <div className={`reveal ${styles.courseItem}`} data-delay={String((index % 3) + 1)}>
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-start justify-between gap-4 py-5 text-left group"
+        className={styles.courseButton}
       >
-        <div className="flex items-start gap-4 min-w-0">
-          <span className="text-[10px] font-mono text-white/20 mt-0.5 flex-shrink-0 w-6">
+        <div className={styles.courseLeft}>
+          <span className={styles.courseNumber}>
             {String(index + 1).padStart(2, '0')}
           </span>
-          <div className="min-w-0">
-            <p className="text-sm md:text-base font-semibold text-white group-hover:text-accent transition-colors">
-              {course.title}
-            </p>
-            <p className="text-xs text-white/35 mt-0.5">{course.institution}</p>
+          <div className={styles.courseInfo}>
+            <p className={styles.courseTitle}>{course.title}</p>
+            <p className={styles.courseInstitution}>{course.institution}</p>
           </div>
         </div>
         <ChevronDown
           size={16}
-          className={`flex-shrink-0 text-white/30 mt-0.5 transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`}
+          className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`}
         />
       </button>
 
-      <div
-        className={`overflow-hidden transition-all duration-300 ${
-          expanded ? 'max-h-48 pb-5' : 'max-h-0'
-        }`}
-      >
-        <div className="pl-10 flex flex-col gap-3">
-          <p className="text-sm text-white/50 leading-relaxed">{course.topics}</p>
-          <p className="text-sm text-white/35 italic border-l-2 border-accent/25 pl-3 leading-relaxed">
+      <div className={`${styles.accordion} ${expanded ? styles.accordionOpen : ''}`}>
+        <div className={styles.accordionBody}>
+          <p className={styles.courseTopics}>{course.topics}</p>
+          <p className={styles.courseTakeaway}>
             &ldquo;{course.takeaway}&rdquo;
           </p>
         </div>
@@ -85,18 +80,18 @@ function CourseItem({ course, index }) {
 
 export default function Coursework() {
   return (
-    <section className="py-16 md:py-24 px-6 md:px-12 relative z-10" id="coursework">
-      <div className="max-w-5xl mx-auto">
+    <section className={styles.section} id="coursework">
+      <div className={styles.inner}>
 
-        <p className="text-xs tracking-[3px] uppercase text-white/35 mb-3 font-medium reveal">Learning</p>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 reveal" data-delay="1">
+        <p className={`reveal ${styles.label}`}>Learning</p>
+        <h2 className={`reveal ${styles.heading}`} data-delay="1">
           Key coursework
         </h2>
-        <p className="text-sm text-white/30 mb-10 reveal" data-delay="2">
+        <p className={`reveal ${styles.subtext}`} data-delay="2">
           Click any course to expand details and takeaways.
         </p>
 
-        <div className="max-w-2xl">
+        <div className={styles.list}>
           {courses.map((course, index) => (
             <CourseItem key={index} course={course} index={index} />
           ))}

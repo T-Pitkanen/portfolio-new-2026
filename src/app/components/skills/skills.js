@@ -1,3 +1,5 @@
+import styles from './skills.module.css';
+
 const skillCategories = [
   {
     category: 'Backend',
@@ -13,7 +15,7 @@ const skillCategories = [
     skills: [
       { name: 'React', level: 'Strong' },
       { name: 'Next.js', level: 'Strong' },
-      { name: 'Tailwind CSS', level: 'Strong' },
+      { name: 'CSS Modules', level: 'Strong' },
       { name: 'HTML & CSS', level: 'Strong' },
     ],
   },
@@ -37,44 +39,42 @@ const skillCategories = [
   },
 ];
 
-const levelColors = {
-  Strong:      'text-accent border-accent/30 bg-accent/8',
-  Comfortable: 'text-white/60 border-white/15 bg-white/5',
-  Familiar:    'text-white/35 border-white/8 bg-white/3',
+const levelStyles = {
+  Strong:      styles.skillStrong,
+  Comfortable: styles.skillComfortable,
+  Familiar:    styles.skillFamiliar,
 };
 
 export default function Skills() {
   return (
-    <section className="py-16 md:py-24 px-6 md:px-12 relative z-10" id="skills">
-      <div className="max-w-5xl mx-auto">
+    <section className={styles.section} id="skills">
+      <div className={styles.inner}>
 
-        <p className="text-xs tracking-[3px] uppercase text-white/35 mb-3 font-medium reveal">Skills</p>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 reveal" data-delay="1">
+        <p className={`reveal ${styles.label}`}>Skills</p>
+        <h2 className={`reveal ${styles.heading}`} data-delay="1">
           Technologies &amp; expertise
         </h2>
-        <p className="text-sm text-white/30 mb-12 reveal" data-delay="2">
-          <span className="inline-flex items-center gap-1.5 mr-4">
-            <span className="w-2 h-2 rounded-full bg-accent/60" /> Strong
+        <p className={`reveal ${styles.legend}`} data-delay="2">
+          <span className={styles.legendItem}>
+            <span className={styles.legendDotStrong} /> Strong
           </span>
-          <span className="inline-flex items-center gap-1.5 mr-4">
-            <span className="w-2 h-2 rounded-full bg-white/25" /> Comfortable
+          <span className={styles.legendItem}>
+            <span className={styles.legendDotComfortable} /> Comfortable
           </span>
-          <span className="inline-flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-white/12" /> Familiar
+          <span className={styles.legendItem}>
+            <span className={styles.legendDotFamiliar} /> Familiar
           </span>
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+        <div className={styles.grid}>
           {skillCategories.map((cat, catIndex) => (
             <div key={catIndex} className="reveal" data-delay={String((catIndex % 2) + 1)}>
-              <h3 className="text-xs font-semibold text-accent uppercase tracking-[3px] mb-5">
-                {cat.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className={styles.categoryLabel}>{cat.category}</h3>
+              <div className={styles.skillList}>
                 {cat.skills.map(({ name, level }) => (
                   <span
                     key={name}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-colors cursor-default hover:border-white/25 hover:text-white ${levelColors[level]}`}
+                    className={`${styles.skillTag} ${levelStyles[level]}`}
                     title={level}
                   >
                     {name}

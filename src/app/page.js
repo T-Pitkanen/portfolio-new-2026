@@ -4,10 +4,11 @@ import About from './components/about/about';
 import Projects from './components/projects/projects';
 import Coursework from './components/datawork/datawork';
 import Contact from './components/contact/contact';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <main className="relative z-10 min-h-screen text-foreground">
+    <main className={styles.main}>
       <Hero />
       <About />
       <Projects />
