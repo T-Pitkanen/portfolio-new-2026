@@ -45,7 +45,7 @@
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 3.5rem;
   }
 }
@@ -72,40 +72,8 @@
   font-weight: 500;
 }
 
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
 
-.statCard {
-  padding: 1.25rem;
-  cursor: default;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
 
-.statCard:hover {
-  transform: scale(1.03);
-  border-color: rgba(255, 255, 255, 0.18);
-}
-
-.statValue {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.25rem;
-}
-
-@media (min-width: 768px) {
-  .statValue {
-    font-size: 1.875rem;
-  }
-}
-
-.statLabel {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.35);
-}
 
 .timeline {}
 

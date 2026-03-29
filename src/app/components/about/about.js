@@ -9,22 +9,16 @@ const stats = [
 
 const timeline = [
   {
-    year: '2020',
+    year: '2022',
     title: 'Web Development',
     institution: 'Media College Denmark',
-    description: 'Studied modern frontend technologies, web standards, and responsive design fundamentals.',
-  },
-  {
-    year: '2022',
-    title: 'Database Engineering',
-    institution: 'Self-directed',
-    description: 'Deep dive into PostgreSQL, schema design, normalization, and relational data modeling.',
+    description: 'Moved to Denmark and got a web development degree. Learned frontend fundamentals and discovered that building things for the web was genuinely something I wanted to keep doing.',
   },
   {
     year: '2024',
     title: 'Business IT',
     institution: 'VAMK, Finland',
-    description: 'Building full-stack solutions with a focus on backend architecture and data-driven systems.',
+    description: 'Back in Finland, studying Business IT. Applying everything I\'ve learned to full-stack projects with a strong focus on databases and backend.',
   },
 ];
 
@@ -33,31 +27,22 @@ export default function About() {
     <section className={styles.section} id="about">
       <div className={styles.inner}>
 
-        <p className={`reveal ${styles.label}`}>About</p>
+        <p className={`reveal ${styles.label}`}></p>
         <h2 className={`reveal ${styles.heading}`} data-delay="1">
-          Building with purpose
+          A bit about me
         </h2>
 
         <div className={styles.grid}>
           {/* Bio */}
           <div className={`reveal ${styles.bio}`} data-delay="1">
             <p>
-              I&apos;m a developer fascinated by how systems connect. Whether it&apos;s database architecture or user interfaces, I approach every problem with intention.
+              I have a web development degree from Denmark and I&apos;m currently finishing my second year in Business IT at <span className={styles.bioHighlight}>VAMK</span> in Finland. I&apos;ve gotten pretty deep into databases and backend development, which has ended up being the area I enjoy most and want to keep building on.
             </p>
             <p>
-              I studied at <span className={styles.bioHighlight}>Media College Denmark</span> and I&apos;m currently completing my degree at <span className={styles.bioHighlight}>VAMK</span> in Finland — exploring full-stack development with a strong emphasis on backend engineering.
+              I&apos;m currently looking for an internship where I can work on backend or data-heavy projects. I learn fast when I&apos;m working on something real, so that kind of environment suits me well.
             </p>
           </div>
 
-          {/* Stats grid */}
-          <div className={`reveal ${styles.statsGrid}`} data-delay="2">
-            {stats.map(({ value, label }) => (
-              <div key={label} className={`card ${styles.statCard}`}>
-                <p className={styles.statValue}>{value}</p>
-                <p className={styles.statLabel}>{label}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Timeline */}

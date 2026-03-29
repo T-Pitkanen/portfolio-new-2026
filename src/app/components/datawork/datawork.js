@@ -85,10 +85,10 @@ export default function Coursework() {
 
         <p className={`reveal ${styles.label}`}>Learning</p>
         <h2 className={`reveal ${styles.heading}`} data-delay="1">
-          Key coursework
+          What I&apos;ve studied
         </h2>
         <p className={`reveal ${styles.subtext}`} data-delay="2">
-          Click any course to expand details and takeaways.
+          Click to expand.
         </p>
 
         <div className={styles.list}>

@@ -2,30 +2,32 @@ import styles from './skills.module.css';
 
 const skillCategories = [
   {
-    category: 'Backend',
-    skills: [
-      { name: 'PostgreSQL', level: 'Strong' },
-      { name: 'Schema Architecture', level: 'Strong' },
-      { name: 'API Design', level: 'Comfortable' },
-      { name: 'Node.js', level: 'Comfortable' },
-    ],
-  },
-  {
     category: 'Frontend',
     skills: [
-      { name: 'React', level: 'Strong' },
-      { name: 'Next.js', level: 'Strong' },
-      { name: 'CSS Modules', level: 'Strong' },
       { name: 'HTML & CSS', level: 'Strong' },
+      { name: 'Next.js', level: 'Strong' },
+      { name: 'JavaScript', level: 'Comfortable' },
+      { name: 'Responsive Design', level: 'Strong' },
     ],
   },
   {
-    category: 'Data',
+    category: 'Backend',
     skills: [
-      { name: 'Vector Databases', level: 'Comfortable' },
-      { name: 'RAG Pipelines', level: 'Comfortable' },
-      { name: 'Data Modeling', level: 'Strong' },
-      { name: 'Embeddings', level: 'Familiar' },
+      { name: 'Node.js & Express', level: 'Comfortable' },
+      { name: 'REST API', level: 'Comfortable' },
+      { name: 'PostgreSQL', level: 'Strong' },
+      { name: 'MongoDB', level: 'Comfortable' },
+    ],
+  },
+  {
+    category: 'Database',
+    skills: [
+      { name: 'SQL', level: 'Strong' },
+      { name: 'ER Modeling', level: 'Strong' },
+      { name: 'Schema Design', level: 'Strong' },
+      { name: 'Normalization', level: 'Strong' },
+      { name: 'Transactions', level: 'Comfortable' },
+      { name: 'Indexing', level: 'Comfortable' },
     ],
   },
   {
@@ -33,8 +35,9 @@ const skillCategories = [
     skills: [
       { name: 'Git', level: 'Strong' },
       { name: 'Figma', level: 'Comfortable' },
+      { name: 'Vercel', level: 'Comfortable' },
       { name: 'Azure', level: 'Familiar' },
-      { name: 'SQL', level: 'Strong' },
+      { name: 'CI/CD', level: 'Familiar' },
     ],
   },
 ];
@@ -52,7 +55,7 @@ export default function Skills() {
 
         <p className={`reveal ${styles.label}`}>Skills</p>
         <h2 className={`reveal ${styles.heading}`} data-delay="1">
-          Technologies &amp; expertise
+          What I work with
         </h2>
         <p className={`reveal ${styles.legend}`} data-delay="2">
           <span className={styles.legendItem}>
