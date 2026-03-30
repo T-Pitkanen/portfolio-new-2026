@@ -32,7 +32,7 @@ export default function Contact() {
           Get in touch
         </h2>
         <p className={`reveal ${styles.subtext}`} data-delay="2">
-          I&apos;m looking for an internship in Finland. Open to backend, full-stack, or data-heavy roles.
+          I&apos;m looking for an internship in Finland. Open to backend, full-stack, or data-heavy roles. Happy to hear about other positions too.
         </p>
 
         <div className={`reveal ${styles.centered}`} data-delay="1">

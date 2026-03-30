@@ -26,7 +26,6 @@ export default function Navigation() {
     <>
       <nav className={styles.nav}>
         <div className={`${styles.navInner} ${scrolled ? styles.navScrolled : styles.navDefault}`}>
-          <span className={styles.brand}>TP</span>
 
           {/* Desktop links */}
           <div className={styles.desktopLinks}>
