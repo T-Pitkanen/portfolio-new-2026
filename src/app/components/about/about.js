@@ -1,24 +1,24 @@
 import styles from './about.module.css';
 
-const stats = [
-  { value: '5+', label: 'Years learning' },
-  { value: '2', label: 'Schools' },
-  { value: 'Vaasa', label: 'Based in, FI' },
-  { value: 'Open', label: 'To work' },
-];
 
 const timeline = [
   {
     year: '2022',
     title: 'Web Development',
     institution: 'Media College Denmark',
-    description: 'Moved to Denmark and got a web development degree. Learned frontend fundamentals and discovered that building things for the web was genuinely something I wanted to keep doing.',
+    description: 'Moved to Denmark and did a web dev degree. Built my first real projects there and realized this is what I want to do.',
   },
   {
     year: '2024',
     title: 'Business IT',
     institution: 'VAMK, Finland',
-    description: 'Back in Finland, studying Business IT. Applying everything I\'ve learned to full-stack projects with a strong focus on databases and backend.',
+    description: 'Back in Finland, studying Business IT. Broader than just coding — business, cloud, UX, databases. Databases & APIs has been my favorite course so far.',
+  },
+  {
+    year: 'Now',
+    title: 'Looking for an internship',
+    institution: 'Anywhere in Finland',
+    description: 'Actively looking for an internship as part of my degree. Based in Vaasa, open to opportunities across Finland.',
   },
 ];
 
@@ -36,10 +36,10 @@ export default function About() {
           {/* Bio */}
           <div className={`reveal ${styles.bio}`} data-delay="1">
             <p>
-              I have a web development degree from Denmark and I&apos;m currently finishing my second year in Business IT at <span className={styles.bioHighlight}>VAMK</span> in Finland. I&apos;ve gotten pretty deep into databases and backend development, which has ended up being the area I enjoy most and want to keep building on.
+              I have a web development degree from Denmark and I&apos;m in my second year of Business IT at <span className={styles.bioHighlight}>VAMK</span>. My current courses cover databases, APIs, cloud services, and UX — and the databases side has ended up being what I enjoy most.
             </p>
             <p>
-              I&apos;m currently looking for an internship where I can work on backend or data-heavy projects. I learn fast when I&apos;m working on something real, so that kind of environment suits me well.
+              I learn by building real things. Most of my projects are solo, but I&apos;ve done group work too. I enjoy it because it lets me see other people&apos;s view of the project and learn from them. I do fullstack work and I&apos;m comfortable going from schema design to frontend, but the backend and data side is what I actually enjoy most.
             </p>
           </div>
 

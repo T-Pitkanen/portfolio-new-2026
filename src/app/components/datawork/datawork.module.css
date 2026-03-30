@@ -1,3 +1,4 @@
+/* ─── Section ─────────────────────────────────────────── */
 .section {
   padding: 4rem 1.5rem;
   position: relative;
@@ -43,115 +44,221 @@
   margin-bottom: 2.5rem;
 }
 
-.list {
-  max-width: 42rem;
-}
-
-.courseItem {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.courseItem:last-child {
-  border-bottom: none;
-}
-
-.courseButton {
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+/* ─── Card Grid ───────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
-  padding: 1.25rem 0;
-  text-align: left;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
 }
 
-.courseLeft {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  min-width: 0;
-}
-
-.courseNumber {
-  font-size: 10px;
-  font-family: monospace;
-  color: rgba(255, 255, 255, 0.20);
-  margin-top: 0.125rem;
-  flex-shrink: 0;
-  width: 1.5rem;
-}
-
-.courseInfo {
-  min-width: 0;
-}
-
-.courseTitle {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: white;
-  transition: color 0.15s ease;
-}
-
-@media (min-width: 768px) {
-  .courseTitle {
-    font-size: 1rem;
+@media (min-width: 540px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.courseButton:hover .courseTitle {
-  color: hsl(var(--accent));
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.courseInstitution {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.35);
-  margin-top: 0.125rem;
-}
-
-.chevron {
-  flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.30);
-  margin-top: 0.125rem;
-  transition: transform 0.2s ease;
-}
-
-.chevronOpen {
-  transform: rotate(180deg);
-}
-
-.accordion {
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  max-height: 0;
-}
-
-.accordionOpen {
-  max-height: 12rem;
-  padding-bottom: 1.25rem;
-}
-
-.accordionBody {
-  padding-left: 2.5rem;
+.card {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1.4rem 1.5rem 1.25rem;
+  background: hsl(var(--card));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  text-align: left;
+  color: inherit;
+  width: 100%;
 }
 
-.courseTopics {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.50);
-  line-height: 1.625;
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.25rem;
 }
 
-.courseTakeaway {
-  font-size: 0.875rem;
+.cardTag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid;
+}
+
+.cardNumber {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.18);
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.3;
+  margin-top: 0.1rem;
+}
+
+.cardInstitution {
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.35);
+}
+
+.cardHint {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.22);
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+/* ─── Modal Overlay ───────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.70);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Modal Panel ─────────────────────────────────────── */
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: hsl(0 0% 8%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: slideUp 0.22s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: white;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-right: 2rem;
+}
+
+.modalTag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  align-self: flex-start;
+}
+
+.modalTitle {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: white;
+  line-height: 1.2;
+}
+
+.modalInstitution {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.modalDescription {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.60);
+  line-height: 1.7;
+}
+
+.modalTopics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.topicsLabel {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  font-weight: 500;
+}
+
+.topicsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topicItem {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+}
+
+.modalTakeaway {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.38);
   font-style: italic;
-  border-left: 2px solid hsl(var(--accent) / 0.25);
-  padding-left: 0.75rem;
-  line-height: 1.625;
+  border-left: 2px solid hsl(var(--accent) / 0.30);
+  padding-left: 0.875rem;
+  line-height: 1.65;
+  margin: 0;
 }

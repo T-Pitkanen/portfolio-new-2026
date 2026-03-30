@@ -5,6 +5,7 @@ const skillCategories = [
     category: 'Frontend',
     skills: [
       { name: 'HTML & CSS', level: 'Strong' },
+      { name: 'React', level: 'Strong' },
       { name: 'Next.js', level: 'Strong' },
       { name: 'JavaScript', level: 'Comfortable' },
       { name: 'Responsive Design', level: 'Strong' },

@@ -50,6 +50,12 @@
   color: hsl(var(--accent));
   padding-top: 0.3rem;
   flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.projectTotal {
+  opacity: 0.35;
+  font-weight: 400;
 }
 
 .projectDetails {
@@ -218,6 +224,20 @@
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.expandIcon {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  color: rgba(255, 255, 255, 0.40);
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.slider:hover .expandIcon {
+  color: hsl(var(--accent));
 }
 
 .slider:hover .projectImg {

@@ -54,7 +54,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 9999px;
-  background-color: hsl(var(--accent) / 0.6);
+  background-color: #D1FF6B;
   display: inline-block;
 }
 
@@ -62,7 +62,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 9999px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: hsl(var(--accent));
   display: inline-block;
 }
 
@@ -70,7 +70,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 9999px;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.25);
   display: inline-block;
 }
 
@@ -120,15 +120,15 @@
 }
 
 .skillStrong {
-  color: hsl(var(--accent));
-  border-color: hsl(var(--accent) / 0.3);
-  background-color: hsl(var(--accent) / 0.08);
+  color: #D1FF6B;
+  border-color: rgba(209, 255, 107, 0.30);
+  background-color: rgba(209, 255, 107, 0.07);
 }
 
 .skillComfortable {
-  color: rgba(255, 255, 255, 0.60);
-  border-color: rgba(255, 255, 255, 0.15);
-  background-color: rgba(255, 255, 255, 0.05);
+  color: hsl(var(--accent));
+  border-color: hsl(var(--accent) / 0.35);
+  background-color: hsl(var(--accent) / 0.08);
 }
 
 .skillFamiliar {

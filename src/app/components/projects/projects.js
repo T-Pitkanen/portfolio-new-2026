@@ -11,6 +11,7 @@ import 'swiper/css/navigation';
 import Modal from 'react-modal';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { RiCloseLine } from 'react-icons/ri';
+import { Expand } from 'lucide-react';
 
 export default function Projects() {
   useEffect(() => {
@@ -28,10 +29,10 @@ export default function Projects() {
         <p className={`reveal ${styles.sectionLabel}`}>Projects</p>
 
         {projectData.map((project, index) => (
-          <div key={index} className={`reveal ${styles.projectRow}`} data-delay={String((index % 2) + 1)}>
+          <div key={index} className={`reveal ${styles.projectRow}`} data-delay={String((index % 2) + 1)} data-project-index={index}>
             <div className={styles.projectMeta}>
               <span className={styles.projectNum}>
-                {String(index + 1).padStart(2, '0')}
+                {String(index + 1).padStart(2, '0')}<span className={styles.projectTotal}>/{String(projectData.length).padStart(2, '0')}</span>
               </span>
               <div className={styles.projectDetails}>
                 <div className={styles.titleRow}>
@@ -94,6 +95,7 @@ export default function Projects() {
                       />
                       <div className={styles.imageOverlay}>
                         <span className={styles.viewLabel}>VIEW ↗</span>
+                        <span className={styles.expandIcon}><Expand size={13} /></span>
                       </div>
                     </div>
                   </swiper-slide>
