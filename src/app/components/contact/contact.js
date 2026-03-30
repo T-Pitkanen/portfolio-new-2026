@@ -8,7 +8,7 @@ const EMAIL = 'tiia1.pitkanen@gmail.com';
 
 const socialLinks = [
   { href: 'https://github.com/T-Pitkanen', icon: FaGithub, label: 'GitHub', external: true },
-  { href: 'https://linkedin.com/in/tiia-pitkanen', icon: FaLinkedin, label: 'LinkedIn', external: true },
+  { href: 'https://www.linkedin.com/in/tiia-pitk%C3%A4nen/', icon: FaLinkedin, label: 'LinkedIn', external: true },
 ];
 
 export default function Contact() {
