@@ -4,6 +4,7 @@ import About from './components/about/about';
 import Projects from './components/projects/projects';
 import Coursework from './components/datawork/datawork';
 import Contact from './components/contact/contact';
+import Chat from './components/chat/chat';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Skills />
       <Coursework />
       <Contact />
+      <Chat />
     </main>
   );
 }
