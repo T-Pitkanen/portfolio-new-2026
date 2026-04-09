@@ -144,7 +144,7 @@
 .modal {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 860px;
   background: hsl(0 0% 8%);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 18px;
@@ -153,8 +153,35 @@
   flex-direction: column;
   gap: 1.25rem;
   animation: slideUp 0.22s ease;
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-y: auto;
+}
+
+/* ─── Two-column body ─────────────────────────────────── */
+.modalBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .modalBody {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.modalLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modalRight {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-y: auto;
+  max-height: 60vh;
 }
 
 @keyframes slideUp {
@@ -261,4 +288,78 @@
   padding-left: 0.875rem;
   line-height: 1.65;
   margin: 0;
+}
+
+/* ─── ER Image ────────────────────────────────────────── */
+.modalImageWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modalImage {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: white;
+  cursor: zoom-in;
+  transition: opacity 0.15s ease;
+}
+
+.modalImage:hover {
+  opacity: 0.88;
+}
+
+/* ─── Lightbox ────────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  cursor: zoom-out;
+  animation: fadeIn 0.15s ease;
+  padding: 2rem;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* ─── SQL Snippets ────────────────────────────────────── */
+.modalSnippets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.snippet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.snippetLabel {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.38);
+  font-weight: 500;
+}
+
+.snippetCode {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.70);
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
 }

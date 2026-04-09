@@ -9,8 +9,8 @@
 # testing
 /coverage
 
-
-/playground
+# claude
+.claude/
 
 # next.js
 /.next/

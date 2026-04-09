@@ -1,12 +1,11 @@
 import OpenAI from 'openai';
 import knowledge from '@/data/knowledge';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENROUTER_API_KEY,
-  baseURL: 'https://openrouter.ai/api/v1',
-});
-
 export async function POST(req) {
+  const openai = new OpenAI({
+    apiKey: process.env.OPENROUTER_API_KEY,
+    baseURL: 'https://openrouter.ai/api/v1',
+  });
   try {
     const { messages } = await req.json();
 

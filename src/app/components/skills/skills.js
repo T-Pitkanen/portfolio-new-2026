@@ -1,59 +1,54 @@
-import styles from './skills.module.css';
+import styles from "./skills.module.css";
 
 const skillCategories = [
   {
-    category: 'Frontend',
+    category: "Frontend",
     skills: [
-      { name: 'HTML & CSS', level: 'Strong' },
-      { name: 'React', level: 'Strong' },
-      { name: 'Next.js', level: 'Strong' },
-      { name: 'JavaScript', level: 'Comfortable' },
-      { name: 'Responsive Design', level: 'Strong' },
+      { name: "React", level: "Comfortable" },
+      { name: "Next.js", level: "Comfortable" },
+      { name: "JavaScript", level: "Comfortable" },
+      { name: "HTML & CSS", level: "Strong" },
     ],
   },
   {
-    category: 'Backend',
+    category: "Backend",
     skills: [
-      { name: 'Node.js & Express', level: 'Comfortable' },
-      { name: 'REST API', level: 'Comfortable' },
-      { name: 'PostgreSQL', level: 'Strong' },
-      { name: 'MongoDB', level: 'Comfortable' },
+      { name: "Node.js & Express", level: "Familiar" },
+      { name: "REST API Design", level: "Comfortable" },
+      { name: "MongoDB", level: "Comfortable" },
     ],
   },
   {
-    category: 'Database',
+    category: "Database",
     skills: [
-      { name: 'SQL', level: 'Strong' },
-      { name: 'ER Modeling', level: 'Strong' },
-      { name: 'Schema Design', level: 'Strong' },
-      { name: 'Normalization', level: 'Strong' },
-      { name: 'Transactions', level: 'Comfortable' },
-      { name: 'Indexing', level: 'Comfortable' },
+      { name: "PostgreSQL", level: "Strong" },
+      { name: "SQL", level: "Strong" },
+      { name: "Database Design", level: "Strong" },
+      { name: "pgvector", level: "Familiar" },
+      { name: "Indexing & Query Optimization", level: "Comfortable" },
     ],
   },
   {
-    category: 'Tools',
+    category: "Tools",
     skills: [
-      { name: 'Git', level: 'Strong' },
-      { name: 'Figma', level: 'Comfortable' },
-      { name: 'Vercel', level: 'Comfortable' },
-      { name: 'Azure', level: 'Familiar' },
-      { name: 'CI/CD', level: 'Familiar' },
+      { name: "Git", level: "Strong" },
+      { name: "Figma", level: "Comfortable" },
+      { name: "Vercel", level: "Comfortable" },
+      { name: "Azure", level: "Familiar" },
     ],
   },
 ];
 
 const levelStyles = {
-  Strong:      styles.skillStrong,
+  Strong: styles.skillStrong,
   Comfortable: styles.skillComfortable,
-  Familiar:    styles.skillFamiliar,
+  Familiar: styles.skillFamiliar,
 };
 
 export default function Skills() {
   return (
     <section className={styles.section} id="skills">
       <div className={styles.inner}>
-
         <p className={`reveal ${styles.label}`}>Skills</p>
         <h2 className={`reveal ${styles.heading}`} data-delay="1">
           What I work with
@@ -72,7 +67,11 @@ export default function Skills() {
 
         <div className={styles.grid}>
           {skillCategories.map((cat, catIndex) => (
-            <div key={catIndex} className="reveal" data-delay={String((catIndex % 2) + 1)}>
+            <div
+              key={catIndex}
+              className="reveal"
+              data-delay={String((catIndex % 2) + 1)}
+            >
               <h3 className={styles.categoryLabel}>{cat.category}</h3>
               <div className={styles.skillList}>
                 {cat.skills.map(({ name, level }) => (

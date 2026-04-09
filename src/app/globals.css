@@ -47,7 +47,6 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dot grid background */
 body::before {
   content: '';
   position: fixed;
@@ -83,7 +82,6 @@ a {
   font-family: 'Instrument Serif', serif;
 }
 
-/* VSCode-style cursor blink */
 @keyframes cursor-blink {
   0%, 45%  { transform: scaleY(1);    opacity: 1;    }
   78%      { transform: scaleY(0.04); opacity: 0.12; }
@@ -102,7 +100,7 @@ a {
   animation: cursor-blink 1.4s ease-in-out infinite;
 }
 
-/* Scroll reveal animations */
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -121,7 +119,6 @@ a {
 .reveal[data-delay="5"] { transition-delay: 0.40s; }
 .reveal[data-delay="6"] { transition-delay: 0.48s; }
 
-/* Card style */
 .card {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
@@ -134,7 +131,6 @@ a {
   transform: translateY(-3px);
 }
 
-/* Pill badge */
 .pill {
   display: inline-flex;
   align-items: center;
@@ -147,7 +143,6 @@ a {
   font-size: 0.8125rem;
 }
 
-/* Scroll indicator */
 @keyframes bounce-y {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(8px); }
@@ -155,7 +150,6 @@ a {
 
 .bounce-y { animation: bounce-y 2s ease-in-out infinite; }
 
-/* Pulse dot */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.4; }
