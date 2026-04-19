@@ -51,7 +51,7 @@ export default function About() {
           </p>
           <p className={styles.proseMono}>
             <span className={styles.promoAccent}>$</span>{' '}
-            currently: indexing &amp; query optimization · exploring pgvector · reading &quot;Designing Data-Intensive Applications&quot;.
+            currently: cloud architecture &amp; APIs · database design · sharpening UX/UI craft .
           </p>
         </div>
 
@@ -63,15 +63,15 @@ export default function About() {
             <div className={styles.kv}><span className={styles.kvK}>role</span><span className={styles.kvV}>Business IT · Y2</span></div>
             <div className={styles.kv}><span className={styles.kvK}>based</span><span className={styles.kvV}>Vaasa, FI</span></div>
             <div className={styles.kv}><span className={styles.kvK}>languages</span><span className={styles.kvV}>FI / EN / a bit of DA</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>wants</span><span className={`${styles.kvV} ${styles.kvAccent}`}>backend · data · APIs</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>avoid</span><span className={styles.kvV}>pixel-pushing marketing pages</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>interests</span><span className={`${styles.kvV} ${styles.kvAccent}`}>full-stack · backend · data · APIs · analytics</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>avoid</span><span className={styles.kvV}>unoptimized database schemas</span></div>
           </div>
 
           <div className={styles.kvCard}>
-            <div className={styles.kvLabel}>./right_now.json</div>
-            <div className={styles.kv}><span className={styles.kvK}>reading</span><span className={styles.kvV}>DDIA · Kleppmann</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>listening</span><span className={styles.kvV}>lo-fi house &amp; finnish indie</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>building</span><span className={styles.kvV}>a personal CLI for course notes</span></div>
+            <div className={styles.kvLabel}>./current_state.json</div>
+            <div className={styles.kv}><span className={styles.kvK}>systems</span><span className={styles.kvV}>cloud, apis & product strategy</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>recovery</span><span className={styles.kvV}>ashtanga, pilates & gym discipline</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>health</span><span className={styles.kvV}>database logic & longevity</span></div>
           </div>
         </div>
       </div>
