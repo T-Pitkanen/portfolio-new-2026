@@ -1,282 +1,210 @@
 .section {
-  padding: 4rem 1.5rem;
+  padding: 140px 0;
+  border-top: 1px solid var(--line);
   position: relative;
   z-index: 10;
 }
 
-@media (min-width: 768px) {
-  .section {
-    padding: 6rem 3rem;
+/* ── Project row ───────────────────────────────────── */
+.project {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+
+.project:first-of-type {
+  border-top: 0;
+}
+
+@media (max-width: 1100px) {
+  .project {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 0;
   }
 }
 
-.inner {
-  max-width: 64rem;
-  margin: 0 auto;
-}
-
-.sectionLabel {
-  font-family: monospace;
-  font-size: 0.68rem;
-  font-weight: 400;
-  letter-spacing: 2px;
+/* ── Meta bar ──────────────────────────────────────── */
+.pMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--paper-faint);
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-  margin-bottom: 3.5rem;
-  display: block;
-}
-
-/* Each project row */
-.projectRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-  padding: 3.5rem 0;
-  position: relative;
-}
-
-.projectMeta {
+  letter-spacing: 0.12em;
   display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
 }
 
-.projectNum {
-  font-family: monospace;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: hsl(var(--accent));
-  padding-top: 0.3rem;
-  flex-shrink: 0;
-  white-space: nowrap;
+.pNum {
+  color: var(--acid);
 }
 
-.projectTotal {
-  opacity: 0.35;
-  font-weight: 400;
+/* ── Title ─────────────────────────────────────────── */
+.pTitle {
+  font-family: var(--font-serif), 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  margin: 0 0 20px;
+  font-variation-settings: "opsz" 144;
 }
 
-.projectDetails {
-  flex: 1;
+.pYear {
+  font-style: italic;
+  color: var(--paper-mute);
+  font-size: 0.7em;
 }
 
-.titleRow {
+/* ── Tags ──────────────────────────────────────────── */
+.pTags {
   display: flex;
-  align-items: baseline;
-  gap: 1.5rem;
-  margin-bottom: 0.7rem;
   flex-wrap: wrap;
+  gap: 6px;
+  margin: 20px 0 24px;
 }
 
-.projectTitle {
-  font-size: clamp(22px, 2.5vw, 30px);
-  font-weight: 700;
-  color: hsl(var(--foreground));
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-}
-
-.liveLink {
-  font-family: monospace;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+.pTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-  transition: color 0.2s;
-  white-space: nowrap;
+  padding: 5px 10px;
+  border: 1px solid var(--line-2);
+  color: var(--paper-dim);
+  border-radius: 2px;
 }
 
-.liveLink:hover {
-  color: hsl(var(--accent));
+.tagAcid {
+  color: var(--acid);
+  border-color: color-mix(in oklab, var(--acid) 40%, transparent);
+  background: color-mix(in oklab, var(--acid) 8%, transparent);
 }
 
-.stack {
-  font-family: monospace;
-  font-size: 0.62rem;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: hsl(var(--accent));
-  margin-bottom: 1.2rem;
+.tagAmber {
+  color: var(--amber);
+  border-color: color-mix(in oklab, var(--amber) 40%, transparent);
 }
 
-.projectGoal {
-  font-size: 0.9rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.55);
+.tagBlue {
+  color: oklch(0.78 0.13 240);
+  border-color: color-mix(in oklab, oklch(0.78 0.13 240) 40%, transparent);
 }
 
-/* Meta Information */
-.metaInfo {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
+/* ── Description ───────────────────────────────────── */
+.pDesc {
+  font-family: var(--font-serif), 'Fraunces', serif;
+  font-size: 18px;
+  color: var(--paper-dim);
+  line-height: 1.55;
+  max-width: 48ch;
+  margin-bottom: 20px;
+  font-variation-settings: "opsz" 24;
 }
 
-.role {
-  font-family: monospace;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: hsl(var(--accent));
-  padding: 0.4rem 0.8rem;
-  border: 1px solid hsl(var(--accent) / 0.4);
-  border-radius: 3px;
-  background: hsl(var(--accent) / 0.05);
-}
-
-.year {
-  font-family: monospace;
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-}
-
-/* Impact Statement */
-.impactStatement {
-  font-size: 1rem;
-  font-weight: 600;
-  color: hsl(var(--accent));
-  margin-bottom: 1.2rem;
+/* ── Note block ────────────────────────────────────── */
+.pNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--paper-mute);
   line-height: 1.6;
-  opacity: 0.95;
+  max-width: 52ch;
+  padding: 14px 16px;
+  border-left: 2px solid var(--acid);
+  background: color-mix(in oklab, var(--ink-2) 70%, transparent);
+  margin-bottom: 20px;
 }
 
-/* Highlights */
-.highlights {
+.pNote::before {
+  content: "// NOTE — ";
+  color: var(--acid);
+}
+
+/* ── Links ─────────────────────────────────────────── */
+.pLinks {
   display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
-}
-
-.highlight {
-  font-family: monospace;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.8px;
+  gap: 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.5rem 0.9rem;
-  border: 1px solid hsl(var(--accent) / 0.3);
-  border-radius: 3px;
-  color: rgba(255, 255, 255, 0.55);
-  background: hsl(var(--accent) / 0.02);
-  transition: all 0.3s cubic-bezier(0.33, 0.66, 0.66, 1);
 }
 
-.highlight:hover {
-  border-color: hsl(var(--accent));
-  color: hsl(var(--accent));
-  background: hsl(var(--accent) / 0.08);
+.pLinks a {
+  color: var(--paper);
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
 }
 
-/* Image slider */
-.slider {
+.pLinks a:hover {
+  color: var(--acid);
+  border-color: var(--acid);
+}
+
+/* ── Visual / image slider ─────────────────────────── */
+.pVisual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-height: 340px;
+  max-width: 540px;
   width: 100%;
+  margin: 0 auto;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
   overflow: hidden;
   cursor: pointer;
 }
 
-.slideImg {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: hsl(var(--card));
-  position: relative;
+.pVisual:hover {
+  border-color: var(--acid);
 }
 
-.projectImg {
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.pImg {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hover overlay */
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  border: 2px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  transition: background 0.3s ease, border-color 0.3s ease;
-  pointer-events: none;
+.pVisual:hover .pImg {
+  transform: scale(1.03);
 }
 
-.viewLabel {
-  font-family: monospace;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: hsl(var(--accent));
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
 
-.expandIcon {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  color: rgba(255, 255, 255, 0.40);
-  display: flex;
-  align-items: center;
-  transition: color 0.3s ease, opacity 0.3s ease;
-}
 
-.slider:hover .expandIcon {
-  color: hsl(var(--accent));
-}
 
-.slider:hover .projectImg {
-  transform: scale(1.04);
-}
-
-.slider:hover .imageOverlay {
-  background: rgba(0, 0, 0, 0.42);
-  border-color: hsl(var(--accent));
-}
-
-.slider:hover .viewLabel {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.divider {
-  grid-column: 1 / -1;
-  height: 1px;
-  background-color: hsl(var(--border));
-}
-
-/* Modal */
-.closeButton {
+/* ── Modal ─────────────────────────────────────────── */
+.closeBtn {
   align-self: flex-end;
   background: transparent;
-  border: 1px solid hsl(var(--border));
-  color: hsl(var(--foreground));
-  font-size: 1.3rem;
+  border: 1px solid var(--line-2);
+  color: var(--paper);
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 0.3rem 0.5rem;
+  padding: 4px 8px;
   display: flex;
   align-items: center;
   transition: border-color 0.2s, color 0.2s;
+  font-family: var(--font-mono), monospace;
 }
 
-.closeButton:hover {
-  border-color: hsl(var(--accent));
-  color: hsl(var(--accent));
+.closeBtn:hover {
+  border-color: var(--acid);
+  color: var(--acid);
 }
 
 .modalNav {
@@ -287,44 +215,53 @@
 
 .modalBtn {
   background: transparent;
-  border: 1px solid hsl(var(--border));
-  color: hsl(var(--foreground));
-  font-size: 1.1rem;
+  border: 1px solid var(--line-2);
+  color: var(--paper);
+  font-size: 1rem;
   cursor: pointer;
-  padding: 0.5rem 0.8rem;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   transition: border-color 0.2s, color 0.2s;
 }
 
 .modalBtn:hover {
-  border-color: hsl(var(--accent));
-  color: hsl(var(--accent));
+  border-color: var(--acid);
+  color: var(--acid);
 }
 
 .modalCounter {
-  font-family: monospace;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--paper-faint);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .projectRow {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 3rem 0;
-  }
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 600px) {
-  .section {
-    padding: 4rem 1.5rem;
-  }
-
-  .projectTitle {
-    font-size: 22px;
-  }
+.modalContent {
+  position: relative;
+  background: var(--ink-2);
+  border: 1px solid var(--line-2);
+  width: 70vw;
+  max-width: 800px;
+  max-height: 85vh;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0;
 }

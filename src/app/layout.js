@@ -1,32 +1,74 @@
-import { Inter, Instrument_Serif } from 'next/font/google';
+import { JetBrains_Mono, Fraunces } from 'next/font/google';
 import './globals.css';
-import Navigation from './components/navigation/navigation';
-import Footer from './components/footer/footer';
-import ScrollReveal from './components/scroll-reveal/scroll-reveal';
+import Navigation from './components/navigation/Navigation';
+import Footer from './components/footer/Footer';
+import ClientWidgets from './components/ClientWidgets';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
-const instrumentSerif = Instrument_Serif({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400'],
+  variable: '--font-mono',
   style: ['normal', 'italic'],
-  variable: '--font-serif',
+  display: 'swap',
 });
 
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  display: 'swap',
+});
+
+export const viewport = 'width=device-width, initial-scale=1';
+
 export const metadata = {
-  title: 'Tiia Pitkänen — Web Developer & Business IT Student',
-  description: 'Portfolio of Tiia Pitkänen, a web developer and business IT student focused on full-stack development and databases.',
+  metadataBase: new URL('https://tiiapitkanen.com'),
+  title: 'Tiia Pitkänen — Business IT Student',
+  description: 'Portfolio of Tiia Pitkänen, a Business IT student at VAMK. Showcasing projects, coursework, and skills in Business IT.',
+  openGraph: {
+    title: 'Tiia Pitkänen — Business IT Student',
+    description: 'Portfolio of Tiia Pitkänen, a Business IT student at VAMK. Showcasing projects, coursework, and skills in Business IT.',
+    images: [
+      {
+        url: '/logo/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Tiia Pitkänen Portfolio',
+      },
+    ],
+    url: '/',
+    type: 'website',
+    locale: 'en_FI',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tiia Pitkänen — Business IT Student',
+    description: 'Portfolio of Tiia Pitkänen, a Business IT student at VAMK.',
+    images: ['/logo/logo.png'],
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${instrumentSerif.variable}`} suppressHydrationWarning>
+      <body
+        className={`${jetbrainsMono.variable} ${fraunces.variable}`}
+        suppressHydrationWarning
+      >
+        {/* Page frame */}
+        <div className="frame" aria-hidden="true" />
+
+        {/* Corner ticks */}
+        <div className="tick tick-tl" aria-hidden="true">N 60.17°<br />E 24.94°</div>
+        <div className="tick tick-tr" aria-hidden="true">v.2026.04<br />portfolio/tiia</div>
+        <div className="tick tick-bl" aria-hidden="true">idx 001 / 001<br />human.curious</div>
+
+        <ClientWidgets />
         <Navigation />
         {children}
         <Footer />
-        <ScrollReveal />
         <SpeedInsights />
         <Analytics />
       </body>

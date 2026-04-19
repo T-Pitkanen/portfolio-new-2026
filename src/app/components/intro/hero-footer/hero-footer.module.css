@@ -1,0 +1,35 @@
+.heroFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper-faint);
+  margin-top: 40px;
+}
+
+.scrollIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scrollBar {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--paper-faint), transparent);
+  animation: scrolldown 2s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes scrolldown {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50%       { transform: scaleY(0.3); opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollBar { animation: none; }
+}

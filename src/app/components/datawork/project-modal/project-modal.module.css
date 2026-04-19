@@ -1,0 +1,226 @@
+/* ── Modal overlay ─────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.80);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  background: var(--ink-2);
+  border: 1px solid var(--line-2);
+  border-radius: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: slideUp 0.22s ease;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--paper-mute);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.closeBtn:hover {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-right: 2rem;
+}
+
+.modalTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  display: inline-block;
+  border: 1px solid currentColor;
+  align-self: flex-start;
+}
+
+.modalTitle {
+  font-family: var(--font-serif), 'Fraunces', serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  line-height: 1.2;
+  font-variation-settings: "opsz" 36;
+}
+
+.modalInstitution {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--paper-faint);
+  letter-spacing: 0.06em;
+}
+
+.modalBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .modalBody {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.modalLeft, .modalRight {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modalRight {
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.modalDesc {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  color: var(--paper-dim);
+  line-height: 1.7;
+}
+
+.modalTopics { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.topicsLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-faint);
+  font-weight: 500;
+}
+
+.topicsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topicItem {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--paper-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  padding: 4px 10px;
+}
+
+.modalTakeaway {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  color: var(--paper-faint);
+  font-style: italic;
+  border-left: 2px solid color-mix(in oklab, var(--acid) 30%, transparent);
+  padding-left: 0.875rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── ER Diagram ────────────────────────────────────── */
+.imageWrap { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-2);
+  background: white;
+  cursor: zoom-in;
+  transition: opacity 0.15s;
+}
+
+.modalImage:hover { opacity: 0.88; }
+
+/* ── Lightbox ──────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.94);
+  cursor: zoom-out;
+  animation: fadeIn 0.15s ease;
+  padding: 2rem;
+}
+
+.lightboxImage {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+/* ── SQL snippets ──────────────────────────────────── */
+.snippets { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.snippet { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.snippetLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--paper-faint);
+  font-weight: 500;
+}
+
+.snippetCode {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--paper-dim);
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+}

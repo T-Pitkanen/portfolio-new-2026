@@ -1,23 +1,9 @@
-.section {
-  padding: 140px 0;
-  border-top: 1px solid var(--line);
-  position: relative;
-  z-index: 10;
-}
-
-/* ── Bento grid ────────────────────────────────────── */
-.bento {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: 160px;
-  gap: 16px;
-}
+/* ── Span helpers ──────────────────────────────────── */
+.w3    { grid-column: span 3; }
+.w3_h2 { grid-column: span 3; grid-row: span 2; }
+.w2    { grid-column: span 2; }
 
 @media (max-width: 1100px) {
-  .bento {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: auto;
-  }
   .w3_h2, .w3, .w2 {
     grid-column: span 2 !important;
     grid-row: span 1 !important;
@@ -25,18 +11,10 @@
 }
 
 @media (max-width: 600px) {
-  .bento {
-    grid-template-columns: 1fr;
-  }
   .w3_h2, .w3, .w2 {
     grid-column: span 1 !important;
   }
 }
-
-/* ── Span helpers ──────────────────────────────────── */
-.w3    { grid-column: span 3; }
-.w3_h2 { grid-column: span 3; grid-row: span 2; }
-.w2    { grid-column: span 2; }
 
 /* ── Cell ──────────────────────────────────────────── */
 .cell {
@@ -73,14 +51,6 @@
   margin-bottom: 14px;
   border: 1px solid currentColor;
 }
-
-/* Tag colour variants */
-.backend  { color: oklch(0.74 0.12 195); }
-.ux       { color: oklch(0.75 0.15 305); }
-.infra    { color: var(--acid); }
-.business { color: var(--amber); }
-.emerging { color: var(--rose); }
-.frontend { color: oklch(0.78 0.13 240); }
 
 .cellTitle {
   font-family: var(--font-serif), 'Fraunces', serif;

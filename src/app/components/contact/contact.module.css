@@ -1,183 +1,163 @@
 .section {
-  padding: 4rem 1.5rem;
+  padding: 140px 0;
+  border-top: 1px solid var(--line);
   position: relative;
   z-index: 10;
 }
 
-@media (min-width: 768px) {
-  .section {
-    padding: 6rem 3rem;
-  }
-}
-
-.glowBg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 34rem;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.glowOrb {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 16rem;
-  border-radius: 9999px;
-  background-color: hsl(var(--accent) / 0.06);
-  filter: blur(100px);
-}
-
-.inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 64rem;
-  margin: 0 auto;
-}
-
-.label {
-  font-size: 0.75rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-  margin-bottom: 0.75rem;
-  font-weight: 500;
-}
-
-.heading {
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  margin-bottom: 1rem;
-}
-
-@media (min-width: 768px) {
-  .heading {
-    font-size: 3rem;
-  }
-}
-
-.subtext {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.40);
-  margin-bottom: 3rem;
-  max-width: 28rem;
-  line-height: 1.625;
-}
-
+/* ── Two-column grid ───────────────────────────────── */
 .grid {
   display: grid;
-  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1100px) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4rem;
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
 }
 
-
-
-.centered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+/* ── Left ──────────────────────────────────────────── */
+.bigHeading {
+  font-family: var(--font-serif), 'Fraunces', serif;
+  font-size: clamp(64px, 9vw, 140px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 0;
+  font-weight: 300;
+  color: var(--paper);
+  font-variation-settings: "opsz" 144;
 }
 
-.colLabel {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.30);
+.bigHeading em {
+  font-style: italic;
+  color: var(--paper-dim);
+}
+
+.sub {
+  font-family: var(--font-serif), 'Fraunces', serif;
+  font-size: 20px;
+  color: var(--paper-dim);
+  margin-top: 20px;
+  max-width: 36ch;
+  line-height: 1.5;
+  font-variation-settings: "opsz" 24;
+}
+
+/* ── Right / contact blocks ────────────────────────── */
+.right {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+}
+
+.block {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.block:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.blockKey {
+  color: var(--paper-faint);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.75rem;
-  font-weight: 500;
+  font-size: 10px;
 }
 
-.emailBlock {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+.blockVal {
+  color: var(--paper);
+  font-size: 14px;
+}
+
+.blockVal a {
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.blockVal a:hover {
+  color: var(--acid);
+  border-color: var(--acid);
+}
+
+.blockAccent {
+  color: var(--acid) !important;
+}
+
+/* ── Email button ──────────────────────────────────── */
+.emailBtn {
   background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  color: var(--paper);
   cursor: pointer;
-  margin-bottom: 2.5rem;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
 }
 
-.emailBlock:hover {
-  border-color: rgba(255, 255, 255, 0.20);
-  background-color: rgba(255, 255, 255, 0.03);
+.emailBtn:hover {
+  color: var(--acid);
+  border-color: var(--acid);
 }
 
-.emailAddress {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: white;
-  user-select: all;
-}
-
-.copyIcon {
-  color: rgba(255, 255, 255, 0.35);
+/* ── CTA buttons ───────────────────────────────────── */
+.btnRow {
   display: flex;
-  align-items: center;
-  transition: color 0.15s ease;
+  gap: 10px;
+  margin-top: 28px;
+  flex-wrap: wrap;
 }
 
-.emailBlock:hover .copyIcon {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.cvButton {
+.btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  border-radius: 9999px;
-  background: white;
-  color: black;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 2.5rem;
-  transition: background 0.15s ease, transform 0.15s ease;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--paper);
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.cvButton:hover {
-  background: rgba(255, 255, 255, 0.88);
-  transform: translateY(-1px);
+.btn:hover {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
 }
 
-.socialLinks {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
+.btnPrimary {
+  background: var(--acid);
+  color: var(--ink);
+  border-color: var(--acid);
+  font-weight: 500;
 }
 
-.socialLink {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  color: rgba(255, 255, 255, 0.50);
-  font-size: 0.875rem;
-  transition: color 0.15s ease, border-color 0.15s ease;
+.btnPrimary:hover {
+  background: var(--paper);
+  border-color: var(--paper);
 }
 
-.socialLink:hover {
-  color: white;
-  border-color: rgba(255, 255, 255, 0.22);
+.arrow {
+  transition: transform 0.2s;
 }
 
-
+.btn:hover .arrow {
+  transform: translateY(3px);
+}
