@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './terminal.module.css';
 
 const INITIAL_LINES = [
@@ -19,7 +19,7 @@ const INITIAL_LINES = [
 ];
 
 const COMMANDS = {
-  help:     { type: 'ok',      text: '> try: hire · cv · coffee · source · sauna · clear · reset' },
+  help:     { type: 'ok',      text: '> try: hire · cv · coffee · location · sauna · clear · reset' },
   hire:     { type: 'ok',      text: '♥ on my way — tiia1.pitkanen@gmail.com' },
   sauna:    { type: 'warn',    text: '♨ löyly dispatched, enjoy.' },
   cv:       { type: 'confirm', text: 'download Tiia_Pitkanen_CV.pdf? [y/n]' },
@@ -38,7 +38,6 @@ function downloadCV() {
 
 export default function Terminal() {
   const termBodyRef = useRef(null);
-  const inputElRef = useRef(null);
   const pendingRef = useRef(null);
   const [lines, setLines] = useState(INITIAL_LINES);
   const [input, setInput] = useState('');
@@ -59,6 +58,10 @@ export default function Terminal() {
       });
       if (accepted) downloadCV();
       setInput('');
+      setTimeout(() => {
+        const el = termBodyRef.current;
+        if (el) el.scrollTop = el.scrollHeight;
+      }, 0);
       return;
     }
 
@@ -74,23 +77,36 @@ export default function Terminal() {
     });
     if (cmd === 'cv') pendingRef.current = 'cv';
     setInput('');
+    setTimeout(() => {
+      const el = termBodyRef.current;
+      if (el) el.scrollTop = el.scrollHeight;
+    }, 0);
   }
 
   function onKeyDown(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
     if (e.key === 'Enter') {
       e.preventDefault();
       submit(input);
+      return;
+    }
+
+    if (e.key === 'Backspace') {
+      e.preventDefault();
+      setInput((prev) => prev.slice(0, -1));
+      return;
+    }
+
+    if (e.key.length === 1) {
+      e.preventDefault();
+      setInput((prev) => (prev.length < 60 ? prev + e.key : prev));
     }
   }
 
-  useEffect(() => {
-    const el = termBodyRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
-  }, [lines, input]);
-
   return (
     <>
-      <span className={styles.sticker}>◒ currently learning PowerBI </span>
+      <span className={styles.sticker}>◒ currently learning PowerBI & UI/UX </span>
 
       <div
         className={`reveal ${styles.terminal}`}
@@ -107,7 +123,14 @@ export default function Terminal() {
         <div
           className={styles.termBody}
           ref={termBodyRef}
-          onClick={() => inputElRef.current?.focus()}
+          tabIndex={0}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            termBodyRef.current?.focus({ preventScroll: true });
+          }}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          onKeyDown={onKeyDown}
         >
           <div aria-live="polite" aria-atomic="false">
             {lines.map((line, i) => {
@@ -142,22 +165,6 @@ export default function Terminal() {
               {input}
               {focused && <span className={styles.caret} />}
             </span>
-            <input
-              id="terminal-input"
-              ref={inputElRef}
-              className={styles.hiddenInput}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value.slice(0, 60))}
-              onKeyDown={onKeyDown}
-              onFocus={() => setFocused(true)}
-              onBlur={() => setFocused(false)}
-              autoComplete="off"
-              autoCapitalize="off"
-              autoCorrect="off"
-              spellCheck="false"
-              aria-label="Terminal command"
-            />
           </span>
         </div>
       </div>
