@@ -9,7 +9,7 @@ import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main id="main" tabIndex={-1} className={styles.main}>
       <Hero />
       <Marquee />
       <About />

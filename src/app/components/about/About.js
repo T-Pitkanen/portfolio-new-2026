@@ -10,16 +10,16 @@ const timeline = [
   },
   {
     year: '2024 —',
-    loc: 'VAMK · Finland',
+    loc: <><span lang="fi">VAMK</span> · Finland</>,
     title: 'Business IT',
-    desc: 'Back in Finland, studying Business IT — where software dev meets business systems. Databases & APIs is the standout so far.',
+    desc: <>Back in Finland, studying Business IT, where software dev meets business systems. Databases & APIs has been my favourite course so far.</>,
     idx: '002',
   },
   {
     year: 'now ——',
     loc: 'Anywhere · Finland',
     title: 'Looking for an internship',
-    desc: 'Actively applying. Planning to relocate to the Uusimaa region; open to opportunities in South Finland and Estonia too.',
+    desc: <>Actively applying. Planning to relocate to the <span lang="fi">Uusimaa</span> region; open to opportunities in South Finland and Estonia too.</>,
     idx: '003',
     accent: true,
   },
@@ -40,9 +40,9 @@ export default function About() {
           <p>
             I have a{' '}
             <span className={styles.highlight}>web development degree from Denmark</span>
-            {' '}and I&apos;m in my second year of Business IT at VAMK. My current
-            courses cover databases, APIs, cloud services, and UX —{' '}
-            <em>the databases side has turned into the thing I actually look forward to.</em>
+            {' '}and I&apos;m in my second year of Business IT at <span lang="fi">VAMK</span>. My current
+            courses cover databases, APIs, cloud services, and UX.{' '}
+            <em>The databases side has turned into the thing I actually look forward to.</em>
           </p>
           <p>
             I learn by building real things. Most projects are solo, some are group.
@@ -59,9 +59,9 @@ export default function About() {
         <div className={`reveal ${styles.aside}`} data-delay="2">
           <div className={styles.kvCard}>
             <div className={styles.kvLabel}>./identity.cfg</div>
-            <div className={styles.kv}><span className={styles.kvK}>name</span><span className={styles.kvV}>Tiia Pitkänen</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>name</span><span className={styles.kvV}>Tiia <span lang="fi">Pitkänen</span></span></div>
             <div className={styles.kv}><span className={styles.kvK}>role</span><span className={styles.kvV}>Business IT · Y2</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>based</span><span className={styles.kvV}>Vaasa, FI</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>based</span><span className={styles.kvV}><span lang="fi">Vaasa</span>, FI</span></div>
             <div className={styles.kv}><span className={styles.kvK}>languages</span><span className={styles.kvV}>FI / EN / a bit of DA</span></div>
             <div className={styles.kv}><span className={styles.kvK}>interests</span><span className={`${styles.kvV} ${styles.kvAccent}`}>full-stack · backend · data · APIs · analytics</span></div>
             <div className={styles.kv}><span className={styles.kvK}>avoid</span><span className={styles.kvV}>unoptimized database schemas</span></div>

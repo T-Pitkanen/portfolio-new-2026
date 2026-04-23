@@ -4,12 +4,14 @@ import Image from 'next/image';
 import { createPortal } from 'react-dom';
 import styles from './projects.module.css';
 import projectData from '@/data/projectData';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { RiCloseLine } from 'react-icons/ri';
+import useAccessibleDialog from '../hooks/useAccessibleDialog';
+import useReducedMotion from '../hooks/useReducedMotion';
 
 // Map stack strings → tag variant class
 function tagVariant(code) {
@@ -24,6 +26,14 @@ export default function Projects() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [modalProject, setModalProject] = useState(null);
+  const dialogRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+
+  useAccessibleDialog({
+    open: modalIsOpen,
+    onClose: () => setModalIsOpen(false),
+    dialogRef,
+  });
 
   const total = String(projectData.length).padStart(2, '0');
 
@@ -72,36 +82,34 @@ export default function Projects() {
 
               <div className={styles.pLinks}>
                 {project.link && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" data-hover>
-                    live demo ↗
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-hover
+                    aria-label={`${project.title} — live demo (opens in new tab)`}
+                  >
+                    <span aria-hidden="true">live demo ↗</span>
                   </a>
                 )}
               </div>
             </div>
 
             {/* Right: image slider */}
-            <div
-              className={styles.pVisual}
-              data-hover
-              onClick={() => {
-                setModalProject(project);
-                setCurrentImageIndex(0);
-                setModalIsOpen(true);
-              }}
-            >
-            
+            <div className={styles.pVisualWrap}>
               <Swiper
                 modules={[Autoplay]}
                 slidesPerView={1}
                 loop={true}
-                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                autoplay={reducedMotion ? false : { delay: 5000, disableOnInteraction: true, pauseOnMouseEnter: true }}
                 className={styles.swiper}
+                aria-hidden="true"
               >
-                {project.image.map((img, imgIdx) => (
+                {project.image.map((img) => (
                   <SwiperSlide key={img}>
                     <Image
                       src={img}
-                      alt={`${project.title} screenshot ${imgIdx + 1}`}
+                      alt=""
                       width={800}
                       height={600}
                       className={styles.pImg}
@@ -109,7 +117,19 @@ export default function Projects() {
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <div className={styles.pVisualCornerBl}>role: {project.role.toLowerCase()}</div>
+              <button
+                type="button"
+                className={styles.pVisual}
+                data-hover
+                aria-label={`Open ${project.title} image gallery`}
+                onClick={() => {
+                  setModalProject(project);
+                  setCurrentImageIndex(0);
+                  setModalIsOpen(true);
+                }}
+              >
+              
+              </button>
             </div>
           </div>
         );
@@ -117,25 +137,57 @@ export default function Projects() {
 
       {/* Lightbox modal */}
       {modalIsOpen && createPortal(
-        <div className={styles.modalOverlay} onClick={() => setModalIsOpen(false)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setModalIsOpen(false)} className={styles.closeBtn}>
-              <RiCloseLine />
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setModalIsOpen(false)}
+          role="presentation"
+        >
+          <div
+            ref={dialogRef}
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-lightbox-title"
+            tabIndex={-1}
+          >
+            <h2 id="project-lightbox-title" className={styles.srOnly}>
+              {modalProject?.title ?? 'Project'} image gallery
+            </h2>
+            <button
+              type="button"
+              onClick={() => setModalIsOpen(false)}
+              className={styles.closeBtn}
+              aria-label="Close image gallery"
+            >
+              <RiCloseLine aria-hidden="true" />
             </button>
             <Image
               src={modalProject?.image[currentImageIndex] ?? '/test.png'}
-              alt="Project screenshot"
+              alt={`${modalProject?.title ?? 'Project'} screenshot ${currentImageIndex + 1} of ${modalProject?.image.length ?? 1}`}
               width={1600} height={900}
               style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '60vh' }}
             />
             <div className={styles.modalNav}>
-              <button className={styles.modalBtn} onClick={() =>
-                setCurrentImageIndex((currentImageIndex - 1 + (modalProject?.image.length ?? 1)) % (modalProject?.image.length ?? 1))
-              }><FaAngleLeft /></button>
-              <span className={styles.modalCounter}>{currentImageIndex + 1} / {modalProject?.image.length}</span>
-              <button className={styles.modalBtn} onClick={() =>
-                setCurrentImageIndex((currentImageIndex + 1) % (modalProject?.image.length ?? 1))
-              }><FaAngleRight /></button>
+              <button
+                type="button"
+                className={styles.modalBtn}
+                aria-label="Previous image"
+                onClick={() =>
+                  setCurrentImageIndex((currentImageIndex - 1 + (modalProject?.image.length ?? 1)) % (modalProject?.image.length ?? 1))
+                }
+              ><FaAngleLeft aria-hidden="true" /></button>
+              <span className={styles.modalCounter} aria-live="polite">
+                {currentImageIndex + 1} / {modalProject?.image.length}
+              </span>
+              <button
+                type="button"
+                className={styles.modalBtn}
+                aria-label="Next image"
+                onClick={() =>
+                  setCurrentImageIndex((currentImageIndex + 1) % (modalProject?.image.length ?? 1))
+                }
+              ><FaAngleRight aria-hidden="true" /></button>
             </div>
           </div>
         </div>,

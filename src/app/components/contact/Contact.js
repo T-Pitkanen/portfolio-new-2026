@@ -8,7 +8,9 @@ export default function Contact() {
   const [copied, setCopied] = useState(false);
 
   function handleCopy() {
-    navigator.clipboard.writeText(EMAIL);
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(EMAIL).catch(() => {});
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
@@ -24,9 +26,9 @@ export default function Contact() {
       <div className={`reveal ${styles.grid}`} data-delay="1">
         {/* Left — large serif heading */}
         <div className={styles.left}>
-          <h2 className={styles.bigHeading}>
+          <h3 className={styles.bigHeading}>
             Hire<br />a <em>curious</em><br />student.
-          </h2>
+          </h3>
           <p className={styles.sub}>
             Looking for an internship in Finland — backend, full-stack, or data-heavy roles.
             Happy to hear about anything adjacent.
@@ -36,11 +38,21 @@ export default function Contact() {
         {/* Right — contact blocks */}
         <div className={styles.right}>
           <div className={styles.block}>
-            <span className={styles.blockKey}>email</span>
+            <span className={styles.blockKey} id="email-label">email</span>
             <span className={styles.blockVal}>
-              <button onClick={handleCopy} className={styles.emailBtn} data-hover>
-                {copied ? '✓ copied' : EMAIL}
+              <button
+                type="button"
+                onClick={handleCopy}
+                className={styles.emailBtn}
+                data-hover
+                aria-describedby="email-label"
+                aria-label={copied ? 'Email copied to clipboard' : `Copy email address ${EMAIL} to clipboard`}
+              >
+                <span aria-hidden="true">{copied ? '✓ copied' : EMAIL}</span>
               </button>
+              <span role="status" aria-live="polite" className={styles.srOnly}>
+                {copied ? 'Email address copied to clipboard.' : ''}
+              </span>
             </span>
           </div>
           <div className={styles.block}>
@@ -61,7 +73,7 @@ export default function Contact() {
           </div>
           <div className={styles.block}>
             <span className={styles.blockKey}>location</span>
-            <span className={styles.blockVal}>Vaasa · open to Uusimaa / Estonia</span>
+            <span className={styles.blockVal}><span lang="fi">Vaasa</span> · open to <span lang="fi">Uusimaa</span> / Estonia</span>
           </div>
           <div className={styles.block}>
             <span className={styles.blockKey}>available</span>

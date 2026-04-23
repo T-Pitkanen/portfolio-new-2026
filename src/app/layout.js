@@ -25,10 +25,10 @@ export const viewport = 'width=device-width, initial-scale=1';
 
 export const metadata = {
   metadataBase: new URL('https://tiiapitkanen.com'),
-  title: 'Tiia Pitkänen — Business IT Student',
+  title: 'Tiia Pitkänen',
   description: 'Portfolio of Tiia Pitkänen, a Business IT student at VAMK. Showcasing projects, coursework, and skills in Business IT.',
   openGraph: {
-    title: 'Tiia Pitkänen — Business IT Student',
+    title: 'Tiia Pitkänen',
     description: 'Portfolio of Tiia Pitkänen, a Business IT student at VAMK. Showcasing projects, coursework, and skills in Business IT.',
     images: [
       {
@@ -44,7 +44,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tiia Pitkänen — Business IT Student',
+    title: 'Tiia Pitkänen',
     description: 'Portfolio of Tiia Pitkänen, a Business IT student at VAMK.',
     images: ['/logo/logo.png'],
   },
@@ -65,6 +65,7 @@ export default function RootLayout({ children }) {
         <div className="tick tick-tr" aria-hidden="true">v.2026.04<br />portfolio/tiia</div>
         <div className="tick tick-bl" aria-hidden="true">idx 001 / 001<br />human.curious</div>
 
+        <a href="#main" className="skip-link">Skip to content</a>
         <ClientWidgets />
         <Navigation />
         {children}

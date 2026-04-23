@@ -58,7 +58,13 @@
 
 .metaRight {
   text-align: right;
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 24px;
+  padding: 4px 8px;
+  margin-right: -8px;
+  justify-self: end;
   transition: color 0.2s;
 }
 

@@ -9,6 +9,7 @@ export default function HeroFooter() {
         <div className={styles.scrollBar} />
         <span>↓</span>
       </div>
+      <div aria-hidden="true" />
     </div>
   );
 }

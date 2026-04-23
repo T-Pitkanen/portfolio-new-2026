@@ -15,7 +15,7 @@ export default function Hero() {
           <h1 className={`reveal ${styles.display}`} data-delay="1">
             <span className={styles.displaySmall}>{'// Business IT student'}</span>
             Tiia<br />
-            <span className={styles.displayItalic}>Pitkänen.</span>
+            <span className={styles.displayItalic} lang="fi">Pitkänen</span>.
           </h1>
 
           <div className={`reveal ${styles.ctaRow}`} data-delay="2">

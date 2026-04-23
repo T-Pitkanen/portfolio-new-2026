@@ -5,11 +5,11 @@ export default function HeroMeta() {
     <div className={`reveal ${styles.heroMeta}`}>
       <div className={styles.metaRow}>
         <span className={styles.metaKey}>location</span>
-        <span className={styles.metaVal}>Vaasa · FI</span>
+        <span className={styles.metaVal}><span lang="fi">Vaasa</span> · FI</span>
       </div>
       <div className={styles.metaRow}>
         <span className={styles.metaKey}>studying</span>
-        <span className={styles.metaVal}>Business IT · VAMK · Year 2</span>
+        <span className={styles.metaVal}>Business IT · <span lang="fi">VAMK</span> · Year 2</span>
       </div>
       <div className={styles.metaRow}>
         <span className={styles.metaKey}>status</span>

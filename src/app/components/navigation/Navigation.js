@@ -47,8 +47,9 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={`${styles.link} ${active === link.href.slice(1) ? styles.active : ''}`}
+                aria-current={active === link.href.slice(1) ? 'location' : undefined}
               >
-                <span className={styles.hash}>{link.num}/</span>
+                <span className={styles.hash} aria-hidden="true">{link.num}/</span>
                 {link.label}
               </a>
             ))}
@@ -56,23 +57,48 @@ export default function Navigation() {
 
           {/* Social icons */}
           <div className={styles.socials}>
-            <a href="https://github.com/T-Pitkanen" target="_blank" rel="noopener noreferrer" className={styles.iconLink} title="GitHub" data-hover>
-              <FaGithub size={14} />
+            <a
+              href="https://github.com/T-Pitkanen"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.iconLink}
+              aria-label="GitHub profile (opens in new tab)"
+              data-hover
+            >
+              <FaGithub size={14} aria-hidden="true" />
             </a>
-            <a href="https://linkedin.com/in/tiia-pitkanen" target="_blank" rel="noopener noreferrer" className={styles.iconLink} title="LinkedIn" data-hover>
-              <FaLinkedin size={14} />
+            <a
+              href="https://linkedin.com/in/tiia-pitkanen"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.iconLink}
+              aria-label="LinkedIn profile (opens in new tab)"
+              data-hover
+            >
+              <FaLinkedin size={14} aria-hidden="true" />
             </a>
           </div>
 
           {/* Hamburger */}
-          <button onClick={() => setOpen(!open)} className={styles.hamburger} aria-label="Toggle menu">
-            {open ? <X size={16} /> : <Menu size={16} />}
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className={styles.hamburger}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            {open ? <X size={16} aria-hidden="true" /> : <Menu size={16} aria-hidden="true" />}
           </button>
         </div>
       </nav>
 
       {/* Mobile menu */}
-      <div className={`${styles.mobile} ${open ? styles.mobileOpen : styles.mobileClosed}`}>
+      <div
+        id="mobile-menu"
+        className={`${styles.mobile} ${open ? styles.mobileOpen : styles.mobileClosed}`}
+        inert={!open}
+      >
         {navLinks.map((link) => (
           <a
             key={link.href}
@@ -80,16 +106,28 @@ export default function Navigation() {
             onClick={() => setOpen(false)}
             className={styles.mobileLink}
           >
-            <span className={styles.hash}>{link.num}/</span>
+            <span className={styles.hash} aria-hidden="true">{link.num}/</span>
             {link.label}
           </a>
         ))}
         <div className={styles.mobileSocials}>
-          <a href="https://github.com/T-Pitkanen" target="_blank" rel="noopener noreferrer" className={styles.mobileSocialLink}>
-            <FaGithub size={14} /> GitHub
+          <a
+            href="https://github.com/T-Pitkanen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.mobileSocialLink}
+            aria-label="GitHub profile (opens in new tab)"
+          >
+            <FaGithub size={14} aria-hidden="true" /> GitHub
           </a>
-          <a href="https://linkedin.com/in/tiia-pitkanen" target="_blank" rel="noopener noreferrer" className={styles.mobileSocialLink}>
-            <FaLinkedin size={14} /> LinkedIn
+          <a
+            href="https://linkedin.com/in/tiia-pitkanen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.mobileSocialLink}
+            aria-label="LinkedIn profile (opens in new tab)"
+          >
+            <FaLinkedin size={14} aria-hidden="true" /> LinkedIn
           </a>
         </div>
       </div>

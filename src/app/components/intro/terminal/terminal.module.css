@@ -50,6 +50,7 @@
 }
 
 .termBody {
+  position: relative;
   padding: 18px 20px;
   min-height: 200px;
   max-height: 360px;
@@ -102,4 +103,43 @@
 
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
+}
+
+/* Visually-hidden but screen-reader-available label */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Real <input> that drives the terminal. Kept in the layout flow
+   just enough to receive focus; visually replaced by the prompt line. */
+.hiddenInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  opacity: 0;
+}
+
+.hiddenInput:focus {
+  outline: none;
+}
+
+.termBody:focus-within {
+  outline: 2px solid var(--acid);
+  outline-offset: -2px;
 }

@@ -30,6 +30,12 @@
   overflow-y: auto;
 }
 
+.modal:focus { outline: none; }
+.modal:focus-visible {
+  outline: 2px solid var(--acid);
+  outline-offset: 2px;
+}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -166,16 +172,30 @@
 /* ── ER Diagram ────────────────────────────────────── */
 .imageWrap { display: flex; flex-direction: column; gap: 0.6rem; }
 
+.imageButton {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+  cursor: zoom-in;
+  width: 100%;
+}
+
+.imageButton:focus-visible {
+  outline: 2px solid var(--acid);
+  outline-offset: 2px;
+}
+
 .modalImage {
   width: 100%;
   height: auto;
   border: 1px solid var(--line-2);
   background: white;
-  cursor: zoom-in;
   transition: opacity 0.15s;
 }
 
-.modalImage:hover { opacity: 0.88; }
+.imageButton:hover .modalImage { opacity: 0.88; }
 
 /* ── Lightbox ──────────────────────────────────────── */
 .lightbox {
@@ -189,6 +209,32 @@
   cursor: zoom-out;
   animation: fadeIn 0.15s ease;
   padding: 2rem;
+}
+
+.lightbox:focus { outline: none; }
+
+.lightboxClose {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--paper-mute);
+  background: transparent;
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  z-index: 201;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.lightboxClose:hover,
+.lightboxClose:focus-visible {
+  border-color: var(--acid);
+  color: var(--acid);
 }
 
 .lightboxImage {

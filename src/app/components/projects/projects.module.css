@@ -140,7 +140,10 @@
 .pLinks a {
   color: var(--paper);
   border-bottom: 1px solid var(--line-2);
-  padding-bottom: 2px;
+  padding: 4px 0 6px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
   transition: color 0.2s, border-color 0.2s;
 }
 
@@ -150,7 +153,7 @@
 }
 
 /* ── Visual / image slider ─────────────────────────── */
-.pVisual {
+.pVisualWrap {
   position: relative;
   aspect-ratio: 16 / 9;
   max-height: 340px;
@@ -160,11 +163,32 @@
   background: var(--ink-2);
   border: 1px solid var(--line);
   overflow: hidden;
-  cursor: pointer;
+  transition: border-color 0.2s;
 }
 
-.pVisual:hover {
+.pVisualWrap:hover,
+.pVisualWrap:focus-within {
   border-color: var(--acid);
+}
+
+.pVisual {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  z-index: 2;
+}
+
+.pVisual:focus-visible {
+  outline: 2px solid var(--acid);
+  outline-offset: -4px;
 }
 
 .swiper {
@@ -195,9 +219,12 @@
   color: var(--paper);
   font-size: 1.2rem;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 6px 10px;
+  min-width: 36px;
+  min-height: 36px;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: border-color 0.2s, color 0.2s;
   font-family: var(--font-mono), monospace;
 }
@@ -220,8 +247,11 @@
   font-size: 1rem;
   cursor: pointer;
   padding: 8px 12px;
+  min-width: 36px;
+  min-height: 36px;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: border-color 0.2s, color 0.2s;
 }
 
@@ -264,4 +294,22 @@
   align-items: center;
   gap: 1rem;
   border-radius: 0;
+}
+
+.modalContent:focus { outline: none; }
+.modalContent:focus-visible {
+  outline: 2px solid var(--acid);
+  outline-offset: 4px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

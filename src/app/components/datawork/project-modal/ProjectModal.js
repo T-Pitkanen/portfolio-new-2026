@@ -1,24 +1,52 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import styles from "./project-modal.module.css";
 import dataStyles from "../datawork.module.css";
+import useAccessibleDialog from "../../hooks/useAccessibleDialog";
 
 export default function ProjectModal({ course, onClose }) {
   const [imgOpen, setImgOpen] = useState(false);
   const { project, tag, tagClass, title, institution } = course;
 
+  const modalRef = useRef(null);
+  const lightboxRef = useRef(null);
+
+  useAccessibleDialog({ open: true, onClose, dialogRef: modalRef });
+  useAccessibleDialog({
+    open: imgOpen,
+    onClose: () => setImgOpen(false),
+    dialogRef: lightboxRef,
+  });
+
+  const titleId = `course-modal-title-${course.id ?? ''}`;
+
   return (
     <>
       {createPortal(
-        <div className={styles.overlay} onClick={onClose}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
+        <div className={styles.overlay} onClick={onClose} role="presentation">
+          <div
+            ref={modalRef}
+            className={styles.modal}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+            tabIndex={-1}
+          >
+            <button
+              type="button"
+              className={styles.closeBtn}
+              onClick={onClose}
+              aria-label="Close project details"
+            >
+              <span aria-hidden="true">✕</span>
+            </button>
 
             <div className={styles.modalHeader}>
               <span className={`${styles.modalTag} ${dataStyles[tagClass]}`}>{tag}</span>
-              <h3 className={styles.modalTitle}>{project.title}</h3>
+              <h3 id={titleId} className={styles.modalTitle}>{project.title}</h3>
               <p className={styles.modalInstitution}>{title} — {institution}</p>
             </div>
 
@@ -37,15 +65,21 @@ export default function ProjectModal({ course, onClose }) {
                 {project.image && (
                   <div className={styles.imageWrap}>
                     <p className={styles.topicsLabel}>ER Diagram</p>
-                    <Image
-                      src={project.image}
-                      alt="ER diagram"
-                      width={1790}
-                      height={1140}
-                      sizes="(max-width: 640px) 100vw, 430px"
-                      className={styles.modalImage}
+                    <button
+                      type="button"
+                      className={styles.imageButton}
                       onClick={() => setImgOpen(true)}
-                    />
+                      aria-label="Enlarge ER diagram"
+                    >
+                      <Image
+                        src={project.image}
+                        alt={`ER diagram for ${project.title}`}
+                        width={1790}
+                        height={1140}
+                        sizes="(max-width: 640px) 100vw, 430px"
+                        className={styles.modalImage}
+                      />
+                    </button>
                   </div>
                 )}
                 {project.snippets && (
@@ -67,10 +101,26 @@ export default function ProjectModal({ course, onClose }) {
       )}
 
       {imgOpen && createPortal(
-        <div className={styles.lightbox} onClick={() => setImgOpen(false)}>
+        <div
+          ref={lightboxRef}
+          className={styles.lightbox}
+          onClick={() => setImgOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Enlarged ER diagram for ${project.title}`}
+          tabIndex={-1}
+        >
+          <button
+            type="button"
+            className={styles.lightboxClose}
+            onClick={() => setImgOpen(false)}
+            aria-label="Close enlarged image"
+          >
+            <span aria-hidden="true">✕</span>
+          </button>
           <Image
             src={project.image}
-            alt="ER diagram"
+            alt={`ER diagram for ${project.title}`}
             width={1790}
             height={1140}
             sizes="100vw"
