@@ -269,6 +269,8 @@ body:has(:focus-visible) { cursor: auto; }
 @media (max-width: 1100px) {
   .frame { margin: 10px; }
   .tick { display: none; }
+  .section-head { gap: 15px; }
+ .section-head { margin-bottom: 25px; }
 }
 
 @media (hover: none) {

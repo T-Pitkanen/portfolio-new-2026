@@ -313,3 +313,19 @@
   white-space: nowrap;
   border: 0;
 }
+
+@media (max-width: 600px) {
+  .section {
+    padding: 0 0;
+    
+  }
+
+  .project {
+    border-top: none;
+    padding: 0 0;
+  }
+
+  .pMeta{
+    padding-top: 12px;
+  }
+}

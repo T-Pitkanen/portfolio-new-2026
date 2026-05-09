@@ -16,32 +16,101 @@
   line-height: 1.4;
 }
 
-/* ── Tag grid ──────────────────────────────────────── */
-.tags {
+/* ── Stack grid ────────────────────────────────────── */
+.stack {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.group {
+  padding: 32px 36px 8px 0;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.group + .group {
+  padding-left: 36px;
+}
+
+.group:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.groupTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper-faint);
+  font-weight: 400;
+}
+
+.techs {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  border-top: 1px solid var(--line);
-  padding-top: 32px;
-  padding-right: 300px;
+  gap: 8px;
 }
 
-.tag {
+.tech {
   font-family: var(--font-mono), monospace;
   font-size: 12px;
   letter-spacing: 0.04em;
   color: var(--paper);
-  padding: 10px 16px;
+  padding: 8px 14px;
   border: 1px solid var(--line-2);
   border-radius: 2px;
   background: transparent;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
-.tag:hover {
+.tech:hover {
   border-color: var(--paper);
   color: var(--paper);
+  background: color-mix(in oklab, var(--ink-2) 60%, transparent);
+}
+
+@media (max-width: 1100px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .subtitle {
+    font-size: clamp(14px, 2vw, 18px);
+    margin: 10px 0 20px;
+  }
+
+  .stack {
+    grid-template-columns: 1fr;
+  }
+
+  .group,
+  .group + .group {
+    padding: 24px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    gap: 14px;
+  }
+
+  .group:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .techs {
+    gap: 6px;
+  }
+
+  .tech {
+    padding: 7px 12px;
+  }
 }

@@ -37,3 +37,9 @@
 @media (prefers-reduced-motion: reduce) {
   .scrollBar { animation: none; }
 }
+
+@media (max-width: 600px) {
+  .heroFooter {
+   display: none;
+  }
+}

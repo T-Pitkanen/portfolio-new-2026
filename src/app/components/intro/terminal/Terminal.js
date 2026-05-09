@@ -106,7 +106,7 @@ export default function Terminal() {
 
   return (
     <>
-      <span className={styles.sticker}>◒ currently learning PowerBI & UI/UX </span>
+      <span className={styles.sticker}>◒ currently learning Python </span>
 
       <div
         className={`reveal ${styles.terminal}`}

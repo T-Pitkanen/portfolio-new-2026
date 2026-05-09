@@ -81,4 +81,9 @@
   .metaCenter, .metaRight {
     text-align: center;
   }
+  .metaRight {
+    justify-self: center;
+    justify-content: center;
+    margin-right: 0;
+  }
 }

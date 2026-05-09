@@ -117,3 +117,10 @@
   align-self: center;
   margin-top: 60px;
 }
+
+
+@media (max-width: 1080px) {
+  .right {
+    margin-top: 0;
+  }
+}

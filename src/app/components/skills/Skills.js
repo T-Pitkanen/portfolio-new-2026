@@ -1,26 +1,10 @@
 import styles from './skills.module.css';
 
-const STACK = [
-  'PostgreSQL',
-  'SQL',
-  'Database design',
-  'Indexing & query optimization',
-  'JavaScript',
-  'HTML & CSS',
-  'Git',
-  'Node.js',
-  'Express',
-  'React',
-  'Next.js',
-  'REST APIs',
-  'Figma',
-  'Vercel',
-  'Linux',
-  'MongoDB',
-  'Azure',
-  'UX/UI design',
-  'pgvector',
-];
+const STACK = {
+  'Databases & Backend': ['PostgreSQL', 'SQL', 'Database design', 'pgvector', 'MongoDB', 'Node.js', 'Express', 'REST APIs'],
+  'Frontend': ['JavaScript', 'React', 'Next.js', 'HTML & CSS'],
+  'Tools & Design': ['Git', 'Figma', 'Vercel', 'UX/UI design', 'Photoshop'],
+};
 
 export default function Skills() {
   return (
@@ -35,9 +19,18 @@ export default function Skills() {
         A mix of things, some more than others.
       </p>
 
-      <ul className={`reveal ${styles.tags}`} data-delay="1">
-        {STACK.map((name) => (
-          <li key={name} className={styles.tag}>{name}</li>
+      <ul className={`reveal ${styles.stack}`} data-delay="1">
+        {Object.entries(STACK).map(([category, technologies]) => (
+          <li key={category} className={styles.group}>
+            <span className={styles.groupTitle}>{category}</span>
+            <ul className={styles.techs}>
+              {technologies.map((tech) => (
+                <li key={tech} className={styles.tech}>
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </li>
         ))}
       </ul>
 

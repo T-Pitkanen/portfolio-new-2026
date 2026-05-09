@@ -12,14 +12,14 @@ const timeline = [
     year: '2024 —',
     loc: <><span lang="fi">VAMK</span> · Finland</>,
     title: 'Business IT',
-    desc: <>Back in Finland, studying Business IT, where software dev meets business systems. Databases & APIs has been my favourite course so far.</>,
+    desc: <>Back in Finland, studying Business IT, where software dev meets business systems. Web Design and Databases & APIs have been my favourite courses so far.</>,
     idx: '002',
   },
   {
     year: 'now ——',
     loc: 'Anywhere · Finland',
     title: 'Looking for an internship',
-    desc: <>Actively applying. Planning to relocate to the <span lang="fi">Uusimaa</span> region; open to opportunities in South Finland and Estonia too.</>,
+    desc: <>Applying for internships. Planning to relocate to the <span lang="fi">Uusimaa</span> region or Tallinn.</>,
     idx: '003',
     accent: true,
   },
@@ -47,11 +47,11 @@ export default function About() {
           <p>
             I learn by building real things. Most projects are solo, some are group.
             I&apos;ve done fullstack work and I&apos;m comfortable going from schema
-            to frontend, but backend and data is where I want to spend my hours.
+            to frontend. I like building websites and the data behind them, and keeping them running well.
           </p>
           <p className={styles.proseMono}>
             <span className={styles.promoAccent}>$</span>{' '}
-            currently: cloud architecture &amp; APIs · database design · sharpening UX/UI craft .
+            currently: Python · database design · sharpening UX/UI craft.
           </p>
         </div>
 
@@ -63,16 +63,10 @@ export default function About() {
             <div className={styles.kv}><span className={styles.kvK}>role</span><span className={styles.kvV}>Business IT · Y2</span></div>
             <div className={styles.kv}><span className={styles.kvK}>based</span><span className={styles.kvV}><span lang="fi">Vaasa</span>, FI</span></div>
             <div className={styles.kv}><span className={styles.kvK}>languages</span><span className={styles.kvV}>FI / EN / a bit of DA</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>interests</span><span className={`${styles.kvV} ${styles.kvAccent}`}>full-stack · backend · data · APIs · analytics</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>interests</span><span className={`${styles.kvV} ${styles.kvAccent}`}>full-stack · backend · data</span></div>
             <div className={styles.kv}><span className={styles.kvK}>avoid</span><span className={styles.kvV}>unoptimized database schemas</span></div>
           </div>
 
-          <div className={styles.kvCard}>
-            <div className={styles.kvLabel}>./current_state.json</div>
-            <div className={styles.kv}><span className={styles.kvK}>systems</span><span className={styles.kvV}>cloud, apis & product strategy</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>recovery</span><span className={styles.kvV}>ashtanga, pilates & gym discipline</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>health</span><span className={styles.kvV}>database logic & longevity</span></div>
-          </div>
         </div>
       </div>
 

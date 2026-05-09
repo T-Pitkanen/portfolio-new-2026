@@ -42,7 +42,7 @@
 .cell {
   background: var(--ink-2);
   border: 1px solid var(--line);
-  padding: 22px;
+  padding: 22px 22px 52px;
   position: relative;
   overflow: hidden;
   transition: background 0.2s, border-color 0.2s;
@@ -137,4 +137,16 @@
   border: 1px dashed var(--line-2);
   padding: 3px 8px;
   border-radius: 2px;
+}
+
+@media (hover: none) {
+  .cellSoon{
+padding: 3px 28px;
+  }
+  
+  .section{
+    padding: 0px 0;
+    border-top: none;
+  }
+  
 }

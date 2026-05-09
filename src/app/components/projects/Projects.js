@@ -42,7 +42,7 @@ export default function Projects() {
 
       <div className={`reveal section-head`}>
         <div className="section-tag">§ 02 — Selected work · 2023–2026</div>
-        <h2 className="section-h2">Things I&apos;ve <em>actually</em> shipped</h2>
+        <h2 className="section-h2">Things I&apos;ve shipped</h2>
       </div>
 
       {projectData.map((project, index) => {

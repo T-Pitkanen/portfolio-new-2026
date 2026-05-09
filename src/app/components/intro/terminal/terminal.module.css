@@ -118,8 +118,7 @@
   border: 0;
 }
 
-/* Real <input> that drives the terminal. Kept in the layout flow
-   just enough to receive focus; visually replaced by the prompt line. */
+
 .hiddenInput {
   position: absolute;
   left: 0;
@@ -142,4 +141,14 @@
 .termBody:focus-within {
   outline: 2px solid var(--acid);
   outline-offset: -2px;
+}
+
+@media (max-width: 1080px) {
+  .sticker {
+  margin-bottom: 30px;
+  }
+
+  .termHint {
+  align-self: start;
+  }
 }

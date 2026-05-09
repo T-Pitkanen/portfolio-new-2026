@@ -67,4 +67,8 @@
   .left span:last-child {
     display: none;
   }
+
+  .dot{
+    display: none;
+  }
 }

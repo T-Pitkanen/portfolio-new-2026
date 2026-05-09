@@ -30,7 +30,7 @@ export default function Contact() {
             Hire<br />a <em>curious</em><br />student.
           </h3>
           <p className={styles.sub}>
-            Looking for an internship in Finland — backend, full-stack, or data-heavy roles.
+            Looking for an internship in Finland. Backend, full-stack, or data-heavy roles.
             Happy to hear about anything adjacent.
           </p>
         </div>
