@@ -5,7 +5,7 @@ const timeline = [
     year: '2022 —',
     loc: 'Denmark',
     title: 'Web Development Degree',
-    desc: 'Moved to Denmark and did a web dev degree. First real projects. Realised this is what I wanted to do for a living.',
+    desc: 'Moved to Denmark and did a web dev degree. First real projects. Realised this is what I like to do.',
     idx: '001',
   },
   {
@@ -40,18 +40,18 @@ export default function About() {
           <p>
             I have a{' '}
             <span className={styles.highlight}>web development degree from Denmark</span>
-            {' '}and I&apos;m in my second year of Business IT at <span lang="fi">VAMK</span>. My current
-            courses cover databases, APIs, cloud services, and UX.{' '}
-            <em>The databases side has turned into the thing I actually look forward to.</em>
+            {' '}and I just finished my second year of Business IT at <span lang="fi">VAMK</span>. My recent
+            courses covered databases, APIs, cloud services, and UI/UX.{' '}
+            <em>I really enjoyed the databases and APIs course.</em>
           </p>
           <p>
-            I learn by building real things. Most projects are solo, some are group.
+            I learn by building real projects. Most projects are solo, some are group.
             I&apos;ve done fullstack work and I&apos;m comfortable going from schema
-            to frontend. I like building websites and the data behind them, and keeping them running well.
+            to frontend. I like building websites and handling the data behind them, and keeping them running well over time.
           </p>
           <p className={styles.proseMono}>
             <span className={styles.promoAccent}>$</span>{' '}
-            currently: Python · database design · sharpening UX/UI craft.
+            currently: Learning Python.
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export default function About() {
             <div className={styles.kv}><span className={styles.kvK}>role</span><span className={styles.kvV}>Business IT · Y2</span></div>
             <div className={styles.kv}><span className={styles.kvK}>based</span><span className={styles.kvV}><span lang="fi">Vaasa</span>, FI</span></div>
             <div className={styles.kv}><span className={styles.kvK}>languages</span><span className={styles.kvV}>FI / EN / a bit of DA</span></div>
-            <div className={styles.kv}><span className={styles.kvK}>interests</span><span className={`${styles.kvV} ${styles.kvAccent}`}>full-stack · backend · data</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>interests</span><span className={`${styles.kvV} ${styles.kvAccent}`}>full-stack · backend · data · AI </span></div>
             <div className={styles.kv}><span className={styles.kvK}>avoid</span><span className={styles.kvV}>unoptimized database schemas</span></div>
           </div>
 

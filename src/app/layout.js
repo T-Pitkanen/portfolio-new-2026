@@ -61,9 +61,8 @@ export default function RootLayout({ children }) {
         <div className="frame" aria-hidden="true" />
 
         {/* Corner ticks */}
-        <div className="tick tick-tl" aria-hidden="true">N 60.17°<br />E 24.94°</div>
         <div className="tick tick-tr" aria-hidden="true">v.2026.04<br />portfolio/tiia</div>
-        <div className="tick tick-bl" aria-hidden="true">idx 001 / 001<br />human.curious</div>
+
 
         <a href="#main" className="skip-link">Skip to content</a>
         <ClientWidgets />

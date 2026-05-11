@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main id="main" tabIndex={-1} className={styles.main}>
       <Hero />
-      <Marquee />
+      {/* <Marquee /> */}
       <About />
       <Projects />
       <Skills />

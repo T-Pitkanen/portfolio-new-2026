@@ -22,11 +22,6 @@ export default function StatusBar() {
 
   return (
     <div className={styles.bar} aria-hidden="true">
-      <div className={styles.left}>
-        <span className={styles.dot} />
-        <span>OPEN · INTERNSHIP · SUMMER 2027</span>
-      </div>
-      <div className={styles.center}>VAASA · FINLAND</div>
       <div className={styles.right}>
         <span>{time} EEST</span>
       </div>

@@ -17,7 +17,7 @@ export default function HeroMeta() {
       </div>
       <div className={styles.metaRow}>
         <span className={styles.metaKey}>interest</span>
-        <span className={styles.metaVal}>databases · APIs · backend · analytics</span>
+        <span className={styles.metaVal}>full-stack · backend · data · AI </span>
       </div>
     </div>
   );

@@ -75,10 +75,6 @@ export default function Contact() {
             <span className={styles.blockKey}>location</span>
             <span className={styles.blockVal}><span lang="fi">Vaasa</span> · open to <span lang="fi">Uusimaa</span> / Estonia</span>
           </div>
-          <div className={styles.block}>
-            <span className={styles.blockKey}>available</span>
-            <span className={`${styles.blockVal} ${styles.blockAccent}`}>● Summer 2027 · 3–6 month internship</span>
-          </div>
 
           <div className={styles.btnRow}>
             <a href="/Tiia_Pitkanen_CV.pdf" className={`${styles.btn} ${styles.btnPrimary}`} data-hover>
