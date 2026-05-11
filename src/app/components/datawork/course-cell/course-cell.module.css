@@ -22,7 +22,11 @@
   border: 1px solid var(--line);
   padding: 22px;
   position: relative;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  gap: 12px;
+  min-height: 200px;
   transition: background 0.2s, border-color 0.2s;
 }
 
@@ -67,13 +71,14 @@
   font-size: 12px;
   color: var(--paper-mute);
   line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 8px;
 }
 
 .cellLink {
-  position: absolute;
-  bottom: 16px;
-  left: 22px;
-  right: 22px;
+  position: static;
+  display: inline-block;
+  margin-top: auto;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   color: var(--acid);

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import styles from "./project-modal.module.css";
@@ -8,10 +8,14 @@ import useAccessibleDialog from "../../hooks/useAccessibleDialog";
 
 export default function ProjectModal({ course, onClose }) {
   const [imgOpen, setImgOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { project, tag, tagClass, title, institution } = course;
 
   const modalRef = useRef(null);
   const lightboxRef = useRef(null);
+
+  const images = Array.isArray(project.image) ? project.image : [project.image];
+  const hasMultipleImages = images.length > 1;
 
   useAccessibleDialog({ open: true, onClose, dialogRef: modalRef });
   useAccessibleDialog({
@@ -19,6 +23,30 @@ export default function ProjectModal({ course, onClose }) {
     onClose: () => setImgOpen(false),
     dialogRef: lightboxRef,
   });
+
+  // Handle keyboard navigation in lightbox
+  useEffect(() => {
+    if (!imgOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowRight") {
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      } else if (e.key === "ArrowLeft") {
+        setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [imgOpen, images.length]);
+
+  const goToPreviousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const goToNextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
 
   const titleId = `course-modal-title-${course.id ?? ''}`;
 
@@ -64,22 +92,45 @@ export default function ProjectModal({ course, onClose }) {
               <div className={styles.modalRight}>
                 {project.image && (
                   <div className={styles.imageWrap}>
-                    <p className={styles.topicsLabel}>ER Diagram</p>
+                    <p className={styles.topicsLabel}>Material</p>
                     <button
                       type="button"
                       className={styles.imageButton}
                       onClick={() => setImgOpen(true)}
-                      aria-label="Enlarge ER diagram"
+                      aria-label="Enlarge"
                     >
                       <Image
-                        src={project.image}
-                        alt={`ER diagram for ${project.title}`}
+                        src={images[currentImageIndex]}
+                        alt={`Material for ${project.title}`}
                         width={1790}
                         height={1140}
                         sizes="(max-width: 640px) 100vw, 430px"
                         className={styles.modalImage}
                       />
                     </button>
+                    {hasMultipleImages && (
+                      <div className={styles.imageNav}>
+                        <button
+                          type="button"
+                          className={styles.navButton}
+                          onClick={goToPreviousImage}
+                          aria-label="Previous image"
+                        >
+                          ←
+                        </button>
+                        <span className={styles.imageCounter}>
+                          {currentImageIndex + 1} / {images.length}
+                        </span>
+                        <button
+                          type="button"
+                          className={styles.navButton}
+                          onClick={goToNextImage}
+                          aria-label="Next image"
+                        >
+                          →
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
                 {project.snippets && (
@@ -107,7 +158,7 @@ export default function ProjectModal({ course, onClose }) {
           onClick={() => setImgOpen(false)}
           role="dialog"
           aria-modal="true"
-          aria-label={`Enlarged ER diagram for ${project.title}`}
+          aria-label={`Enlarged material for ${project.title}`}
           tabIndex={-1}
         >
           <button
@@ -118,15 +169,46 @@ export default function ProjectModal({ course, onClose }) {
           >
             <span aria-hidden="true">✕</span>
           </button>
+          {hasMultipleImages && (
+            <button
+              type="button"
+              className={styles.lightboxPrev}
+              onClick={(e) => {
+                e.stopPropagation();
+                goToPreviousImage();
+              }}
+              aria-label="Previous image"
+            >
+              ←
+            </button>
+          )}
           <Image
-            src={project.image}
-            alt={`ER diagram for ${project.title}`}
+            src={images[currentImageIndex]}
+            alt={`Material for ${project.title}`}
             width={1790}
             height={1140}
             sizes="100vw"
             className={styles.lightboxImage}
             priority
           />
+          {hasMultipleImages && (
+            <>
+              <button
+                type="button"
+                className={styles.lightboxNext}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNextImage();
+                }}
+                aria-label="Next image"
+              >
+                →
+              </button>
+              <div className={styles.lightboxCounter}>
+                {currentImageIndex + 1} / {images.length}
+              </div>
+            </>
+          )}
         </div>,
         document.body
       )}

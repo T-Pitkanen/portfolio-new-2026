@@ -46,14 +46,32 @@ const courses = [
     id: 5, title: "Blockchain", tag: "Emerging Tech", tagClass: "emerging", institution: "VAMK", span: "w2",
     body: "On-chain state, gas, the parts that are actually useful outside crypto.",
     topics: ["Distributed ledger concepts","Consensus mechanisms","Smart contract basics","Use cases & limitations","Decentralized systems"],
-    takeaway: "Blockchain is a powerful trust mechanism — but not every problem needs a distributed ledger.",
+    takeaway: "Blockchain is a powerful trust mechanism but not every problem needs a distributed ledger.",
   },
   {
-    id: 6, title: "Web Design", tag: "Frontend", tagClass: "frontend", institution: "Media College Denmark", span: "w2",
-    body: "Type, rhythm, the discipline of white space.",
-    topics: ["HTML & CSS fundamentals","Responsive layouts","Typography & spacing","JavaScript interactivity","Design systems"],
-    takeaway: "Strong fundamentals in HTML and CSS make you dangerous — frameworks come and go, the web doesn't.",
+  id: 6, 
+  title: "Web Design",
+  tag: "Web Design",
+  tagClass: "web design", 
+  institution: "VAMK · 2026",
+  span: "w2",
+  body: "Build a brand identity for a fictional wellness studio.",
+  topics: [
+    "Brand identity",
+    "Logo design",
+    "Color system & typography",
+    "Graphic guidelines",
+    "Content strategy & wireframing",
+    "Figma prototyping"
+  ],
+  project: {
+    title: "Wellness Studio Branding",
+    image: ["/design/tyyni_logo.png", "/design/tyyni_about.png", "/design/tyyni_ajanvaraus.png", "/design/tyyni_hero.png", "/design/tyyni_palvelut.png"],
+    description: "Created a cohesive brand identity for a fictional wellness studio, including logo design, color palette, typography, and graphic guidelines. Developed a content strategy and wireframes for the website, culminating in a high-fidelity Figma prototype that reflects the brand's values of tranquility and holistic well-being.",
+    topics: ["Brand identity","Logo design","Color theory","Typography","Content strategy","Figma prototyping"],
   },
+  takeaway: "A good brand starts with the audience, not the color palette. Color and type choices are reasoned decisions, not preferences."
+}
 ];
 
 export default courses;
