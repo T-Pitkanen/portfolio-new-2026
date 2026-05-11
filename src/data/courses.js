@@ -6,9 +6,8 @@ const courses = [
     tagClass: "backend",
     institution: "VAMK",
     span: "w3 h2",
-    description:
-      "Designed and built a relational database with a REST API layer. Covered schema design, normalization, complex queries, and data integrity through constraints and transactions.",
-    body: "Relational modeling, joins that don't scare me anymore, and the moment EXPLAIN became a friend.",
+    description: "Designed and implemented a relational database for a fictional Finnish zoo as part of a databases and APIs course. The schema covers 11 entities including animals, species, employees, visits, and tickets, with M:N junction tables, a self-referencing employee hierarchy, CHECK constraints, and indexes for query performance. Queries use JOINs, GROUP BY, self-joins, and subqueries to answer real operational questions like monthly food consumption and ticket sales by type. The database is normalized to 3NF and uses transactions to ensure data integrity across multi-step operations. Also integrated pgvector to store text embeddings, laying the groundwork for a RAG-based AI chatbot feature.",
+    body: "Designed and built a relational database with a REST API layer. Covered schema design, normalization, complex queries, and data integrity through constraints and transactions.",
     topics: [
       "PostgreSQL",
       "REST API design",
@@ -17,7 +16,7 @@ const courses = [
       "SQL joins & views",
     ],
     takeaway:
-      "Good data modeling saves you from painful rewrites later — structure first, build second.",
+      "Good data modeling saves you from painful rewrites later. Structure first, build second.",
     project: {
       title: "Zoo Management Database",
       image: "/elaintarha/elaintarha_drawio.jpg",
@@ -73,49 +72,66 @@ const courses = [
   },
   {
     id: 3,
-    title: "Cloud Services",
-    tag: "Infrastructure",
-    tagClass: "infra",
+    title: "Cloud Services & Architecture",
+    tag: "Technology",
+    tagClass: "technology",
     institution: "VAMK",
     span: "w3",
-    body: 'Azure basics, deploying from a repo, and understanding what "serverless" actually costs.',
+    body: "Evaluated and designed cloud infrastructure strategies including database migrations, multicloud consolidations, and resource provisioning. Focused on scalability, cost management, and data security.",
     topics: [
-      "Microsoft Azure",
-      "Cloud deployment",
-      "Virtual machines",
-      "Storage & networking",
-      "Serverless functions",
+      "IaaS, PaaS, and SaaS evaluation",
+      "Relational versus NoSQL database comparison",
+      "Azure Virtual Machine deployment",
+      "Cost optimization and capacity planning",
+      "Fault tolerance and automated backups",
     ],
+    project: {
+      title: "Scalable Cloud Ecosystems",
+      image: [
+        "/cloud/azure_vm_deployment.png",
+        "/cloud/database_architecture.png",
+        "/cloud/google_cloud_migration.png",
+      ],
+      description:
+        "Engineered tailored cloud architectures for distinct business needs. One case involved migrating an ecommerce platform from a traditional SQL database to Azure Cosmos DB to handle seasonal traffic spikes horizontally. This included implementing Azure AI Search to generate personalized product recommendations using vector search. Another case analyzed a single person agency workflow, recommending a shift from a complex multicloud environment to a unified Google Cloud and Workspace ecosystem. This consolidation streamlined administrative tasks, reduced data transfer costs, and simplified billing.",
+      topics: [
+        "Azure Cosmos DB",
+        "Google Cloud Platform",
+        "Vector Search Implementation",
+        "Cloud Migration Strategy",
+        "Information Security and GDPR",
+      ],
+    },
     takeaway:
-      "Cloud infrastructure is a force multiplier — small teams can run big systems.",
+      "Effective cloud architecture requires aligning the infrastructure with the operational resources of the business to balance administrative simplicity with technical scalability.",
   },
   {
-    "id": 4,
-    "title": "B2B Marketing",
-    "tag": "Business",
-    "tagClass": "business",
-    "institution": "VAMK",
-    "span": "w2",
-    "body": "Developed a marketing plan and business model for Skill-ID, a digital platform designed for professional qualification management.",
-    "topics": [
+    id: 4,
+    title: "B2B Marketing",
+    tag: "Business",
+    tagClass: "business",
+    institution: "VAMK",
+    span: "w2",
+    body: "Developed a marketing plan and business model for Skill-ID, a digital platform designed for professional qualification management.",
+    topics: [
       "B2B and B2C target market analysis",
       "Cost-based pricing strategy",
       "SWOT and competitive advantage analysis",
       "Financial and marketing KPIs (e.g., CAC, LTV)",
-      "Digital marketing and direct sales tactics"
+      "Digital marketing and direct sales tactics",
     ],
-    "project": {
-      "title": "Skill-ID | Digital Qualification Ecosystem",
-      "image": [
+    project: {
+      title: "Skill-ID | Digital Qualification Ecosystem",
+      image: [
         "/b2b/etusivu.png",
         "/b2b/skill_intro.png",
         "/b2b/skill_mockup.png",
         "/b2b/haku.png",
-        "/b2b/kouluttaja.png"
+        "/b2b/kouluttaja.png",
       ],
-      "description":
+      description:
         "Designed a Go-To-Market strategy for a SaaS platform that replaces physical certificates with secure digital identities. The project involved defining a B2B revenue model where training organizations and authorities act as paying customers while keeping the mobile service free for individuals to ensure rapid market penetration. The strategy emphasizes high security, automated expiration reminders, and organization-independent scalability.",
-      "topics": [
+      topics: [
         "SaaS Business Modeling",
         "GTM Strategy",
         "Market Segmentation (TAM/SAM/SOM)",
@@ -124,7 +140,7 @@ const courses = [
         "Value Proposition Development",
       ],
     },
-    "takeaway":
+    takeaway:
       "When launching a new software product, building market position and securing reference customers is more critical in the first year than maximizing profit.",
   },
   {
@@ -148,8 +164,8 @@ const courses = [
   {
     id: 6,
     title: "Web Design",
-    tag: "Web Design",
-    tagClass: "web design",
+    tag: "Design",
+    tagClass: "design",
     institution: "VAMK · 2026",
     span: "w2",
     body: "Build a brand identity for a fictional wellness studio.",
