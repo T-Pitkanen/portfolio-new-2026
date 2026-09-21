@@ -71,7 +71,7 @@ export default function Terminal() {
       const next = [...prev, { type: 'prompt', text: raw }];
       if (cmd === '') return next;
       if (COMMANDS[cmd]) next.push(COMMANDS[cmd]);
-      else next.push({ type: 'out', text: `command not found: ${cmd}` });
+      else next.push({ type: 'out', text: `command not found: ${cmd} — try 'help'` });
       if (COMMANDS[cmd]?.type !== 'confirm') next.push({ type: 'blank' });
       return next;
     });
@@ -123,7 +123,11 @@ export default function Terminal() {
         <div
           className={styles.termBody}
           ref={termBodyRef}
+          id="terminal-input"
           tabIndex={0}
+          role="textbox"
+          aria-multiline="true"
+          aria-describedby="terminal-help"
           onMouseDown={(e) => {
             e.preventDefault();
             termBodyRef.current?.focus({ preventScroll: true });
@@ -155,9 +159,9 @@ export default function Terminal() {
               return null;
             })}
           </div>
-          <label className={styles.srOnly} htmlFor="terminal-input">
+          <span id="terminal-help" className={styles.srOnly}>
             Terminal command input. Type a command and press Enter. Try &apos;help&apos;.
-          </label>
+          </span>
           <span className={styles.termLine}>
             <span className={styles.tPrompt}>tiia@vaasa</span>{' '}
             <span className={styles.tOut}>:~$</span>{' '}

@@ -1,65 +1,49 @@
+/* A small dot that opens into a ring over anything interactive.
+   The ring is the pointer affordance; nothing else moves with the mouse. */
 .cursor {
   position: fixed;
   z-index: 99999;
   pointer-events: none;
-  width: 28px;
-  height: 28px;
-  margin: -14px 0 0 -14px;
+  width: 0;
+  height: 0;
   mix-blend-mode: difference;
-  transition: transform 0.08s ease, opacity 0.2s;
+  transition: opacity 0.2s;
   top: 0;
   left: 0;
 }
 
-.cx,
-.cy {
+.dot,
+.ring {
   position: absolute;
-  background: var(--paper);
-}
-
-.cx {
   left: 0;
-  right: 0;
-  top: 50%;
-  height: 1px;
-  transform: translateY(-50%);
-}
-
-.cy {
   top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  transform: translateX(-50%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .dot {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   background: var(--acid);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.coord {
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  font-family: var(--font-mono), monospace;
-  font-size: 9px;
-  color: var(--paper);
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  background: var(--ink);
-  padding: 2px 4px;
-  border: 1px solid var(--line);
+.ring {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--paper);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
 }
 
-.cursor.hover {
-  transform: scale(1.8);
+.cursor.hover .dot {
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+.cursor.hover .ring {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 @media (hover: none) {

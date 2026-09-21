@@ -7,12 +7,14 @@ const EMAIL = 'tiia1.pitkanen@gmail.com';
 export default function Contact() {
   const [copied, setCopied] = useState(false);
 
-  function handleCopy() {
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(EMAIL).catch(() => {});
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard denied: the mailto link is right there, say nothing false
     }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   }
 
   return (
@@ -39,7 +41,8 @@ export default function Contact() {
         <div className={styles.right}>
           <div className={styles.block}>
             <span className={styles.blockKey} id="email-label">email</span>
-            <span className={styles.blockVal}>
+            <span className={`${styles.blockVal} ${styles.emailRow}`}>
+              <a href={`mailto:${EMAIL}`} data-hover>{EMAIL}</a>
               <button
                 type="button"
                 onClick={handleCopy}
@@ -48,7 +51,7 @@ export default function Contact() {
                 aria-describedby="email-label"
                 aria-label={copied ? 'Email copied to clipboard' : `Copy email address ${EMAIL} to clipboard`}
               >
-                <span aria-hidden="true">{copied ? '✓ copied' : EMAIL}</span>
+                <span aria-hidden="true">{copied ? '✓ copied' : 'copy'}</span>
               </button>
               <span role="status" aria-live="polite" className={styles.srOnly}>
                 {copied ? 'Email address copied to clipboard.' : ''}

@@ -270,7 +270,7 @@ html.js .reveal:not(.is-visible) {
   z-index: 81;
   pointer-events: none;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--paper-faint);

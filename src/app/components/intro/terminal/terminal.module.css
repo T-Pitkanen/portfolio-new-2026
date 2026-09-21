@@ -1,6 +1,6 @@
 .sticker {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 8px 14px;
@@ -29,7 +29,7 @@
   gap: 8px;
   padding: 10px 14px;
   border-bottom: 1px solid var(--line);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--paper-faint);
@@ -72,7 +72,7 @@
 
 .termHint {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--paper-faint);

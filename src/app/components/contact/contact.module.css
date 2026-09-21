@@ -66,11 +66,20 @@
   border-top: 1px solid var(--line);
 }
 
+/* Narrow: key sits above the value so a full email address never clips */
+@media (max-width: 480px) {
+  .block {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 18px 0;
+  }
+}
+
 .blockKey {
   color: var(--paper-faint);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .blockVal {
@@ -94,16 +103,24 @@
 }
 
 /* ── Email button ──────────────────────────────────── */
+.emailRow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
 .emailBtn {
   background: none;
-  border: none;
-  padding: 4px 0;
+  border: 1px solid var(--line-2);
+  padding: 3px 8px;
   font-family: var(--font-mono), monospace;
-  font-size: 14px;
-  color: var(--paper);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
   cursor: pointer;
-  border-bottom: 1px solid var(--line-2);
-  min-height: 28px;
+  min-height: 24px;
   display: inline-flex;
   align-items: center;
   transition: color 0.2s, border-color 0.2s;

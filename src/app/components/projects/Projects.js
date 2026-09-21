@@ -4,14 +4,8 @@ import Image from 'next/image';
 import { createPortal } from 'react-dom';
 import styles from './projects.module.css';
 import projectData from '@/data/projectData';
-import { useState, useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
-import { RiCloseLine } from 'react-icons/ri';
+import { useState, useRef, useEffect } from 'react';
 import useAccessibleDialog from '../hooks/useAccessibleDialog';
-import useReducedMotion from '../hooks/useReducedMotion';
 
 // Map stack strings → tag variant class
 function tagVariant(code) {
@@ -22,12 +16,13 @@ function tagVariant(code) {
   return '';
 }
 
+const MAX_STACK_TAGS = 3;
+
 export default function Projects() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [modalProject, setModalProject] = useState(null);
   const dialogRef = useRef(null);
-  const reducedMotion = useReducedMotion();
 
   useAccessibleDialog({
     open: modalIsOpen,
@@ -35,59 +30,71 @@ export default function Projects() {
     dialogRef,
   });
 
+  const imageCount = modalProject?.image.length ?? 1;
+  const prevImage = () => setCurrentImageIndex((i) => (i - 1 + imageCount) % imageCount);
+  const nextImage = () => setCurrentImageIndex((i) => (i + 1) % imageCount);
+
+  // Arrow keys step through the gallery while it is open
+  useEffect(() => {
+    if (!modalIsOpen) return;
+    const onKey = (e) => {
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalIsOpen, imageCount]);
+
   const total = String(projectData.length).padStart(2, '0');
 
   return (
     <section className={styles.section} id="projects">
 
       <div className={`reveal section-head`}>
-        <div className="section-tag">§ 02 — Selected work · 2023–2026</div>
+        <div className="section-tag">§ 02 — Selected work · 2023–2025</div>
         <h2 className="section-h2">Things I&apos;ve shipped</h2>
       </div>
 
       {projectData.map((project, index) => {
         const num = String(index + 1).padStart(2, '0');
-        const tags = project.code.split(/,\s*/).filter(Boolean);
+        const name = project.title.replace(/ - \d+$/, '');
+        const tags = project.code.split(/,\s*/).filter(Boolean).slice(0, MAX_STACK_TAGS);
+        const shots = project.image.length;
 
         return (
-          <div key={project.title} className={`reveal ${styles.project}`} data-delay={String((index % 2) + 1)}>
-            {/* Left: metadata */}
-            <div>
+          <article key={project.title} className={`reveal ${styles.project}`} data-delay={String((index % 2) + 1)}>
+            {/* Left: what it is, what I did */}
+            <div className={styles.pBody}>
               <div className={styles.pMeta}>
                 <span className={styles.pNum}>{num} / {total}</span>
                 <span>{project.role} · {project.year}</span>
               </div>
 
-              <h3 className={styles.pTitle}>
-                {project.title.replace(/ - \d+$/, '')}
-                <span className={styles.pYear}> / {project.year}</span>
-              </h3>
+              <h3 className={styles.pTitle}>{name}</h3>
 
-              <div className={styles.pTags}>
-                {(project.highlights || []).map((h) => (
-                  <span key={h} className={styles.pTag}>{h}</span>
-                ))}
-                {tags.map((t) => (
-                  <span key={t} className={`${styles.pTag} ${tagVariant(t)}`}>{t}</span>
-                ))}
-              </div>
+              <p className={styles.pPart}>
+                <span className={styles.pPartKey}>my part —</span> {project.part}
+              </p>
 
               {project.impact && (
                 <p className={styles.pDesc}>{project.impact}</p>
               )}
 
-              {project.goal && (
-                <div className={styles.pNote}>{project.goal}</div>
-              )}
-
-              <div className={styles.pLinks}>
+              <div className={styles.pFoot}>
+                <div className={styles.pTags}>
+                  {tags.map((t) => (
+                    <span key={t} className={`${styles.pTag} ${tagVariant(t)}`}>{t}</span>
+                  ))}
+                </div>
                 {project.link && (
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className={styles.pLink}
                     data-hover
-                    aria-label={`${project.title} — live demo (opens in new tab)`}
+                    aria-label={`${name} — live demo (opens in new tab)`}
                   >
                     <span aria-hidden="true">live demo ↗</span>
                   </a>
@@ -95,43 +102,31 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Right: image slider */}
-            <div className={styles.pVisualWrap}>
-              <Swiper
-                modules={[Autoplay]}
-                slidesPerView={1}
-                loop={true}
-                autoplay={reducedMotion ? false : { delay: 5000, disableOnInteraction: true, pauseOnMouseEnter: true }}
-                className={styles.swiper}
-                aria-hidden="true"
-              >
-                {project.image.map((img) => (
-                  <SwiperSlide key={img}>
-                    <Image
-                      src={img}
-                      alt=""
-                      width={800}
-                      height={600}
-                      className={styles.pImg}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <button
-                type="button"
-                className={styles.pVisual}
-                data-hover
-                aria-label={`Open ${project.title} image gallery`}
-                onClick={() => {
-                  setModalProject(project);
-                  setCurrentImageIndex(0);
-                  setModalIsOpen(true);
-                }}
-              >
-              
-              </button>
-            </div>
-          </div>
+            {/* Right: one still, uncropped, with a visible way into the gallery */}
+            <button
+              type="button"
+              className={styles.pVisual}
+              data-hover
+              aria-label={`Open ${name} gallery, ${shots} screenshots`}
+              onClick={() => {
+                setModalProject(project);
+                setCurrentImageIndex(0);
+                setModalIsOpen(true);
+              }}
+            >
+              <Image
+                src={project.image[0]}
+                alt=""
+                width={1200}
+                height={600}
+                sizes="(max-width: 1100px) 100vw, 50vw"
+                className={styles.pImg}
+              />
+              <span className={styles.pVisualLabel} aria-hidden="true">
+                view gallery · {shots} {shots === 1 ? 'shot' : 'shots'}
+              </span>
+            </button>
+          </article>
         );
       })}
 
@@ -151,43 +146,46 @@ export default function Projects() {
             aria-labelledby="project-lightbox-title"
             tabIndex={-1}
           >
-            <h2 id="project-lightbox-title" className={styles.srOnly}>
-              {modalProject?.title ?? 'Project'} image gallery
-            </h2>
-            <button
-              type="button"
-              onClick={() => setModalIsOpen(false)}
-              className={styles.closeBtn}
-              aria-label="Close image gallery"
-            >
-              <RiCloseLine aria-hidden="true" />
-            </button>
+            <div className={styles.modalHead}>
+              <div>
+                <h2 id="project-lightbox-title" className={styles.modalTitle}>
+                  {modalProject?.title.replace(/ - \d+$/, '') ?? 'Project'}
+                </h2>
+                {modalProject?.goal && (
+                  <p className={styles.modalGoal}>{modalProject.goal}</p>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => setModalIsOpen(false)}
+                className={styles.closeBtn}
+                aria-label="Close gallery"
+              >
+                <span aria-hidden="true">✕</span>
+              </button>
+            </div>
             <Image
               src={modalProject?.image[currentImageIndex] ?? '/test.png'}
-              alt={`${modalProject?.title ?? 'Project'} screenshot ${currentImageIndex + 1} of ${modalProject?.image.length ?? 1}`}
+              alt={`${modalProject?.title ?? 'Project'} screenshot ${currentImageIndex + 1} of ${imageCount}`}
               width={1600} height={900}
-              style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '60vh' }}
+              className={styles.modalImg}
             />
             <div className={styles.modalNav}>
               <button
                 type="button"
                 className={styles.modalBtn}
                 aria-label="Previous image"
-                onClick={() =>
-                  setCurrentImageIndex((currentImageIndex - 1 + (modalProject?.image.length ?? 1)) % (modalProject?.image.length ?? 1))
-                }
-              ><FaAngleLeft aria-hidden="true" /></button>
+                onClick={prevImage}
+              ><span aria-hidden="true">←</span></button>
               <span className={styles.modalCounter} aria-live="polite">
-                {currentImageIndex + 1} / {modalProject?.image.length}
+                {currentImageIndex + 1} / {imageCount}
               </span>
               <button
                 type="button"
                 className={styles.modalBtn}
                 aria-label="Next image"
-                onClick={() =>
-                  setCurrentImageIndex((currentImageIndex + 1) % (modalProject?.image.length ?? 1))
-                }
-              ><FaAngleRight aria-hidden="true" /></button>
+                onClick={nextImage}
+              ><span aria-hidden="true">→</span></button>
             </div>
           </div>
         </div>,

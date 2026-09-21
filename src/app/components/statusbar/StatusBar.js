@@ -7,13 +7,13 @@ function vaasaTime() {
     timeZone: 'Europe/Helsinki',
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit',
     hour12: false,
   }).format(new Date());
 }
 
 function subscribe(callback) {
-  const id = setInterval(callback, 1000);
+  // Minutes only: nothing on the page needs to tick.
+  const id = setInterval(callback, 10000);
   return () => clearInterval(id);
 }
 

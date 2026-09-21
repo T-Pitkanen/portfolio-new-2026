@@ -4,18 +4,15 @@ import styles from './cursor.module.css';
 
 export default function Cursor() {
   const cursorRef = useRef(null);
-  const coordRef = useRef(null);
 
   useEffect(() => {
     const cursor = cursorRef.current;
-    const coord = coordRef.current;
-    if (!cursor || !coord) return;
+    if (!cursor) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const onMove = (e) => {
       cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      coord.textContent = `x: ${String(e.clientX).padStart(3, '0')} y: ${String(e.clientY).padStart(3, '0')}`;
     };
 
     const onLeave = () => { cursor.style.opacity = '0'; };
@@ -49,10 +46,8 @@ export default function Cursor() {
 
   return (
     <div ref={cursorRef} className={styles.cursor} aria-hidden="true">
-      <div className={styles.cx} />
-      <div className={styles.cy} />
       <div className={styles.dot} />
-      <div ref={coordRef} className={styles.coord}>x: 000 y: 000</div>
+      <div className={styles.ring} />
     </div>
   );
 }

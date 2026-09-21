@@ -82,7 +82,7 @@ export default function About() {
       {/* Timeline */}
       <div className={`reveal ${styles.timeline}`} data-delay="1">
         {timeline.map((item) => (
-          <div key={item.idx} className={styles.tlRow} data-hover>
+          <div key={item.idx} className={styles.tlRow}>
             <div className={`${styles.tlYear} ${item.accent ? styles.tlYearAmber : ''}`}>{item.year}</div>
             <div className={styles.tlLoc}>{item.loc}</div>
             <div className={styles.tlMain}>

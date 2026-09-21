@@ -56,11 +56,23 @@
   color: var(--paper-dim);
 }
 
+/* ── Lede ──────────────────────────────────────────── */
+.lede {
+  font-family: var(--font-serif), 'Fraunces', serif;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--paper-dim);
+  max-width: 44ch;
+  margin: 28px 0 0;
+  font-variation-settings: "opsz" 24;
+  text-wrap: pretty;
+}
+
 /* ── CTAs ──────────────────────────────────────────── */
 .ctaRow {
   display: flex;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 28px;
   flex-wrap: wrap;
   align-items: center;
 }

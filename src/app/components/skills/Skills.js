@@ -1,7 +1,7 @@
 import styles from './skills.module.css';
 
 const STACK = {
-  'Databases & Backend': ['PostgreSQL', 'SQL', 'Database design', 'pgvector', 'MongoDB', 'Node.js', 'Express', 'REST APIs'],
+  'Databases & Backend': ['PostgreSQL + pgvector', 'SQL', 'Database design', 'MongoDB', 'Node.js', 'Express', 'REST APIs'],
   'Frontend': ['JavaScript', 'React', 'Next.js', 'HTML & CSS'],
   'Tools & Design': ['Git', 'Figma', 'Vercel', 'UX/UI design', 'Photoshop'],
 };

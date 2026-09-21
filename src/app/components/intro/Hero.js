@@ -13,14 +13,21 @@ export default function Hero() {
           <HeroMeta />
 
           <p className={`hero-in ${styles.displaySmall}`} style={{ '--hero-delay': '0.08s' }}>
-            {'// Business IT student'}
+            Business IT student
           </p>
           <h1 className={`hero-in ${styles.display}`} style={{ '--hero-delay': '0.12s' }}>
             Tiia<br />
             <span className={styles.displayItalic} lang="fi">Pitkänen</span>.
           </h1>
 
-          <div className={`hero-in ${styles.ctaRow}`} style={{ '--hero-delay': '0.2s' }}>
+          {/* The one sentence a non-technical reader needs; the terminal is the parallel track */}
+          <p className={`hero-in ${styles.lede}`} style={{ '--hero-delay': '0.16s' }}>
+            Third-year Business IT student at <span lang="fi">VAMK</span>, currently building a
+            generative-AI web and mobile app as a trainee on an RDI project. Web development
+            degree from Denmark.
+          </p>
+
+          <div className={`hero-in ${styles.ctaRow}`} style={{ '--hero-delay': '0.22s' }}>
             <a href="#projects" className={`${styles.btn} ${styles.btnPrimary}`} data-hover>
               <span>See the work</span>
               <span className={styles.arrow}>→</span>
