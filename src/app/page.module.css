@@ -1,18 +1,18 @@
 .main {
   position: relative;
-  z-index: 10;
   min-height: 100vh;
-  padding: 0 56px;
+  width: min(1080px, 100% - 112px);
+  margin: 0 auto;
 }
 
 @media (max-width: 1100px) {
   .main {
-    padding: 0 28px;
+    width: calc(100% - 56px);
   }
 }
 
 @media (max-width: 600px) {
   .main {
-    padding: 0 18px;
+    width: calc(100% - 36px);
   }
 }

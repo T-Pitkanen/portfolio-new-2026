@@ -1,39 +1,29 @@
 import styles from './skills.module.css';
 
 const STACK = {
-  'Databases & Backend': ['PostgreSQL + pgvector', 'SQL', 'Database design', 'MongoDB', 'Node.js', 'Express', 'REST APIs'],
-  'Frontend': ['JavaScript', 'React', 'Next.js', 'HTML & CSS'],
-  'Tools & Design': ['Git', 'Figma', 'Vercel', 'UX/UI design', 'Photoshop'],
+  'AI in development': ['Claude Code', 'Codex', 'OpenRouter', 'LLM integration and testing'],
+  'Backend and data': ['Python', 'FastAPI', 'Node.js', 'Express', 'REST APIs', 'PostgreSQL + pgvector', 'SQL', 'Database design', 'MongoDB'],
+  'Frontend': ['TypeScript', 'JavaScript', 'React', 'Next.js', 'Vite', 'HTML & CSS'],
+  'Tools and design': ['Git', 'Figma', 'Vercel', 'UX/UI design', 'Photoshop'],
 };
 
 export default function Skills() {
   return (
     <section className={styles.section} id="skills">
-
-      <div className={`reveal section-head`}>
-        <div className="section-tag">§ 03 — Stack</div>
-        <h2 className="section-h2">Tools & Technologies</h2>
-      </div>
-
-      <p className={`reveal ${styles.subtitle}`} data-delay="1">
-        A mix of things, some more than others.
+      <h2 className="section-h2">Tools I use</h2>
+      <p className={styles.subtitle}>
+        These days most of my code goes through Claude Code and Codex; I spend more time on
+        integration, testing and product decisions than on typing it out.
       </p>
 
-      <ul className={`reveal ${styles.stack}`} data-delay="1">
+      <dl className={styles.stack}>
         {Object.entries(STACK).map(([category, technologies]) => (
-          <li key={category} className={styles.group}>
-            <span className={styles.groupTitle}>{category}</span>
-            <ul className={styles.techs}>
-              {technologies.map((tech) => (
-                <li key={tech} className={styles.tech}>
-                  {tech}
-                </li>
-              ))}
-            </ul>
-          </li>
+          <div key={category} className={styles.group}>
+            <dt className={styles.groupTitle}>{category}</dt>
+            <dd className={styles.techs}>{technologies.join(', ')}</dd>
+          </div>
         ))}
-      </ul>
-
+      </dl>
     </section>
   );
 }

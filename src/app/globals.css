@@ -9,18 +9,17 @@
   --paper-dim:    #c8bfa7;       /* ~10.8:1 on --ink — AAA */
   --paper-mute:   #a19a82;       /* ~6.8:1 on --ink — AA normal */
   --paper-faint:  #847e67;       /* ~4.8:1 on --ink — AA normal */
-  --acid:         oklch(0.86 0.18 122);
-  --amber:        oklch(0.82 0.15 75);
-  --rose:         oklch(0.72 0.14 25);
+  --accent:       #a8b894;       /* sage — ~8.6:1 on --ink */
+  --accent-ink:   #141a10;       /* text on a sage fill */
 
-  /* ── Legacy aliases ─────── */
-  --background:       var(--ink);
-  --foreground:       var(--paper);
-  --card:             var(--ink-2);
-  --border:           var(--line);
-  --accent:           var(--acid);
-  --muted-foreground: var(--paper-mute);
-  --secondary:        var(--ink-3);
+}
+
+/* Type aliases live on body: next/font sets --font-* there, and a var()
+   alias only resolves against properties visible where it is declared. */
+body {
+  --serif: var(--font-serif), 'Fraunces', Georgia, serif;
+  --sans:  var(--font-sans), 'Schibsted Grotesk', system-ui, sans-serif;
+  --mono:  var(--font-mono), 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 *, *::before, *::after {
@@ -30,10 +29,8 @@
 }
 
 html {
-  scroll-padding-top: 20px;
+  scroll-padding-top: 96px;
   color-scheme: dark;
-  /* Keep root at the user's preferred size so ctrl+ zoom
-     *and* browser-level font-size settings both scale us. */
   font-size: 100%;
 }
 
@@ -42,25 +39,12 @@ html, body {
   color: var(--paper);
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.875rem; /* ≈14px at the default 16px root; scales with user preference */
-  line-height: 1.55;
-  font-feature-settings: "ss01", "ss02", "cv11";
+  font-family: var(--sans);
+  font-optical-sizing: auto;
+  font-size: 1rem;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none;
-}
-
-/* ── Grain overlay ──────────────────────────────────── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 90;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.85  0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
-  opacity: 0.06;
-  mix-blend-mode: overlay;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -72,17 +56,9 @@ body::before {
   }
 }
 
-@media (hover: none) {
-  body { cursor: auto; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html, body { cursor: auto; }
-}
-
 ::selection {
-  background: var(--acid);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 a {
@@ -90,18 +66,18 @@ a {
   text-decoration: none;
 }
 
+code, pre, kbd {
+  font-family: var(--mono);
+}
+
 /* ── Focus indicators (WCAG 2.4.7 / 2.4.11) ────────── */
 :focus { outline: none; }
 
 :focus-visible {
-  outline: 2px solid var(--acid);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 3px;
 }
-
-/* When any element receives visible keyboard focus, restore the
-   native cursor so users who mix pointer + keyboard aren't stranded. */
-body:has(:focus-visible) { cursor: auto; }
 
 /* ── Skip link (WCAG 2.4.1 Bypass Blocks) ──────────── */
 .skip-link {
@@ -110,12 +86,9 @@ body:has(:focus-visible) { cursor: auto; }
   left: 8px;
   z-index: 1000;
   padding: 10px 16px;
-  background: var(--acid);
-  color: var(--ink);
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 15px;
   border-radius: 2px;
   transform: translateY(-200%);
   transition: transform 0.15s ease;
@@ -128,166 +101,22 @@ body:has(:focus-visible) { cursor: auto; }
   outline-offset: 2px;
 }
 
-/* ── Reveal animation ───────────────────────────────── */
-/* Scroll-triggered; only hidden when JS has confirmed it is running (html.js). */
-.reveal {
-  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
-              transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-  will-change: transform, opacity;
-}
-
-html.js .reveal:not(.is-visible) {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* Above-the-fold entrance: pure CSS, runs on first paint, never waits for JS. */
-@keyframes hero-in {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero-in {
-  animation: hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: var(--hero-delay, 0s);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal[data-delay="1"] { transition-delay: 0.08s; }
-.reveal[data-delay="2"] { transition-delay: 0.16s; }
-.reveal[data-delay="3"] { transition-delay: 0.24s; }
-.reveal[data-delay="4"] { transition-delay: 0.32s; }
-.reveal[data-delay="5"] { transition-delay: 0.40s; }
-.reveal[data-delay="6"] { transition-delay: 0.48s; }
-
-/* ── Cursor blink (typewriter) ─────────────────────── */
-@keyframes cursor-blink {
-  0%, 45%  { transform: scaleY(1);    opacity: 1;    }
-  78%      { transform: scaleY(0.04); opacity: 0.12; }
-  88%      { transform: scaleY(0.04); opacity: 0.12; }
-  100%     { transform: scaleY(1);    opacity: 1;    }
-}
-
-.cursor-blink {
-  display: inline-block;
-  width: 3px;
-  height: 0.82em;
-  border-radius: 1px;
-  vertical-align: middle;
-  margin-left: 5px;
-  transform-origin: center;
-  animation: cursor-blink 1.4s ease-in-out infinite;
-}
-
-/* ── Pulse dot ─────────────────────────────────────── */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
-}
-.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
-
-/* ── Bounce y ──────────────────────────────────────── */
-@keyframes bounce-y {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(6px); }
-}
-.bounce-y { animation: bounce-y 2s ease-in-out infinite; }
-
-/* ── Section head  ─────── */
-.section-head {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 40px;
-  margin-bottom: 56px;
-}
-
-@media (max-width: 768px) {
-  .section-head {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-}
-
-.section-tag {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--paper-faint);
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-mono), monospace;
-}
-
+/* ── Section heading: one short sentence, upright ──── */
 .section-h2 {
-  font-family: var(--font-serif), 'Fraunces', serif;
+  font-family: var(--serif);
   font-weight: 300;
-  font-style: italic;
-  font-size: clamp(40px, 5vw, 72px);
-  line-height: 0.95;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 1.02;
   letter-spacing: -0.02em;
   color: var(--paper);
-  margin: 0;
+  margin: 0 0 48px;
+  max-width: 18ch;
+  text-wrap: balance;
   font-variation-settings: "opsz" 144;
 }
 
-.section-h2 em {
-  font-style: normal;
-  color: var(--paper-mute);
-}
-
-/* ── Terminal easter egg (injected via innerHTML) ─── */
-.t-line { display: block; }
-.t-ok   { color: var(--acid); }
-.t-warn { color: var(--amber); }
-
-/* ── Layout frame & corner ticks ───────────────────── */
-.frame {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 80;
-  border: 1px solid var(--line);
-  margin: 18px;
-}
-
-.frame::before {
-  content: '';
-  position: absolute;
-  background: var(--line);
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  opacity: 0.35;
-}
-
-.tick {
-  position: fixed;
-  z-index: 81;
-  pointer-events: none;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--paper-faint);
-  line-height: 1.5;
-}
-
-.tick-tl { top: 56px; left: 28px; }
-.tick-tr { top: 56px; right: 28px; text-align: right; }
-.tick-bl { bottom: 28px; left: 28px; }
-
-@media (max-width: 1100px) {
-  .frame { margin: 10px; }
-  .tick { display: none; }
-  .section-head { gap: 15px; }
- .section-head { margin-bottom: 25px; }
-}
-
-@media (hover: none) {
-  .frame { display: none; }
+@media (max-width: 768px) {
+  .section-h2 {
+    margin-bottom: 28px;
+  }
 }

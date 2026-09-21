@@ -2,34 +2,29 @@
   padding: 140px 0;
   border-top: 1px solid var(--line);
   position: relative;
-  z-index: 10;
 }
 
-/* ── About grid: prose + aside ─────────────────────── */
+/* ── Prose and timeline side by side ───────────────── */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-bottom: 64px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 72px;
+  align-items: start;
 }
 
-@media (max-width: 1100px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
+.prose {
+  max-width: 56ch;
 }
 
-/* ── Prose ─────────────────────────────────────────── */
 .prose p {
-  font-family: var(--font-serif), 'Fraunces', serif;
-  font-weight: 400;
-  font-size: 22px;
+  font-family: var(--serif);
+  font-weight: 340;
+  font-variation-settings: "opsz" 48;
+  font-size: 21px;
   line-height: 1.45;
   color: var(--paper);
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   text-wrap: pretty;
-  font-variation-settings: "opsz" 36;
 }
 
 .prose p em {
@@ -37,150 +32,74 @@
   color: var(--paper-dim);
 }
 
-.highlight {
-  background: linear-gradient(
-    to top,
-    color-mix(in oklab, var(--acid) 30%, transparent) 0%,
-    color-mix(in oklab, var(--acid) 30%, transparent) 35%,
-    transparent 35%
-  );
-  padding: 0 2px;
-}
-
-.proseMono {
-  font-family: var(--font-mono), monospace !important;
-  font-size: 13px !important;
-  color: var(--paper-mute) !important;
-  line-height: 1.7 !important;
-  margin-top: 28px;
-}
-
-.promoAccent {
-  color: var(--acid);
-}
-
-/* ── Aside / KV cards ──────────────────────────────── */
 .aside {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  font-size: 17px !important;
+  color: var(--paper-mute) !important;
+  margin-top: 8px !important;
 }
 
-.kvCard {
-  border: 1px solid var(--line);
-  padding: 22px;
-  background: var(--ink-2);
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-}
-
-.kvLabel {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--paper-faint);
-  margin-bottom: 16px;
-}
-
-.kv {
-  display: grid;
-  grid-template-columns: minmax(120px, max-content) 1fr;
-  gap: 12px;
-  padding: 8px 0;
-  border-top: 1px dashed var(--line);
-}
-
-.kv:first-of-type {
-  border-top: 0;
-}
-
-.kvK {
-  color: var(--paper-mute);
-}
-
-.kvV {
-  color: var(--paper);
-}
-
-.kvAccent {
-  color: var(--acid);
-}
-
-/* ── Timeline ──────────────────────────────────────── */
+/* ── Timeline: a plain list, the current row lifted ── */
 .timeline {
+  list-style: none;
   border-top: 1px solid var(--line);
 }
 
 .tlRow {
   display: grid;
-  grid-template-columns: 120px 140px 1fr auto;
-  gap: 32px;
-  padding: 28px 0;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding: 24px 0;
   border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.tlWhen {
+  display: flex;
+  gap: 10px;
   align-items: baseline;
 }
 
-@media (max-width: 900px) {
-  .tlRow {
-    grid-template-columns: 80px 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 6px 20px;
-    align-items: start;
-  }
-  .tlIdx {
-    display: none;
-  }
-  /* Location drops under the year instead of disappearing */
-  .tlLoc {
-    grid-column: 1;
-    grid-row: 2;
-    font-size: 11px;
-  }
-  .tlMain {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-}
-
 .tlYear {
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  color: var(--acid);
-  letter-spacing: 0.08em;
-}
-
-.tlYearAmber {
-  color: var(--amber);
+  font-size: 15px;
+  color: var(--paper);
 }
 
 .tlLoc {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  color: var(--paper-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 15px;
+  color: var(--paper-mute);
+}
+
+.tlNow .tlYear {
+  color: var(--accent);
 }
 
 .tlTitle {
-  font-family: var(--font-serif), 'Fraunces', serif;
-  font-size: 26px;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 340;
   color: var(--paper);
   line-height: 1.2;
-  margin-bottom: 4px;
+  margin: 2px 0 6px;
   font-variation-settings: "opsz" 36;
 }
 
 .tlDesc {
   color: var(--paper-mute);
-  font-size: 13px;
-  max-width: 60ch;
-  font-family: var(--font-mono), monospace;
-  line-height: 1.6;
+  font-size: 15px;
+  max-width: 48ch;
+  line-height: 1.5;
+  margin: 0;
 }
 
-.tlIdx {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  color: var(--paper-faint);
-  letter-spacing: 0.1em;
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .prose p {
+    font-size: 19px;
+  }
 }

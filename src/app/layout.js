@@ -1,8 +1,7 @@
-import { JetBrains_Mono, Fraunces } from 'next/font/google';
+import { JetBrains_Mono, Fraunces, Schibsted_Grotesk } from 'next/font/google';
 import './globals.css';
 import Navigation from './components/navigation/Navigation';
 import Footer from './components/footer/Footer';
-import ClientWidgets from './components/ClientWidgets';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -10,6 +9,12 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   style: ['normal', 'italic'],
+  display: 'swap',
+});
+
+const schibsted = Schibsted_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-sans',
   display: 'swap',
 });
 
@@ -52,24 +57,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Flag JS availability before first paint so .reveal can safely start hidden */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
+    <html lang="en">
       <body
-        className={`${jetbrainsMono.variable} ${fraunces.variable}`}
+        className={`${jetbrainsMono.variable} ${fraunces.variable} ${schibsted.variable}`}
         suppressHydrationWarning
       >
-        {/* Page frame */}
-        <div className="frame" aria-hidden="true" />
-
-        {/* Corner ticks */}
-        <div className="tick tick-tr" aria-hidden="true">v.2026.04<br />portfolio/tiia</div>
-
-
         <a href="#main" className="skip-link">Skip to content</a>
-        <ClientWidgets />
         <Navigation />
         {children}
         <Footer />

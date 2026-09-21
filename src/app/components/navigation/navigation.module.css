@@ -1,6 +1,6 @@
 .nav {
   position: fixed;
-  top: 60px;
+  top: 24px;
   left: 0;
   right: 0;
   display: flex;
@@ -11,7 +11,7 @@
 
 .wrap {
   pointer-events: auto;
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 2px;
   border: 1px solid var(--line);
@@ -34,17 +34,17 @@
 }
 
 @media (min-width: 768px) {
+  .wrap {
+    display: inline-flex;
+  }
   .desktopLinks {
     display: flex;
   }
 }
 
 .link {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 8px 14px;
+  font-size: 15px;
+  padding: 7px 14px;
   border-radius: 999px;
   color: var(--paper-dim);
   transition: background 0.2s, color 0.2s;
@@ -59,17 +59,8 @@
 }
 
 .link.active {
-  color: var(--ink);
-  background: var(--acid);
-}
-
-.link.active .hash {
-  color: color-mix(in oklab, var(--ink) 60%, transparent);
-}
-
-.hash {
-  color: var(--paper-faint);
-  font-size: 11px;
+  color: var(--accent-ink);
+  background: var(--accent);
 }
 
 .socials {
@@ -114,46 +105,68 @@
   background: var(--ink-3);
 }
 
-.hamburger {
+/* ── Mobile: full-width top bar ─────────────────────── */
+.mobileBar {
+  pointer-events: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  color: var(--paper-dim);
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: 4px;
-  transition: color 0.2s;
+  justify-content: space-between;
+  padding: 0 18px;
+  background: color-mix(in oklab, var(--ink) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 60;
 }
 
 @media (min-width: 768px) {
-  .hamburger {
+  .mobileBar {
     display: none;
   }
 }
 
-.hamburger:hover {
+.mobileName {
+  font-family: var(--serif);
+  font-size: 20px;
   color: var(--paper);
+  font-variation-settings: "opsz" 36;
 }
 
-/* Mobile menu */
+.mobileName span {
+  font-style: italic;
+  color: var(--paper-dim);
+}
+
+.hamburger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 4px 0 10px;
+  color: var(--paper);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ── Mobile menu: full screen, big links ────────────── */
 .mobile {
   position: fixed;
-  left: 1rem;
-  right: 1rem;
-  top: 120px;
-  z-index: 40;
-  border: 1px solid var(--line-2);
-  background: color-mix(in oklab, var(--ink-2) 95%, transparent);
-  backdrop-filter: blur(20px);
-  padding: 1.25rem;
+  inset: 60px 0 0 0;
+  z-index: 55;
+  background: var(--ink);
+  padding: 28px 18px 32px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
   transition: opacity 0.2s ease, transform 0.2s ease;
-  border-radius: 2px;
+  overflow-y: auto;
 }
 
 @media (min-width: 768px) {
@@ -170,50 +183,34 @@
 
 .mobileClosed {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   pointer-events: none;
 }
 
 .mobileLink {
-  font-family: var(--font-mono), monospace;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--paper-dim);
-  padding: 10px 12px;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background 0.15s, color 0.15s;
-}
-
-.mobileLink:hover {
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.1;
   color: var(--paper);
-  background: var(--ink-3);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-variation-settings: "opsz" 96;
 }
 
 .mobileSocials {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 1rem;
-  margin-top: 0.5rem;
-  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  padding-top: 24px;
+  margin-top: auto;
 }
 
 .mobileSocialLink {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--paper-faint);
-  transition: color 0.15s;
-}
-
-.mobileSocialLink:hover {
-  color: var(--paper);
+  min-height: 40px;
+  font-size: 17px;
+  color: var(--paper-dim);
 }

@@ -33,7 +33,7 @@
 
 .modal:focus { outline: none; }
 .modal:focus-visible {
-  outline: 2px solid var(--acid);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -55,13 +55,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-family: var(--font-mono), monospace;
   transition: border-color 0.15s, color 0.15s;
 }
 
 .closeBtn:hover {
-  border-color: var(--acid);
-  color: var(--acid);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .modalHeader {
@@ -72,10 +71,9 @@
 }
 
 .modalTag {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 14px;
+  
+  
   padding: 4px 8px;
   display: inline-block;
   border: 1px solid currentColor;
@@ -93,10 +91,9 @@
 }
 
 .modalInstitution {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   color: var(--paper-faint);
-  letter-spacing: 0.06em;
+  
 }
 
 .modalBody {
@@ -124,8 +121,7 @@
 }
 
 .modalDesc {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--paper-dim);
   line-height: 1.7;
 }
@@ -133,10 +129,9 @@
 .modalTopics { display: flex; flex-direction: column; gap: 0.6rem; }
 
 .topicsLabel {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
+  
+  
   color: var(--paper-faint);
   font-weight: 500;
 }
@@ -151,8 +146,7 @@
 }
 
 .topicItem {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   color: var(--paper-dim);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--line-2);
@@ -161,11 +155,10 @@
 }
 
 .modalTakeaway {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--paper-faint);
   font-style: italic;
-  border-left: 2px solid color-mix(in oklab, var(--acid) 30%, transparent);
+  border-left: 1px solid var(--line-2);
   padding-left: 0.875rem;
   line-height: 1.65;
   margin: 0;
@@ -191,7 +184,7 @@
 }
 
 .imageButton:focus-visible {
-  outline: 2px solid var(--acid);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -224,26 +217,24 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.875rem;
+  font-size: 1rem;
   transition: all 0.15s;
 }
 
 .navButton:hover {
-  border-color: var(--acid);
-  color: var(--acid);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .navButton:focus-visible {
-  outline: 2px solid var(--acid);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
 .imageCounter {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   color: var(--paper-faint);
-  letter-spacing: 0.06em;
+  
   min-width: 3.5rem;
   text-align: center;
 }
@@ -277,15 +268,14 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-family: var(--font-mono), monospace;
   z-index: 201;
   transition: border-color 0.15s, color 0.15s;
 }
 
 .lightboxClose:hover,
 .lightboxClose:focus-visible {
-  border-color: var(--acid);
-  color: var(--acid);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .lightboxPrev,
@@ -302,7 +292,6 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-family: var(--font-mono), monospace;
   font-size: 1rem;
   z-index: 201;
   transition: all 0.15s;
@@ -320,8 +309,8 @@
 .lightboxNext:hover,
 .lightboxPrev:focus-visible,
 .lightboxNext:focus-visible {
-  border-color: var(--acid);
-  color: var(--acid);
+  border-color: var(--accent);
+  color: var(--accent);
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -330,8 +319,7 @@
   bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--font-mono), monospace;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--paper);
   border: 1px solid var(--paper-mute);
   padding: 0.5rem 1rem;
@@ -353,8 +341,7 @@
 .snippet { display: flex; flex-direction: column; gap: 0.35rem; }
 
 .snippetLabel {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   color: var(--paper-faint);
   font-weight: 500;
 }

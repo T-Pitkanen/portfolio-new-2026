@@ -1,24 +1,9 @@
-.sticker {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 8px 14px;
-  border: 1px dashed var(--line-2);
-  color: var(--paper-mute);
-  border-radius: 999px;
-  transform: rotate(-3deg);
-  display: inline-block;
-  align-self: flex-end;
-  margin-bottom: 20px;
-}
-
 .terminal {
   background: var(--ink-2);
   border: 1px solid var(--line);
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  line-height: 1.7;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.75;
   color: var(--paper-dim);
   border-radius: 2px;
 }
@@ -30,8 +15,6 @@
   padding: 10px 14px;
   border-bottom: 1px solid var(--line);
   font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--paper-faint);
 }
 
@@ -51,9 +34,9 @@
 
 .termBody {
   position: relative;
-  padding: 18px 20px;
-  min-height: 200px;
-  max-height: 360px;
+  padding: 22px 24px;
+  min-height: 340px;
+  max-height: 460px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -64,34 +47,34 @@
   display: block;
 }
 
-.tPrompt { color: var(--acid); }
+.tPrompt { color: var(--accent); }
 .tCmd    { color: var(--paper); }
 .tOut    { color: var(--paper-mute); }
-.tOk     { color: var(--acid); }
-.tWarn   { color: var(--amber); }
+.tOk     { color: var(--accent); }
+.tWarn   { color: var(--paper-dim); }
 
 .termHint {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--paper-faint);
-  margin-top: 10px;
-  align-self: flex-end;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--paper-mute);
+  margin-top: 12px;
+  align-self: flex-start;
 }
 
 .termHint code {
-  font-family: inherit;
-  color: var(--acid);
-  background: none;
-  padding: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--paper);
+  background: var(--ink-3);
+  padding: 1px 5px;
+  border-radius: 2px;
 }
 
 .caret {
   display: inline-block;
   width: 8px;
   height: 14px;
-  background: var(--acid);
+  background: var(--accent);
   vertical-align: -2px;
   margin-left: 2px;
   animation: blink 1s steps(1) infinite;
@@ -139,16 +122,12 @@
 }
 
 .termBody:focus-within {
-  outline: 2px solid var(--acid);
+  outline: 2px solid var(--accent);
   outline-offset: -2px;
 }
 
 @media (max-width: 1080px) {
-  .sticker {
-  margin-bottom: 30px;
-  }
-
   .termHint {
-  align-self: start;
+    align-self: start;
   }
 }

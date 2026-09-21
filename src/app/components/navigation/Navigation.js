@@ -5,11 +5,11 @@ import { Menu, X } from 'lucide-react';
 import styles from './navigation.module.css';
 
 const navLinks = [
-  { href: '#about',      label: 'About',      num: '01' },
-  { href: '#projects',   label: 'Work',        num: '02' },
-  { href: '#skills',     label: 'Stack',       num: '03' },
-  { href: '#coursework', label: 'Learning',    num: '04' },
-  { href: '#contact',    label: 'Contact',     num: '05' },
+  { href: '#about',      label: 'About' },
+  { href: '#projects',   label: 'Work' },
+  { href: '#skills',     label: 'Stack' },
+  { href: '#coursework', label: 'Courses' },
+  { href: '#contact',    label: 'Contact' },
 ];
 
 export default function Navigation() {
@@ -36,6 +36,11 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
   return (
     <>
       <nav className={styles.nav}>
@@ -49,7 +54,6 @@ export default function Navigation() {
                 className={`${styles.link} ${active === link.href.slice(1) ? styles.active : ''}`}
                 aria-current={active === link.href.slice(1) ? 'location' : undefined}
               >
-                <span className={styles.hash} aria-hidden="true">{link.num}/</span>
                 {link.label}
               </a>
             ))}
@@ -63,7 +67,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className={styles.iconLink}
               aria-label="GitHub profile (opens in new tab)"
-              data-hover
+             
             >
               <FaGithub size={14} aria-hidden="true" />
             </a>
@@ -73,13 +77,19 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className={styles.iconLink}
               aria-label="LinkedIn profile (opens in new tab)"
-              data-hover
+             
             >
               <FaLinkedin size={14} aria-hidden="true" />
             </a>
           </div>
 
-          {/* Hamburger */}
+        </div>
+
+        {/* Mobile top bar: name left, menu right */}
+        <div className={styles.mobileBar}>
+          <a href="#hero" className={styles.mobileName} onClick={() => setOpen(false)}>
+            Tiia <span lang="fi">Pitkänen</span>
+          </a>
           <button
             type="button"
             onClick={() => setOpen(!open)}
@@ -88,6 +98,7 @@ export default function Navigation() {
             aria-expanded={open}
             aria-controls="mobile-menu"
           >
+            <span>{open ? 'Close' : 'Menu'}</span>
             {open ? <X size={16} aria-hidden="true" /> : <Menu size={16} aria-hidden="true" />}
           </button>
         </div>
@@ -106,7 +117,6 @@ export default function Navigation() {
             onClick={() => setOpen(false)}
             className={styles.mobileLink}
           >
-            <span className={styles.hash} aria-hidden="true">{link.num}/</span>
             {link.label}
           </a>
         ))}
@@ -128,6 +138,9 @@ export default function Navigation() {
             aria-label="LinkedIn profile (opens in new tab)"
           >
             <FaLinkedin size={14} aria-hidden="true" /> LinkedIn
+          </a>
+          <a href="/Tiia_Pitkanen_CV.pdf" className={styles.mobileSocialLink} onClick={() => setOpen(false)}>
+            CV (PDF)
           </a>
         </div>
       </div>

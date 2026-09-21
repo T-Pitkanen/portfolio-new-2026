@@ -7,16 +7,9 @@ import projectData from '@/data/projectData';
 import { useState, useRef, useEffect } from 'react';
 import useAccessibleDialog from '../hooks/useAccessibleDialog';
 
-// Map stack strings → tag variant class
-function tagVariant(code) {
-  const c = code.toLowerCase();
-  if (c.includes('postgres') || c.includes('sql') || c.includes('node') || c.includes('rest') || c.includes('express')) return styles.tagAcid;
-  if (c.includes('next') || c.includes('react') || c.includes('html') || c.includes('css') || c.includes('js')) return styles.tagBlue;
-  if (c.includes('mongo') || c.includes('base44') || c.includes('lovable')) return styles.tagAmber;
-  return '';
-}
+const FEATURED = 3;
 
-const MAX_STACK_TAGS = 3;
+const nameOf = (p) => p.title.replace(/ - \d+$/, '');
 
 export default function Projects() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -46,89 +39,99 @@ export default function Projects() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalIsOpen, imageCount]);
 
-  const total = String(projectData.length).padStart(2, '0');
+  const openGallery = (project) => {
+    setModalProject(project);
+    setCurrentImageIndex(0);
+    setModalIsOpen(true);
+  };
+
+  const featured = projectData.slice(0, FEATURED);
+  const rest = projectData.slice(FEATURED);
 
   return (
     <section className={styles.section} id="projects">
+      <h2 className="section-h2">Selected work</h2>
 
-      <div className={`reveal section-head`}>
-        <div className="section-tag">§ 02 — Selected work · 2023–2025</div>
-        <h2 className="section-h2">Things I&apos;ve shipped</h2>
-      </div>
-
-      {projectData.map((project, index) => {
-        const num = String(index + 1).padStart(2, '0');
-        const name = project.title.replace(/ - \d+$/, '');
-        const tags = project.code.split(/,\s*/).filter(Boolean).slice(0, MAX_STACK_TAGS);
+      {/* The three that prove the most, at full size */}
+      {featured.map((project) => {
+        const name = nameOf(project);
         const shots = project.image.length;
-
         return (
-          <article key={project.title} className={`reveal ${styles.project}`} data-delay={String((index % 2) + 1)}>
-            {/* Left: what it is, what I did */}
-            <div className={styles.pBody}>
-              <div className={styles.pMeta}>
-                <span className={styles.pNum}>{num} / {total}</span>
-                <span>{project.role} · {project.year}</span>
-              </div>
-
-              <h3 className={styles.pTitle}>{name}</h3>
-
-              <p className={styles.pPart}>
-                <span className={styles.pPartKey}>my part —</span> {project.part}
-              </p>
-
-              {project.impact && (
-                <p className={styles.pDesc}>{project.impact}</p>
-              )}
-
-              <div className={styles.pFoot}>
-                <div className={styles.pTags}>
-                  {tags.map((t) => (
-                    <span key={t} className={`${styles.pTag} ${tagVariant(t)}`}>{t}</span>
-                  ))}
-                </div>
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.pLink}
-                    data-hover
-                    aria-label={`${name} — live demo (opens in new tab)`}
-                  >
-                    <span aria-hidden="true">live demo ↗</span>
-                  </a>
-                )}
-              </div>
-            </div>
-
-            {/* Right: one still, uncropped, with a visible way into the gallery */}
+          <article key={project.title} className={styles.feature}>
             <button
               type="button"
-              className={styles.pVisual}
-              data-hover
+              className={styles.visual}
               aria-label={`Open ${name} gallery, ${shots} screenshots`}
-              onClick={() => {
-                setModalProject(project);
-                setCurrentImageIndex(0);
-                setModalIsOpen(true);
-              }}
+              onClick={() => openGallery(project)}
             >
               <Image
                 src={project.image[0]}
                 alt=""
-                width={1200}
-                height={600}
-                sizes="(max-width: 1100px) 100vw, 50vw"
-                className={styles.pImg}
+                width={1400}
+                height={700}
+                sizes="(max-width: 900px) 100vw, 60vw"
+                className={styles.img}
               />
-              <span className={styles.pVisualLabel} aria-hidden="true">
-                view gallery · {shots} {shots === 1 ? 'shot' : 'shots'}
+              <span className={styles.visualLabel} aria-hidden="true">
+                {shots} screenshots
               </span>
             </button>
+
+            <div className={styles.body}>
+              <p className={styles.meta}>{project.role}, {project.year} · {project.code}</p>
+              <h3 className={styles.title}>{name}</h3>
+              <p className={styles.part}><em>My part:</em> {project.part}.</p>
+              {project.impact && <p className={styles.desc}>{project.impact}</p>}
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                  aria-label={`${name} — live demo (opens in new tab)`}
+                >
+                  <span aria-hidden="true">Live demo ↗</span>
+                </a>
+              )}
+            </div>
           </article>
         );
       })}
+
+      {/* Everything else, as a list */}
+      <h3 className={styles.moreHead}>Earlier projects</h3>
+      <ul className={styles.list}>
+        {rest.map((project) => {
+          const name = nameOf(project);
+          return (
+            <li key={project.title} className={styles.row}>
+              <div className={styles.rowMain}>
+                <button
+                  type="button"
+                  className={styles.rowTitle}
+                  onClick={() => openGallery(project)}
+                  aria-label={`Open ${name} gallery, ${project.image.length} screenshots`}
+                >
+                  {name}
+                </button>
+                <span className={styles.rowPart}>{project.part}.</span>
+              </div>
+              <span className={styles.rowMeta}>
+                {project.year} · {project.code}
+                {project.link && (
+                  <>
+                    {' · '}
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.rowLink}
+                       aria-label={`${name} — live demo (opens in new tab)`}>
+                      <span aria-hidden="true">live ↗</span>
+                    </a>
+                  </>
+                )}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
 
       {/* Lightbox modal */}
       {modalIsOpen && createPortal(
@@ -149,7 +152,7 @@ export default function Projects() {
             <div className={styles.modalHead}>
               <div>
                 <h2 id="project-lightbox-title" className={styles.modalTitle}>
-                  {modalProject?.title.replace(/ - \d+$/, '') ?? 'Project'}
+                  {modalProject ? nameOf(modalProject) : 'Project'}
                 </h2>
                 {modalProject?.goal && (
                   <p className={styles.modalGoal}>{modalProject.goal}</p>
@@ -166,26 +169,20 @@ export default function Projects() {
             </div>
             <Image
               src={modalProject?.image[currentImageIndex] ?? '/test.png'}
-              alt={`${modalProject?.title ?? 'Project'} screenshot ${currentImageIndex + 1} of ${imageCount}`}
+              alt={`${modalProject ? nameOf(modalProject) : 'Project'} screenshot ${currentImageIndex + 1} of ${imageCount}`}
               width={1600} height={900}
               className={styles.modalImg}
             />
             <div className={styles.modalNav}>
-              <button
-                type="button"
-                className={styles.modalBtn}
-                aria-label="Previous image"
-                onClick={prevImage}
-              ><span aria-hidden="true">←</span></button>
+              <button type="button" className={styles.modalBtn} aria-label="Previous image" onClick={prevImage}>
+                <span aria-hidden="true">←</span>
+              </button>
               <span className={styles.modalCounter} aria-live="polite">
                 {currentImageIndex + 1} / {imageCount}
               </span>
-              <button
-                type="button"
-                className={styles.modalBtn}
-                aria-label="Next image"
-                onClick={nextImage}
-              ><span aria-hidden="true">→</span></button>
+              <button type="button" className={styles.modalBtn} aria-label="Next image" onClick={nextImage}>
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
           </div>
         </div>,

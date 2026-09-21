@@ -9,7 +9,7 @@ const INITIAL_LINES = [
   { type: 'out',    text: '# Now a trainee on an RDI project at VAMK, building a GenAI app.' },
   { type: 'blank' },
   { type: 'prompt', text: 'ls ./currently/' },
-  { type: 'ok-warn', ok: 'llm-integration/  backend/  pgvector/', warn: 'user-pilot.todo' },
+  { type: 'ok-warn', ok: 'llm-integration/  backend/  pgvector/', warn: 'ai-in-development.md' },
   { type: 'blank' },
   { type: 'prompt', text: 'echo $LOCATION' },
   { type: 'out',    text: 'Vaasa, Finland' },
@@ -106,11 +106,8 @@ export default function Terminal() {
 
   return (
     <>
-      <span className={styles.sticker}>◒ currently learning Python </span>
-
       <div
-        className={`hero-in ${styles.terminal}`}
-        style={{ '--hero-delay': '0.16s' }}
+        className={styles.terminal}
         role="region"
         aria-label="Interactive terminal (optional)"
       >
@@ -172,7 +169,7 @@ export default function Terminal() {
           </span>
         </div>
       </div>
-      <span className={styles.termHint}>click terminal · type <code>reset</code> to restore · <code>help</code> for commands</span>
+      <span className={styles.termHint}>Click in and type <code>help</code> for commands, <code>reset</code> to restore.</span>
     </>
   );
 }

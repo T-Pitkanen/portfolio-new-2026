@@ -9,7 +9,7 @@ export default function Footer() {
       <div className={styles.meta}>
         <span />
         <span className={styles.metaCenter}>©2026 — Tiia <span lang="fi">Pitkänen</span></span>
-        <a href="#hero" className={styles.metaRight}>↑ back to top</a>
+        <a href="#hero" className={styles.metaRight}>Back to top ↑</a>
       </div>
     </footer>
   );
