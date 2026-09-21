@@ -27,11 +27,11 @@ export default function Contact() {
         {/* Left — large serif heading */}
         <div className={styles.left}>
           <h3 className={styles.bigHeading}>
-            Hire<br />a <em>curious</em><br />student.
+            Say hi<br />to a <em>curious</em><br />student.
           </h3>
           <p className={styles.sub}>
-            Looking for an internship in Finland. Backend, full-stack, or data-heavy roles.
-            Happy to hear about anything adjacent.
+            Questions about a project, the coursework, or the GenAI app I&apos;m building at
+            <span lang="fi"> VAMK</span>? Drop me a line.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function Contact() {
           </div>
           <div className={styles.block}>
             <span className={styles.blockKey}>location</span>
-            <span className={styles.blockVal}><span lang="fi">Vaasa</span> · open to <span lang="fi">Uusimaa</span> / Estonia</span>
+            <span className={styles.blockVal}><span lang="fi">Vaasa</span>, Finland</span>
           </div>
 
           <div className={styles.btnRow}>

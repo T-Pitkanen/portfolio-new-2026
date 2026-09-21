@@ -129,12 +129,27 @@ body:has(:focus-visible) { cursor: auto; }
 }
 
 /* ── Reveal animation ───────────────────────────────── */
+/* Scroll-triggered; only hidden when JS has confirmed it is running (html.js). */
 .reveal {
-  opacity: 0;
-  transform: translateY(20px);
   transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
               transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
   will-change: transform, opacity;
+}
+
+html.js .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Above-the-fold entrance: pure CSS, runs on first paint, never waits for JS. */
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-in {
+  animation: hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--hero-delay, 0s);
 }
 
 .reveal.is-visible {

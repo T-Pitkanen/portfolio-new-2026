@@ -47,7 +47,7 @@
   text-transform: uppercase;
   color: var(--paper-faint);
   display: block;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
   font-style: normal;
 }
 

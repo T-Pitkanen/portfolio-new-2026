@@ -38,3 +38,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+# AI tooling (local only)
+.codex/
+.impeccable/
+PRODUCT.md

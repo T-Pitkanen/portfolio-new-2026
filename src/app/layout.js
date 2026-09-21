@@ -52,7 +52,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Flag JS availability before first paint so .reveal can safely start hidden */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body
         className={`${jetbrainsMono.variable} ${fraunces.variable}`}
         suppressHydrationWarning

@@ -17,9 +17,9 @@ const timeline = [
   },
   {
     year: 'now ——',
-    loc: 'Anywhere · Finland',
-    title: 'Looking for an internship',
-    desc: <>Applying for internships. Planning to relocate to the <span lang="fi">Uusimaa</span> region or Tallinn.</>,
+    loc: <><span lang="fi">VAMK</span> · <span lang="fi">Vaasa</span></>,
+    title: 'Trainee, RDI project',
+    desc: <>Building a web and mobile app powered by generative AI: LLM integration and testing, backend work, and piloting it with real users.</>,
     idx: '003',
     accent: true,
   },
@@ -40,14 +40,22 @@ export default function About() {
           <p>
             I have a{' '}
             <span className={styles.highlight}>web development degree from Denmark</span>
-            {' '}and I just finished my second year of Business IT at <span lang="fi">VAMK</span>. My recent
-            courses covered databases, APIs, cloud services, and UI/UX.{' '}
-            <em>I really enjoyed the databases and APIs course.</em>
+            {' '}and I&apos;m in my third year of Business IT at <span lang="fi">VAMK</span>. My
+            courses so far have covered databases, APIs, cloud services, and UI/UX.{' '}
+            <em>Databases and APIs was my favourite.</em>
           </p>
           <p>
             I learn by building real projects. Most projects are solo, some are group.
             I&apos;ve done fullstack work and I&apos;m comfortable going from schema
             to frontend. I like building websites and handling the data behind them, and keeping them running well over time.
+          </p>
+          <p>
+            Right now I work as a trainee in an RDI project at <span lang="fi">VAMK</span>, where we&apos;re
+            building a web and mobile app powered by generative AI. I handle LLM integration
+            and testing, backend development, and piloting the app with its target users. The
+            setup is model-agnostic, so the underlying LLM can be swapped as the technology
+            evolves. It&apos;s my first time taking an AI feature from a course exercise to
+            something people actually use, and that&apos;s the part I find most interesting.
           </p>
           <p className={styles.proseMono}>
             <span className={styles.promoAccent}>$</span>{' '}
@@ -60,7 +68,8 @@ export default function About() {
           <div className={styles.kvCard}>
             <div className={styles.kvLabel}>./identity.cfg</div>
             <div className={styles.kv}><span className={styles.kvK}>name</span><span className={styles.kvV}>Tiia <span lang="fi">Pitkänen</span></span></div>
-            <div className={styles.kv}><span className={styles.kvK}>role</span><span className={styles.kvV}>Business IT · Y2</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>role</span><span className={styles.kvV}>Business IT · Y3</span></div>
+            <div className={styles.kv}><span className={styles.kvK}>work</span><span className={styles.kvV}>RDI trainee · <span lang="fi">VAMK</span></span></div>
             <div className={styles.kv}><span className={styles.kvK}>based</span><span className={styles.kvV}><span lang="fi">Vaasa</span>, FI</span></div>
             <div className={styles.kv}><span className={styles.kvK}>languages</span><span className={styles.kvV}>FI / EN / a bit of DA</span></div>
             <div className={styles.kv}><span className={styles.kvK}>interests</span><span className={`${styles.kvV} ${styles.kvAccent}`}>full-stack · backend · data · AI </span></div>

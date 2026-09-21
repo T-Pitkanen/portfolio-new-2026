@@ -6,25 +6,25 @@ const INITIAL_LINES = [
   { type: 'prompt', text: 'cat about.md' },
   { type: 'out',    text: '# Business IT student' },
   { type: 'out',    text: '# Web dev degree → Denmark. Back home studying BIT.' },
-  { type: 'out',    text: '# Somewhere in the backend and data space.' },
+  { type: 'out',    text: '# Now a trainee on an RDI project at VAMK, building a GenAI app.' },
   { type: 'blank' },
   { type: 'prompt', text: 'ls ./currently/' },
-  { type: 'ok-warn', ok: 'indexing-query-opt.md  pgvector/', warn: 'internship-hunt.todo' },
+  { type: 'ok-warn', ok: 'llm-integration/  backend/  pgvector/', warn: 'user-pilot.todo' },
   { type: 'blank' },
   { type: 'prompt', text: 'echo $LOCATION' },
-  { type: 'out',    text: 'Vaasa, Finland · open to relocate (Uusimaa · Estonia)' },
+  { type: 'out',    text: 'Vaasa, Finland' },
   { type: 'blank' },
   { type: 'out',    text: "# type 'help' and hit enter" },
   { type: 'blank' },
 ];
 
 const COMMANDS = {
-  help:     { type: 'ok',      text: '> try: hire · cv · coffee · location · sauna · clear · reset' },
-  hire:     { type: 'ok',      text: '♥ on my way — tiia1.pitkanen@gmail.com' },
+  help:     { type: 'ok',      text: '> try: hello · cv · coffee · location · sauna · clear · reset' },
+  hello:    { type: 'ok',      text: '♥ hi! reach me at tiia1.pitkanen@gmail.com' },
   sauna:    { type: 'warn',    text: '♨ löyly dispatched, enjoy.' },
   cv:       { type: 'confirm', text: 'download Tiia_Pitkanen_CV.pdf? [y/n]' },
   coffee:   { type: 'ok',      text: '☕ sending good vibes your way' },
-  location: { type: 'ok',      text: '📍 currently in Vaasa, Finland. Open to relocate.' },
+  location: { type: 'ok',      text: '📍 Vaasa, Finland.' },
 };
 
 function downloadCV() {
@@ -109,8 +109,8 @@ export default function Terminal() {
       <span className={styles.sticker}>◒ currently learning Python </span>
 
       <div
-        className={`reveal ${styles.terminal}`}
-        data-delay="1"
+        className={`hero-in ${styles.terminal}`}
+        style={{ '--hero-delay': '0.16s' }}
         role="region"
         aria-label="Interactive terminal (optional)"
       >

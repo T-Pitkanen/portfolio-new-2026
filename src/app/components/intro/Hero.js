@@ -12,13 +12,15 @@ export default function Hero() {
         <div className={styles.left}>
           <HeroMeta />
 
-          <h1 className={`reveal ${styles.display}`} data-delay="1">
-            <span className={styles.displaySmall}>{'// Business IT student'}</span>
+          <p className={`hero-in ${styles.displaySmall}`} style={{ '--hero-delay': '0.08s' }}>
+            {'// Business IT student'}
+          </p>
+          <h1 className={`hero-in ${styles.display}`} style={{ '--hero-delay': '0.12s' }}>
             Tiia<br />
             <span className={styles.displayItalic} lang="fi">Pitkänen</span>.
           </h1>
 
-          <div className={`reveal ${styles.ctaRow}`} data-delay="2">
+          <div className={`hero-in ${styles.ctaRow}`} style={{ '--hero-delay': '0.2s' }}>
             <a href="#projects" className={`${styles.btn} ${styles.btnPrimary}`} data-hover>
               <span>See the work</span>
               <span className={styles.arrow}>→</span>
