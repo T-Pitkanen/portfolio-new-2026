@@ -181,19 +181,6 @@
 
 /* ── Mobile: everything centred (last, so it wins the cascade) ── */
 @media (max-width: 768px) {
-  .grid {
-    gap: 36px;
-    text-align: center;
-  }
-  .left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .bigHeading {
-    max-width: none;
-    text-align: center;
-  }
   .sub {
     margin: 16px auto 0;
     text-align: center;

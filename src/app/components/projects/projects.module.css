@@ -134,7 +134,6 @@
 .list {
   list-style: none;
   border-top: 1px solid var(--line);
-  max-width: 900px;
 }
 
 .row {
