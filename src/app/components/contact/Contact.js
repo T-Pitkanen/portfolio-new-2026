@@ -26,9 +26,6 @@ export default function Contact() {
           <h2 className={styles.bigHeading}>
             Get in touch
           </h2>
-          <p className={styles.sub}>
-            Email is the easiest way to reach me. LinkedIn works too.
-          </p>
         </div>
 
         {/* Right — contact blocks */}
