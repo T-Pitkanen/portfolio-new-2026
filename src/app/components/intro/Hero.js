@@ -8,9 +8,6 @@ export default function Hero() {
 
         {/* ── Left column ── */}
         <div className={styles.left}>
-          <p className={styles.where}>
-            <span lang="fi">Vaasa</span>, Finland · Business IT at <span lang="fi">VAMK</span> · RDI trainee
-          </p>
 
           <h1 className={styles.display}>
             Tiia<br />
