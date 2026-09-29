@@ -66,7 +66,7 @@ export default function Projects() {
 						>
 							<Image
 								src={project.image[0]}
-								alt=""
+								alt={project.alt?.[0] ?? `${name} screenshot`}
 								width={1400}
 								height={700}
 								sizes="(max-width: 900px) 100vw, 60vw"
@@ -180,10 +180,11 @@ export default function Projects() {
 							</div>
 							<Image
 								src={modalProject?.image[currentImageIndex] ?? '/test.png'}
-								alt={`${modalProject ? nameOf(modalProject) : 'Project'} screenshot ${currentImageIndex + 1} of ${imageCount}`}
+								alt={modalProject?.alt?.[currentImageIndex] ?? `${modalProject ? nameOf(modalProject) : 'Project'} screenshot ${currentImageIndex + 1} of ${imageCount}`}
 								width={1600}
 								height={900}
 								className={styles.modalImg}
+								style={{ aspectRatio: modalProject?.frame ?? '2 / 1' }}
 							/>
 							<div className={styles.modalNav}>
 								<button

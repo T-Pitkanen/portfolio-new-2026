@@ -42,6 +42,7 @@ export default function Navigation() {
 
   return (
     <>
+      <header>
       <nav className={styles.nav}>
         <div className={`${styles.wrap} ${scrolled ? styles.scrolled : ''}`}>
           {/* Desktop links */}
@@ -71,7 +72,7 @@ export default function Navigation() {
               <FaGithub size={14} aria-hidden="true" />
             </a>
             <a
-              href="https://linkedin.com/in/tiia-pitkanen"
+              href="https://www.linkedin.com/in/tiia-pitk%C3%A4nen/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.iconLink}
@@ -102,6 +103,7 @@ export default function Navigation() {
           </button>
         </div>
       </nav>
+      </header>
 
       {/* Mobile menu */}
       <div
@@ -130,7 +132,7 @@ export default function Navigation() {
             <FaGithub size={14} aria-hidden="true" /> GitHub
           </a>
           <a
-            href="https://linkedin.com/in/tiia-pitkanen"
+            href="https://www.linkedin.com/in/tiia-pitk%C3%A4nen/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mobileSocialLink}

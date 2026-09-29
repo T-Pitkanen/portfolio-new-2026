@@ -10,6 +10,7 @@ const projectData = [
 			'/gowala/contact.jpg',
 			'/gowala/backoffice.jpg',
 		],
+		alt: ['Gowala Farms home page with hero image and product highlights', 'Gowala Farms services page', 'Gowala Farms contact page with contact form', 'Gowala Farms back office CMS for managing products'],
 		goal: 'Focused on building a solid backend: custom CMS, product management, and database schema. Worked from a provided UI design.',
 		impact:
 			'Built a full e-commerce site with a CMS using Next.js and MongoDB.',
@@ -20,13 +21,14 @@ const projectData = [
 	{
 		title: 'Foodera - 2023',
 		year: '2023',
-		part: 'full-stack architecture, custom CMS, database schema, API routes · UI design was provided, but I had to recreate it in Next.js.',
+		part: 'full-stack architecture, custom CMS, database schema, API routes · UI design was provided, but I had to recreate it in Next.js',
 		role: 'Solo Project',
 		image: [
 			'/foodera/front.jpg',
 			'/foodera/explore.jpg',
 			'/foodera/checkout.jpg',
 		],
+		alt: ['Foodera home page for a food delivery service', 'Foodera page for exploring restaurants and dishes', 'Foodera checkout page with order summary'],
 		goal: 'Built the full-stack architecture from scratch: custom CMS, database schema, and API routes. Worked from a provided UI design.',
 		impact: 'Built a food delivery site with a CMS using Next.js and MongoDB.',
 		code: 'Next.js, MongoDB',
@@ -54,6 +56,7 @@ const projectData = [
 			'/kotiketju/kotihaku.png',
 			'/kotiketju/blogi.png',
 		],
+		alt: ['KotiKetju real estate home page in Finnish', 'KotiKetju section with customer statistics and a handshake photo, followed by reasons to choose the agency', 'KotiKetju contact page', 'KotiKetju property listings overview', 'KotiKetju single property page', 'KotiKetju second single property page', 'KotiKetju home search page', 'KotiKetju blog page'],
 		goal: 'Group project for a blockchain course. Designed the site in Base44, then rebuilt it locally in Next.js for more control.',
 		impact:
 			'First time working with blockchain as a concept. Had to understand the tech well enough to design something credible around it.',
@@ -72,6 +75,7 @@ const projectData = [
 			'/skill_id/haku.png',
 			'/skill_id/jako.png',
 		],
+		alt: ['SKILL-ID app home page', 'SKILL-ID digital qualification card in the wallet', 'SKILL-ID trainer dashboard', 'SKILL-ID search view for qualifications', 'SKILL-ID view for sharing a qualification card'],
 		goal: 'Group project. Built the app with Lovable and contributed to the B2B marketing strategy. A digital wallet for professional qualification cards with QR verification and a trainer dashboard.',
 		impact:
 			'Got to work on both the product and the business side. Pitching a real concept to an actual audience and created a marketing strategy.',
@@ -84,6 +88,7 @@ const projectData = [
 		part: 'everything: branding, logo, design, and Next.js + MongoDB build',
 		role: 'Solo Project',
 		image: ['/hg/front.jpg', '/hg/house.jpg', '/hg/blog.jpg'],
+		alt: ['House Guru real estate home page', 'House Guru property page with photo gallery, address and price', 'House Guru blog page'],
 		goal: 'Designed and built a real estate site from scratch using Next.js and MongoDB including the branding and logo.',
 		impact:
 			'Had to think about branding, design, and backend. It was the first project that felt like a real product.',
@@ -107,6 +112,7 @@ const projectData = [
 			'/esport/time.jpg',
 			'/esport/values.jpg',
 		],
+		alt: ['EastSide Esport front page', 'EastSide Esport contact page', 'EastSide Esport training schedule page', 'EastSide Esport values page'],
 		goal: 'We were given the logo, color palette and a rough idea of the brand. I designed and built the site from that.',
 		impact:
 			'Built a site for a Viborg-based esports org targeting both youth and parents.',
@@ -120,6 +126,7 @@ const projectData = [
 		part: 'design and build. integrated live weather, news feed and calendar via real-time APIs',
 		role: 'Solo Project',
 		image: ['/solace/1.jpg', '/solace/2.jpg', '/solace/3.jpg'],
+		alt: ['Hotel Solace reception screen with a lobby photo, welcome message, music night event and Viborg weather forecast', 'Hotel Solace reception screen presenting Restaurant Savor with a wine and cheese tasting event', 'Hotel Solace reception screen presenting the spa and sauna with a morning yoga event'],
 		goal: 'Built a hotel reception info screen with live weather, a news feed, a clock and a rotating calendar.',
 		impact: 'First time working with real-time APIs in a display context. ',
 		code: 'HTML, CSS and Vanilla JS',
@@ -136,6 +143,7 @@ const projectData = [
 			'/parks/parks.jpg',
 			'/parks/gallery.jpg',
 		],
+		alt: ['Viborg Parks front page', 'Viborg Parks information page', 'Viborg Parks cards for Borgvold and Bibelhaven with photos of a footbridge over a stream and a garden staircase', 'Viborg Parks photo gallery'],
 		goal: 'Photography and editing project.',
 		impact:
 			'Built a gallery site showcasing my own photography of parks in Viborg.',

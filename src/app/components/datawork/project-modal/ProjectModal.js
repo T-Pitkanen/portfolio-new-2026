@@ -15,6 +15,7 @@ export default function ProjectModal({ course, onClose }) {
   const lightboxRef = useRef(null);
 
   const images = Array.isArray(project.image) ? project.image : [project.image];
+  const altOf = (i) => project.alt?.[i] ?? `Material for ${project.title}`;
   const hasMultipleImages = images.length > 1;
 
   useAccessibleDialog({ open: true, onClose, dialogRef: modalRef });
@@ -101,7 +102,7 @@ export default function ProjectModal({ course, onClose }) {
                     >
                       <Image
                         src={images[currentImageIndex]}
-                        alt={`Material for ${project.title}`}
+                        alt={altOf(currentImageIndex)}
                         width={1790}
                         height={1140}
                         sizes="(max-width: 640px) 100vw, 430px"
@@ -184,7 +185,7 @@ export default function ProjectModal({ course, onClose }) {
           )}
           <Image
             src={images[currentImageIndex]}
-            alt={`Material for ${project.title}`}
+            alt={altOf(currentImageIndex)}
             width={1790}
             height={1140}
             sizes="100vw"

@@ -20,6 +20,7 @@ const courses = [
     project: {
       title: "Zoo Management Database",
       image: "/elaintarha/elaintarha_drawio.jpg",
+      alt: ["Entity relationship diagram of the zoo management database, drawn in draw.io"],
       description:
         "Designed and implemented a relational database for a fictional Finnish zoo as part of a databases and APIs course. The schema covers 11 entities including animals, species, employees, visits, and tickets, with M:N junction tables, a self-referencing employee hierarchy, CHECK constraints, and indexes for query performance. Queries use JOINs, GROUP BY, self-joins, and subqueries to answer real operational questions like monthly food consumption and ticket sales by type. The database is normalized to 3NF and uses transactions to ensure data integrity across multi-step operations. Also integrated pgvector to store text embeddings, laying the groundwork for a RAG-based AI chatbot feature.",
       topics: [
@@ -87,11 +88,6 @@ const courses = [
     ],
     project: {
       title: "Scalable Cloud Ecosystems",
-      image: [
-        "/cloud/azure_vm_deployment.png",
-        "/cloud/database_architecture.png",
-        "/cloud/google_cloud_migration.png",
-      ],
       description:
         "Engineered tailored cloud architectures for distinct business needs. One case involved migrating an ecommerce platform from a traditional SQL database to Azure Cosmos DB to handle seasonal traffic spikes horizontally. This included implementing Azure AI Search to generate personalized product recommendations using vector search. Another case analyzed a single person agency workflow, recommending a shift from a complex multicloud environment to a unified Google Cloud and Workspace ecosystem. This consolidation streamlined administrative tasks, reduced data transfer costs, and simplified billing.",
       topics: [
@@ -129,6 +125,7 @@ const courses = [
         "/b2b/haku.png",
         "/b2b/kouluttaja.png",
       ],
+      alt: ["Skill-ID marketing site home page", "Skill-ID introduction slide explaining the digital qualification wallet", "Skill-ID mobile app mockup", "Skill-ID qualification search view", "Skill-ID trainer dashboard"],
       description:
         "Designed a Go-To-Market strategy for a SaaS platform that replaces physical certificates with secure digital identities. The project involved defining a B2B revenue model where training organizations and authorities act as paying customers while keeping the mobile service free for individuals to ensure rapid market penetration. The strategy emphasizes high security, automated expiration reminders, and organization-independent scalability.",
       topics: [
@@ -186,6 +183,7 @@ const courses = [
         "/design/tyyni_hero.png",
         "/design/tyyni_palvelut.png",
       ],
+      alt: ["Tyyni wellness studio logo", "Tyyni website About page prototype", "Tyyni website appointment booking page prototype", "Tyyni website hero section prototype", "Tyyni website services page prototype"],
       description:
         "Created a cohesive brand identity for a fictional wellness studio, including logo design, color palette, typography, and graphic guidelines. Developed a content strategy and wireframes for the website, culminating in a high-fidelity Figma prototype that reflects the brand's values of tranquility and holistic well-being.",
       topics: [
