@@ -32,9 +32,7 @@ const STACK = {
 export default function Skills() {
 	return (
 		<section className={styles.section} id="skills">
-			<h2 className="section-h2">
-				Tools and technologies that I have used in my projects
-			</h2>
+			<h2 className="section-h2">Tools and technologies I have used</h2>
 			<p className={styles.subtitle}>
 				These days most of my code goes through Claude Code and Codex. I spend
 				less time writing code manually and more time researching, planning,

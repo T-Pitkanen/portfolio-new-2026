@@ -61,6 +61,7 @@ export default function Projects() {
             <button
               type="button"
               className={styles.visual}
+              style={project.frame ? { aspectRatio: project.frame } : undefined}
               aria-label={`Open ${name} gallery, ${shots} screenshots`}
               onClick={() => openGallery(project)}
             >
