@@ -33,23 +33,11 @@ const COMMANDS = {
 	hobbies: [
 		{ type: 'ok', text: 'gym/    strength training, as hard as I can' },
 		{ type: 'ok', text: 'yoga/   calming my body and nerves' },
-		{ type: 'ok', text: 'games/  Minecraft season, plus other stuff' },
-		{ type: 'out', text: "# type 'gym', 'yoga' or 'games' for more" },
-	],
-	games: [
-		{ type: 'ok', text: 'now playing: Minecraft (it is my Minecraft season)' },
 		{
-			type: 'out',
-			text: '# also on the list: other games, depending on the mood',
+			type: 'ok',
+			text: 'games/  Currently in my Minecraft season. Other games too depending on the mood.',
 		},
-		{ type: 'out', text: "# type 'minecraft' for the details" },
-	],
-	minecraft: [
-		{
-			type: 'warn',
-			text: '⛏ dug straight down. regretted it. rebuilt the base.',
-		},
-		{ type: 'out', text: '# creepers: 1  ·  me: 0  ·  base: mostly intact' },
+		{ type: 'out', text: "# type 'gym', 'yoga' for more" },
 	],
 	gym: {
 		type: 'warn',
