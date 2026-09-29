@@ -28,22 +28,19 @@ const INITIAL_LINES = [
 const COMMANDS = {
 	help: {
 		type: 'ok',
-		text: '> try: hello · cv · hobbies · games · coffee · location · clear · reset',
+		text: '> try: hello · cv · hobbies · coffee · location · clear · reset',
 	},
 	hobbies: [
-		{ type: 'ok', text: 'gym/    strength training, as hard as I can' },
-		{ type: 'ok', text: 'yoga/   calming my body and nerves' },
 		{
 			type: 'ok',
-			text: 'games/  Currently in my Minecraft season. Other games too depending on the mood.',
+			text: 'gym/    🏋 heavy things lifted, then put back down. repeat.',
 		},
-		{ type: 'out', text: "# type 'gym', 'yoga' for more" },
+		{ type: 'ok', text: 'yoga/  🧘 calming my body and nerves.' },
+		{
+			type: 'ok',
+			text: 'games/  🎮 currently in my Minecraft season. other games too depending on the mood.',
+		},
 	],
-	gym: {
-		type: 'warn',
-		text: '🏋 heavy things lifted, then put back down. repeat.',
-	},
-	yoga: { type: 'ok', text: '🧘 inhale… exhale… nervous system -> calm.' },
 	hello: { type: 'ok', text: '♥ hi! have a great day!' },
 	cv: { type: 'confirm', text: 'download Tiia_Pitkanen_CV.pdf? [y/n]' },
 	coffee: { type: 'ok', text: '☕ sending good vibes your way' },
