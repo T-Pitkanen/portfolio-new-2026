@@ -15,7 +15,13 @@ const timeline = [
 			</>
 		),
 		title: 'Business IT',
-		desc: 'Back in Finland, got curious about business and IT, and that\'s why I decided to pursue a degree in Business IT at <span lang="fi">VAMK</span>.',
+		desc: (
+			<>
+				Back in Finland. I wanted to continue my studies and got curious about
+				business and IT. That&apos;s why I decided to pursue a degree in
+				Business IT at <span lang="fi">VAMK</span>.
+			</>
+		),
 	},
 	{
 		year: 'Now',

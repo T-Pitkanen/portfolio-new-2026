@@ -21,7 +21,6 @@ export default function Navigation() {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      // Active section tracking
       const ids = navLinks.map((l) => l.href.slice(1));
       let cur = '';
       for (const id of ids) {
