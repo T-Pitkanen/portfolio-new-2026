@@ -15,7 +15,7 @@ const timeline = [
 			</>
 		),
 		title: 'Business IT',
-		desc: 'Back in Finland, studying Business IT, where software development meets business systems.',
+		desc: 'Back in Finland, got curious about business and IT, and that\'s why I decided to pursue a degree in Business IT at <span lang="fi">VAMK</span>.',
 	},
 	{
 		year: 'Now',
@@ -43,7 +43,7 @@ export default function About() {
 						real projects and am comfortable working across the stack.
 					</p>
 					<p>
-						Right now I&apos;m a trainee in an RDI project at{' '}
+						Currently, I&apos;m a trainee in an RDI project at{' '}
 						<span lang="fi">VAMK</span>, building a web app powered by
 						generative AI. I work with LLM integration and testing, backend
 						work, and a full restyle of the UI on the frontend, then piloting
